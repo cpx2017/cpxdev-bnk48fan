@@ -1,8 +1,18 @@
 import React from 'react';
-import { Card, CardActionArea, CardContent, CardMedia, TextField, Zoom, MenuItem, Button, ButtonGroup } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia, TextField, Zoom, MenuItem, Button, Backdrop } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
+import moment from 'moment';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  }));
 
 const Add = ({fet}) => {
+    const classes = useStyles();
     const [arr, setArr] = React.useState([]); 
     const [name, setName] = React.useState(''); 
     const [desc, setDesc] = React.useState(''); 
@@ -11,6 +21,8 @@ const Add = ({fet}) => {
     const [link, setLink] = React.useState(''); 
     const [img, setImg] = React.useState(''); 
     const [current, setCur] = React.useState('-'); 
+
+    const [load, setLoad] = React.useState(false); 
 
     const ImgHand = (e) => {
         const input = e
@@ -31,12 +43,6 @@ const Add = ({fet}) => {
 
     React.useEffect(() => {
         let temp = []
-        temp.push(
-            {
-                label: 'Choose member to reference with this event',
-                value: '-'
-            }
-        );
         fetch(fet + '/bnk48/memberlist?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
             method :'get'
         })
@@ -63,8 +69,52 @@ const Add = ({fet}) => {
             })
     }, [])
 
-    const onSub = () => {
-        alert()
+    const onSub = (e) => {
+        e.preventDefault()
+        if (moment(tstart).unix() >= moment(tend).unix()) {
+            alert("Please check event start datetime and end datetime and try again.")
+            return false
+        }
+        if (current == '-') {
+            alert("Please choose hosted BNK48 member for this event.")
+            return false
+        }
+        setLoad(true)
+        const Obj = {
+            title: name,
+            desc: desc,
+            member: current,
+            link: link,
+            start: moment(tstart).utc().format("yyyy-MM-DD HH:mm:ss"), // System convert to UTC for easy convert to different time zone
+            end: moment(tend).utc().format("yyyy-MM-DD HH:mm:ss"),
+            img: img,
+            name: JSON.parse(localStorage.getItem('glog')).name,
+            mail: JSON.parse(localStorage.getItem('glog')).email
+          }
+          fetch(fet + '/bnk48/request', {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(Obj),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.errorcode == 0) {
+                    alert("Event form is sent successfully, Please check email after today about 3 days or less to approving event.")
+                    window.location.href = "/fandomroom?name=" + current
+                } else {
+                    alert("System will be temporary error for a while. Please try again")
+                }
+                setLoad(false)
+            })
+            .catch((error) => {
+                alert("System will be temporary error for a while. Please try again")
+                setLoad(false)
+            });
+
+        console.log(Obj)
     }
 
 
@@ -91,7 +141,6 @@ const Add = ({fet}) => {
                         value={name}
                         className="mb-3 mt-3"
                         onChange={(e) => setName(e.target.value)}
-                        onInvalid={(e) => e.target.setCustomValidity('Please enter event name')}
                         />
                 </div>
                 <div className='col-md-10'>
@@ -130,6 +179,13 @@ const Add = ({fet}) => {
                         value={link}
                         placeholder='More event description from Facebook, Instagram, Line square or Twitter link'
                         fullWidth={true}
+                        onKeyPress={() => {
+                            if (!link.includes("https://")) {
+                                let temp = link;
+                                temp = temp.replace (/^/,'https://');
+                                setLink(temp)
+                            }
+                        }}
                         className="mb-3"
                         type="url"
                         onChange={(e) => setLink(e.target.value)}
@@ -185,8 +241,10 @@ const Add = ({fet}) => {
                         <Button type="submit" variant="outlined" color="primary">Send Form</Button>
                     </div>
             </form>
-
         </Card>
+        <Backdrop className={classes.backdrop} open={load}>
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" />
+        </Backdrop>
      </div>
      );
 }

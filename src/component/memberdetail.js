@@ -12,6 +12,7 @@ import PanToolIcon from '@material-ui/icons/PanTool';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import NaturePeopleIcon from '@material-ui/icons/NaturePeople';
 
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -20,6 +21,32 @@ function capitalizeFirstLetter(string) {
         const [mem, setmem] = React.useState('');
         const [arr, setArr] = React.useState([]); 
         const [Loaded, setLoaded] = React.useState(false);
+        const [birthday, setBirthday] = React.useState(false);
+
+        const BirthdayCheck = (val) => {
+            fetch(fet + '/bnk48/getmemberbybirth?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
+            method :'post'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.count > 0) {
+                     const arr = (data.response)
+                     const i = arr.findIndex(x => x.name == val)
+                     if (i > -1) {
+                        setBirthday(true)
+                     }
+                } else {
+                    setBirthday(false)
+                }
+            });
+        }
+
+        const PlaySong = () => {
+            const pm = new Audio('https://p.scdn.co/mp3-preview/26031551568cba193fbb55d6e4dcf3eb8fb99b04?cid=774b29d4f13844c495f206cafdad9c86')
+            if (pm.duration > 0 && !pm.paused) { } else {
+                pm.play()
+            }
+        }
 
         React.useEffect(() => {
             document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -40,6 +67,8 @@ function capitalizeFirstLetter(string) {
                         temp.push(data.response)
                         setArr(temp)
                         setLoaded(true)
+
+                        BirthdayCheck(data.response.name)
                     }
                 }).catch(() => {
                     setArr([])
@@ -80,7 +109,11 @@ function capitalizeFirstLetter(string) {
                                     <hr />
                                     <>
                                         <h6><LocationOnIcon fontSize="small"/> {item.province}</h6>
-                                        <h6><CakeIcon fontSize="small"/> {item.birthday}</h6>
+                                        {birthday ? (
+                                            <h6 onClick={()=> PlaySong()}><CakeIcon fontSize="small"/> Today is her birthday! ({new Date().getFullYear() - new Date(item.birthday).getFullYear() + ' years old'})</h6>
+                                        ) : (
+                                            <h6><CakeIcon fontSize="small"/> {item.birthday}</h6>
+                                        )}
                                         {!item.graduated && (
                                             <>
                                             <p><GroupIcon fontSize="small"/> {item.team}</p>

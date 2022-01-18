@@ -17,7 +17,7 @@ import { Fireworks } from 'fireworks-js/dist/react'
 var pm = new Audio('https://p.scdn.co/mp3-preview/26031551568cba193fbb55d6e4dcf3eb8fb99b04?cid=774b29d4f13844c495f206cafdad9c86')
 
 const fwoptions = {
-    speed: 4,
+    speed: 3,
   }
 
   const fwstyle = {

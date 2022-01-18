@@ -18,7 +18,6 @@ var pm = new Audio('https://p.scdn.co/mp3-preview/26031551568cba193fbb55d6e4dcf3
 
 const fwoptions = {
     speed: 4,
-    explosion: 6
   }
 
   const fwstyle = {

@@ -17,7 +17,7 @@ import { Fireworks } from 'fireworks-js/dist/react'
 var pm = new Audio('https://p.scdn.co/mp3-preview/26031551568cba193fbb55d6e4dcf3eb8fb99b04?cid=774b29d4f13844c495f206cafdad9c86')
 
 const fwoptions = {
-    speed: 8,
+    speed: 6,
     explosion: 6
   }
 
@@ -123,7 +123,7 @@ function capitalizeFirstLetter(string) {
                     {arr.length > 0 && arr.map((item, i) => (
                         <Grow in={Loaded} timeout={600}>
                             <div>
-                            <Fade in={play} timeout={{enter:100,exit:500}}>
+                            <Fade in={play} timeout={{enter:300,exit:500}}>
                             <Fireworks options={fwoptions} style={fwstyle} />
                             </Fade>
 

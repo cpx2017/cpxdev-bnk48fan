@@ -16,6 +16,7 @@ const FanList = ({fet}) => {
 
     const [Arr, setArr] = React.useState([]);
     const [mem, setmem] = React.useState([]);
+
     React.useEffect(() => {
         if (localStorage.getItem("glog") == null) {
             alert("You need to login before use this feature.")

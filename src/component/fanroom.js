@@ -25,13 +25,31 @@ function capitalizeFirstLetter(string) {
         const FullRef = React.useRef(null);
         const CardRef = React.useRef(null);
         const [arr, setArr] = React.useState([]); 
+        const [Ev, setEv] = React.useState([]); 
         const [Loaded, setLoaded] = React.useState(false);
+        const [Loaded1, setLoaded1] = React.useState(false);
 
         const NonLoginDetect = () => {
             if (localStorage.getItem("glog") == null) {
                 alert("You need to login before use this feature.")
                 History.goBack()
             }
+        }
+
+        const LinkHand = (nme) => {
+             fetch(fet + '/bnk48/list?mem=' + nme, {
+                    method :'get'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        setEv(data)
+                    }
+                    setLoaded1(true)
+                }).catch(() => {
+                    setEv([])
+                    setLoaded1(true)
+                })
         }
 
         React.useEffect(() => {
@@ -57,6 +75,7 @@ function capitalizeFirstLetter(string) {
                         temp.push(data.response)
                         setArr(temp)
                         setLoaded(true)
+                        LinkHand(c)
                     }
                 }).catch(() => {
                     setArr([])
@@ -118,157 +137,30 @@ function capitalizeFirstLetter(string) {
                     </div>
                 )}
                 </d>
-               <div className='mt-5 pl-5 mr-5'>
-                    <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-2'>
-                            OK
-                        </Card>
-                        <Card className='mb-5'>
-                            OK
-                        </Card>
-               </div>
-                
-            </div>
+                {Loaded1 ? (
+                <>
+                    {Ev.length == 0 ? (
+                        <div className='mt-5 pl-5 mr-5'>
+                                <Card className='mb-2 p-5 text-center'>
+                                        Not found event for this Members
+                                    </Card>
+                        </div>
+                            ) : (
+                                <div className='mt-5 pl-5 mr-5'>
+                                {Ev.map((item) => (
+                                    <Card className='mb-2'>
+                                        {item.title}
+                                    </Card>
+                                ))}
+                        </div>
+                    )}
+                </>
+                ) : (
+                    <div className='text-center'>
+                         <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" className='text-center mt-3 mb-5' />
+                    </div>
+                )}
+                </div>
         </>
          );
     }

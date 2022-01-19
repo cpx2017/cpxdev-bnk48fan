@@ -31,6 +31,7 @@ import Offici from './component/official';
 import FamdomList from './component/fandomlist';
 import FanRoom from './component/fanroom';
 import AddEvent from './component/addNewEvent';
+import Mana from './component/manage';
 
 import Fet from './fetch'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
@@ -271,6 +272,7 @@ function App() {
                       <Route exact path="/fandom" render={() => <FamdomList fet={Fet().ul} />} />
                       <Route exact path="/fandomroom" render={() => <FanRoom fet={Fet().ul} />} />
                       <Route exact path="/addevent" render={() => <AddEvent fet={Fet().ul} />} />
+                      <Route exact path="/eventcontrol" render={() => <Mana fet={Fet().ul} />} />
                     </BasicSwitch>
                 
                

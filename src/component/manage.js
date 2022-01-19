@@ -6,14 +6,20 @@ const Mana = () => {
     const [url2, setU2] = React.useState(''); 
 
     React.useEffect(() => {
-        if (localStorage.getItem('glog') != undefined && JSON.parse(localStorage.getItem('glog')).googleId == atob("MTExODg5OTY3NzU2MDc4MzY0OTc0")) {
+        let person = prompt("Please enter identity password", "");
+        if (person == null || person == "") {
+            alert('Access denied')
+            window.location.href = "/"
+        } else {
+          if (btoa(person) == "NTg0NDI3NzA3MkNudA==") {
             var url_string = window.location.href; 
             var url = new URL(url_string);
             setU1(url.searchParams.get("point1"));
             setU2(url.searchParams.get("point2"));
-        } else {
+          } else {
             alert('Access denied')
             window.location.href = "/"
+          }
         }
     }, [])
     return ( 

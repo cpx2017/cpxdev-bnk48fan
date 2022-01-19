@@ -1,7 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Avatar, Grow, ListItemIcon, Typography, Zoom, Link, Breadcrumbs, IconButton, Card, CardHeader } from '@material-ui/core';
+import { Button, Avatar, Grow, ListItemIcon, Typography, Zoom, Link, Breadcrumbs, IconButton, Card, CardHeader, CardMedia, CardContent, Tooltip } from '@material-ui/core';
+import moment from 'moment';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -87,6 +88,12 @@ function capitalizeFirstLetter(string) {
             }
         }
         }, [])
+
+        const onLocal = (t) => {
+            let stillUtc = moment.utc(t).toDate();
+            return moment(stillUtc).local().format('DD MMMM YYYY HH:mm:ss');
+        }
+
         return (  
         <>
             <div className="stage pt-5 pb-2" ref={FullRef} onClick={() => NonLoginDetect()}>
@@ -141,16 +148,30 @@ function capitalizeFirstLetter(string) {
                 <>
                     {Ev.length == 0 ? (
                         <div className='mt-5 pl-5 mr-5'>
-                                <Card className='mb-2 p-5 text-center'>
-                                        Not found event for this Members
+                                <Card className='mb-2 p-5 text-center' onClick={() => History.push('/addevent?name=' + mem.toLowerCase())}>
+                                        Not found event for this Member. If you hear any event.You can request event to promote here. No hidden cost!
                                     </Card>
                         </div>
                             ) : (
                                 <div className='mt-5 pl-5 mr-5'>
                                 {Ev.map((item) => (
-                                    <Card className='mb-2'>
-                                        {item.title}
-                                    </Card>
+                                   
+                                   <Card>
+                                   <CardHeader
+                                     title={item.title}
+                                     subheader={'Event start in ' + onLocal(item.start).toString() + ' until ' + onLocal(item.end).toString()}
+                                   />
+                                   <CardMedia
+                                     className={classes.media}
+                                     src={item.img}
+                                     component="img"
+                                   />
+                                   <CardContent>
+                                     <Typography variant="body1" component="p">
+                                       {item.desc} – <b className='text-muted'>{'Posted by ' + item.name}</b>
+                                     </Typography>
+                                   </CardContent>
+                                 </Card>
                                 ))}
                         </div>
                     )}

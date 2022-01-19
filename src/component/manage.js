@@ -13,8 +13,8 @@ const Mana = () => {
     }, [])
     return ( 
         <div className='text-center mt-5'>
-            <Button color="primary" href={atob(url1)}>Confirm</Button>
-            <Button color="primary" href={atob(url2)}>Decide</Button>
+            <Button color="primary" href={decodeURI(url1)}>Confirm</Button>
+            <Button color="primary" href={decodeURI(url2)}>Decide</Button>
         </div>
      );
 }

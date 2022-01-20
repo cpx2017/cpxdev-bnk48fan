@@ -7,6 +7,7 @@ const Mana = ({fet}) => {
     const [ done, setDone ] = React.useState(false);
 
     React.useEffect(() => {
+      if (sessionStorage.getItem("dashad") == null) {
         let person = prompt("Please enter identity password", "");
         if (person == null || person == "") {
             alert('Access denied')
@@ -26,6 +27,7 @@ const Mana = ({fet}) => {
                   } else {
                     setU1(url.searchParams.get("point1"));
                     setU2(url.searchParams.get("point2"));
+                    sessionStorage.setItem("dashad", "")
                     setDone(true)
                   }
                 } else {
@@ -38,6 +40,19 @@ const Mana = ({fet}) => {
               window.location.href = "/"
             });
         }
+      } else {
+        var url_string = window.location.href; 
+        var url = new URL(url_string);
+        if (url.searchParams.get("point1") == null || url.searchParams.get("point2") == null) {
+          alert("Check url path")
+          window.location.href = "/"
+        } else {
+          setU1(url.searchParams.get("point1"));
+          setU2(url.searchParams.get("point2"));
+          sessionStorage.setItem("dashad", "")
+          setDone(true)
+        }
+      }
     }, [])
     if (done) {
       return ( 

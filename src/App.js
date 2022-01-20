@@ -34,6 +34,7 @@ import FanRoom from './component/fanroom';
 import AddEvent from './component/addNewEvent';
 import Mana from './component/manage';
 import GeCom from './component/ge';
+import GeMana from './component/gemanage';
 
 import Fet from './fetch'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
@@ -282,6 +283,7 @@ function App() {
                       <Route exact path="/addevent" render={() => <AddEvent fet={Fet().ul} />} />
                       <Route exact path="/eventcontrol" render={() => <Mana fet={Fet().ul} />} />
                       <Route exact path="/ge3" render={() => <GeCom fet={Fet().ul} />} />
+                      <Route exact path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />
                     </BasicSwitch>
                 
                

@@ -12,6 +12,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+
 const useStyles = makeStyles((theme) => ({
   large: {
     width: theme.spacing(10),
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Ge = () => {
+const Ge = ({fet}) => {
   const classes = useStyles();
 
   const timesch = {
@@ -40,8 +41,53 @@ const Ge = () => {
     announ: 1649473200
   }
 
+  const [rank, setRank] = React.useState([]); 
+  const [spam, setSpam] = React.useState(0); 
+  const [ts, setts] = React.useState('Updating'); 
+  const [urlstream, setStream] = React.useState(''); 
+
+  const ResultFetch = () => {
+    setts('Updating')
+    fetch(fet + '/bnk48/listge', {
+      method :'post'
+  })
+      .then(response => response.json())
+      .then(data => {
+          setRank(data)
+          setts(moment().format("DD MMMM YYYY HH:mm:ss"))
+      }).catch(() => {
+        setRank([])
+        setts(moment().format("DD MMMM YYYY HH:mm:ss") + ' (Error fetching)')
+      })
+  }
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+  React.useEffect(() => {
+    ResultFetch()
+    setInterval(function () {
+      if (moment().unix() >= timesch.announ && moment().unix() <= timesch.announ + 86400) {
+        ResultFetch()
+        setSpam(0)
+      }
+    }, 60000);
+  }, [])
+
+  // const Refresh = () => {
+  //   if (spam == 3) {
+  //     alert("You have temporary blocked because you get refresh too many times for system performance reason. Please wait a minute to continue.")
+  //   } else {
+  //     let i = spam + 1
+  //     setSpam(i)
+  //     ResultFetch()
+  //   }
+  // }
+
   const CheckTZ = (meth) => {
     let dcn = 2;
+    console.log(moment().unix())
     const cur = moment().unix();
     // const cur = 1649501999;
     switch(meth) {
@@ -73,7 +119,9 @@ const Ge = () => {
         }
         break;
       case 4:
-        if(cur >= timesch.announ) {
+        if(cur > timesch.announ + 86400) {
+          dcn = 0
+        } else if(cur >= timesch.announ && cur <= timesch.announ + 86400) {
           dcn = 1
         } else {
           dcn = 2
@@ -240,11 +288,22 @@ const Ge = () => {
                   }
                 </ListItem>
                 <ListItem>
-                  <ListItemText className={CheckTZ(4) == 1 ? 'text-success' : ''} primary="Announcement Result" secondary="Apr 9, 2022" />
+                  <ListItemText className={CheckTZ(4) == 0 ? 'text-muted' : CheckTZ(4) == 1 ? 'text-success' : ''} primary="Announcement Result" secondary="Apr 9, 2022" />
+                  {
+                    CheckTZ(4) == 0 && (
+                      <ListItemSecondaryAction>
+                        <Checkbox
+                          checked={true}
+                          tabIndex={-1}
+                          disabled={true}
+                        />
+                  </ListItemSecondaryAction>
+                    )
+                  }
                    {
                     CheckTZ(4) == 1 && (
                       <ListItemSecondaryAction>
-                         <IconButton>
+                         <IconButton edge="end">
                       <FiberManualRecordIcon className='text-success' />
                     </IconButton>
                   </ListItemSecondaryAction>
@@ -257,10 +316,20 @@ const Ge = () => {
           </Card>
           <Card className='mt-5'>
             <CardContent>
-              <CardHeader title="Result of Election" subheader="Notes: System will be under maintenance." />
+            <CardHeader title="How to voting your member to one of Senbatsu!" />
+              <hr />
+              <div>
+              Please wait for the announcement from BNK48 official.
+              </div>
+            </CardContent>
+          </Card>
+          <Card className='mt-5'>
+            <CardContent>
+              <CardHeader title="Result of Election" subheader={'Latest update: ' + ts} />
               <hr />
               <TableContainer>
                 <Table stickyHeader aria-label="simple table">
+                <caption className='text-right'>System will be update records every minute. You don't need to be refresh</caption>
                   <TableHead>
                     <TableRow>
                       <TableCell className={classes.rank}>Rank</TableCell>
@@ -270,42 +339,46 @@ const Ge = () => {
                       <TableCell align="right">Scores</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody>
+                  {rank.length > 0 ? rank.map((item) => (
+                    <TableBody key={item.id}>
                     <TableCell component="th" className={classes.rank}>
-                          1
+                          {item.rank}
                         </TableCell>
                         <TableCell align="center" className={classes.img}>
-                        <img src="https://www.bnk48.com/data/Members/4/pro/l/20210602060307abe159.png" className={classes.large + ' cir'} />
+                        <img src={item.obj.response.img} className={classes.large + ' cir'} />
                           </TableCell>
                           <TableCell align="center">
-                          Cherprang Areekul
+                          {item.obj.response.fullnameEn[0]}  {item.obj.response.fullnameEn[1]}
                           </TableCell>
                           <TableCell align="right">
-                          BIII
+                          {item.obj.response.team == "" ? 'None' : item.obj.response.team}
                           </TableCell>
                           <TableCell align="right">
-                          30000000
+                          {numberWithCommas(item.sc)}
                           </TableCell>
                   </TableBody>
-                  <TableBody>
-                    <TableCell component="th" className={classes.rank}>
-                          2
-                        </TableCell>
-                        <TableCell align="center" className={classes.img}>
-                        <img src="https://www.bnk48.com/data/Members/14/pro/l/20210602060837kmnst7.png" className={classes.large + ' cir'} />
-                          </TableCell>
-                          <TableCell align="center">
-                          Pimrapat Phadungwatanachok
-                          </TableCell>
-                          <TableCell align="right">
-                          NV
-                          </TableCell>
-                          <TableCell align="right">
-                          1000000
-                          </TableCell>
+                  )): (
+                    <TableBody>
+                       <TableCell colSpan={5} align='center'>No record found</TableCell>
                   </TableBody>
+                  )}
                 </Table>
               </TableContainer>
+            </CardContent>
+          </Card>
+          <Card className='mt-5'>
+            <CardContent>
+            <CardHeader title="Watching Live Stream" />
+              <hr />
+              <div className='text-center'>
+              {urlstream != '' ? (
+                <iframe src={urlstream} allowFullScreen />
+              ) : (
+                <div>
+                Please wait for the announcement from BNK48 official.
+                </div>
+              )}
+              </div>
             </CardContent>
           </Card>
         </div>

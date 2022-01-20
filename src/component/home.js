@@ -58,7 +58,7 @@ const HomeCom = ({fet}) => {
           ) : (
             <Fade in={true} timeout={800}>
                <div class="">
-                <iframe src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/myport/fav/bnk48.jpg"></iframe>
+               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/myport/fav/bnk48.jpg" />
               </div>
               </Fade>
           )}

@@ -31,7 +31,7 @@ const News = ({fet}) => {
           <div class="video-background">
            <Fade in={true} timeout={800}>
            <div class="">
-           <iframe src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/myport/fav/bnk48.jpg"></iframe>
+           <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/myport/fav/bnk48.jpg" />
               </div>
               </Fade>
       </div>

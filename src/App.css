@@ -106,3 +106,7 @@ iframe[id*="twitter-widget"] {
   object-fit: cover;
   overflow: auto;
 }
+
+.cir {
+  border-radius: 50%;
+}

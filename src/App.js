@@ -22,6 +22,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import DnsIcon from '@material-ui/icons/Dns';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
+import CodeIcon from '@material-ui/icons/Code';
 
 import Home from './component/home';
 import MemberList from './component/members';
@@ -33,8 +34,10 @@ import FamdomList from './component/fandomlist';
 import FanRoom from './component/fanroom';
 import AddEvent from './component/addNewEvent';
 import Mana from './component/manage';
-import GeCom from './component/ge';
-import GeMana from './component/gemanage';
+import Api from './component/apisupport';
+
+import GeCom from './component/geevent/ge';
+import GeMana from './component/geevent/gemanage';
 
 import Fet from './fetch'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
@@ -222,6 +225,12 @@ function App() {
                   </ListItemIcon>
                   <ListItemText primary='BNK48 12th Single General Election' />
                 </ListItem>
+                <ListItem component={Link} to='/api' button>
+                  <ListItemIcon>
+                    <CodeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='API' />
+                </ListItem>
                 </d>
                 <Divider />
                 <ListItem onClick={() => alert('Region mode will enhance system performance. Current region connection has been referenced by IP address')} button>
@@ -282,6 +291,8 @@ function App() {
                       <Route exact path="/fandomroom" render={() => <FanRoom fet={Fet().ul} />} />
                       <Route exact path="/addevent" render={() => <AddEvent fet={Fet().ul} />} />
                       <Route exact path="/eventcontrol" render={() => <Mana fet={Fet().ul} />} />
+                      <Route exact path="/api" render={() => <Api fet={Fet().ul} />} />
+
                       <Route exact path="/ge3" render={() => <GeCom fet={Fet().ul} />} />
                       <Route exact path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />
                     </BasicSwitch>

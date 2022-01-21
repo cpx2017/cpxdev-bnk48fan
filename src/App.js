@@ -162,10 +162,6 @@ function App() {
     }
   }
 
-  const closeHand = (fetchdata) => {
-    setOpen(false)
-    FetchKami(fetchdata)
-  }
   const openHand = (fetchdata) => {
     setOpen(true)
     FetchKami(fetchdata)
@@ -222,7 +218,7 @@ function App() {
                   </IconButton>
                 </div>
                 <Divider />
-                <d onClick={() => closeHand(Fet().ul)}>
+                <d onClick={() => setOpen(false)}>
                 <ListItem component={Link} to='/' button>
                   <ListItemIcon>
                     <HomeIcon />

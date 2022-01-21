@@ -162,11 +162,6 @@ function App() {
     }
   }
 
-  const openHand = (fetchdata) => {
-    setOpen(true)
-    FetchKami(fetchdata)
-  }
-
   return (
  
 
@@ -176,7 +171,7 @@ function App() {
       <AppBar position="sticky" className='bnktheme'>
           <Toolbar>
             {open == false && (
-            <IconButton onClick={() => openHand(Fet().ul)} edge="start" color="inherit" aria-label="menu">
+            <IconButton onClick={() => setOpen(true)} edge="start" color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
             )}

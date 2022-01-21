@@ -91,12 +91,7 @@ function capitalizeFirstLetter(string) {
                             })
                             .then(response => response.text())
                             .then(data => {
-                                if (data == "true") {
-                                    setKami(2)
-                                } else {
-                                    setKami(1)
-                                }
-                                setLoaded(true)
+                               window.location.reload()
                             })
                             .catch((error) => {
                                 alert("System will be temporary error for a while. Please try again")
@@ -115,12 +110,7 @@ function capitalizeFirstLetter(string) {
                         })
                         .then(response => response.text())
                         .then(data => {
-                            if (data == "true") {
-                                setKami(2)
-                            } else {
-                                setKami(1)
-                            }
-                            setLoaded(true)
+                            window.location.reload()
                         })
                         .catch((error) => {
                             alert("System will be temporary error for a while. Please try again")
@@ -148,11 +138,7 @@ function capitalizeFirstLetter(string) {
                                     })
                                     .then(response => response.text())
                                     .then(data => {
-                                        if (data == "true") {
-                                            setKami(2)
-                                        } else {
-                                            setKami(1)
-                                        }
+                                        window.location.reload()
                                         setLoaded(true)
                                     })
                                     .catch((error) => {
@@ -172,11 +158,7 @@ function capitalizeFirstLetter(string) {
                                 })
                                 .then(response => response.text())
                                 .then(data => {
-                                    if (data == "true") {
-                                        setKami(2)
-                                    } else {
-                                        setKami(1)
-                                    }
+                                    window.location.reload()
                                     setLoaded(true)
                                 })
                                 .catch((error) => {

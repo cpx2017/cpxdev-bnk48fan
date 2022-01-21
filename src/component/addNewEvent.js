@@ -113,8 +113,6 @@ const Add = ({fet}) => {
                 alert("System will be temporary error for a while. Please try again")
                 setLoad(false)
             });
-
-        console.log(Obj)
     }
 
 

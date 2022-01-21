@@ -59,6 +59,15 @@ const Ge = ({fet}) => {
         setRank([])
         setts(moment().format("DD MMMM YYYY HH:mm:ss") + ' (Error fetching)')
       })
+      fetch(fet + '/bnk48/getstream', {
+        method :'post'
+    })
+        .then(response => response.json())
+        .then(data => {
+          setStream(data.link)
+        }).catch(() => {
+          setStream('')
+        })
   }
 
   function numberWithCommas(x) {
@@ -359,7 +368,7 @@ const Ge = ({fet}) => {
                   </TableBody>
                   )): (
                     <TableBody>
-                       <TableCell colSpan={5} align='center'>No record found</TableCell>
+                       <TableCell colSpan={5} align='center'>No record(s) found</TableCell>
                   </TableBody>
                   )}
                 </Table>
@@ -368,11 +377,11 @@ const Ge = ({fet}) => {
           </Card>
           <Card className='mt-5'>
             <CardContent>
-            <CardHeader title="Watching Live Stream" />
+            <CardHeader title="Watching Live Stream" subheader="Operated by Youtube Live" />
               <hr />
               <div className='text-center'>
               {urlstream != '' ? (
-                <iframe src={urlstream} allowFullScreen />
+                <iframe src={urlstream} width="100%" height={700} allowFullScreen />
               ) : (
                 <div>
                 Please wait for the announcement from BNK48 official.

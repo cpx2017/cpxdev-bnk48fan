@@ -96,10 +96,10 @@ function App() {
       .then(data => {
         if (data.obj != 'none') {
           setKami(data.obj.response.img)
-          setKname((data.obj.response.name))
+          setKname(data.obj.response.name)
         } else {
-          setKami('')
-          setKname('')
+          setKami('-')
+          setKname('-')
         }
       });
     }
@@ -139,6 +139,9 @@ function App() {
   const responseGoogle = (response) => {
     setLogLoad(false)
     localStorage.setItem("glog", JSON.stringify(response.profileObj))
+    if (window.location.pathname != '/') {
+      window.location.reload();
+    }
     setLogin(true)
     setOpen(false)
   }
@@ -163,6 +166,10 @@ function App() {
     setOpen(false)
     FetchKami(fetchdata)
   }
+  const openHand = (fetchdata) => {
+    setOpen(true)
+    FetchKami(fetchdata)
+  }
 
   return (
  
@@ -173,7 +180,7 @@ function App() {
       <AppBar position="sticky" className='bnktheme'>
           <Toolbar>
             {open == false && (
-            <IconButton onClick={() => setOpen(true)} edge="start" color="inherit" aria-label="menu">
+            <IconButton onClick={() => openHand(Fet().ul)} edge="start" color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
             )}
@@ -308,7 +315,7 @@ function App() {
                       vertical: 'bottom',
                       horizontal: 'right',
                     }}
-                    badgeContent={kamiimg == '' ? '' : <SmallAvatar src={kamiimg} data-toggle="tooltip" data-placement="top" title={"\"" + kamin + "\" is your Kami-Oshi"} />}
+                    badgeContent={kamiimg != '' && kamiimg != '-' ? <SmallAvatar src={kamiimg} data-toggle="tooltip" data-placement="top" title={"\"" + kamin + "\" is your Kami-Oshi"} /> : ''}
                   >
                     <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={JSON.parse(localStorage.getItem("glog")).imageUrl} />
                   </Badge>
@@ -326,7 +333,7 @@ function App() {
                       <BasicSwitch>
                       <Route exact path="/" render={() => <Home fet={Fet().ul} />} />
                       <Route exact path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
-                      <Route exact path="/member" render={() => <MamSam fet={Fet().ul} kamin={kamin.toLowerCase()} />} />
+                      <Route exact path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />
                       <Route exact path="/news" render={() => <News fet={Fet().ul} />} />
                       <Route exact path="/music" render={() => <MusicCom gp={Reduce} fet={Fet().ul} />} />
                       <Route exact path="/officialupdate" render={() => <Offici fet={Fet().ul} />} />

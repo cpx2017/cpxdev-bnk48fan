@@ -32,13 +32,13 @@ const fwoptions = {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-    const MemDetail = ({fet, kamin}) => {
+    const MemDetail = ({fet, kamio}) => {
         const History = useHistory()
         const [mem, setmem] = React.useState('');
         const [arr, setArr] = React.useState([]); 
         const [Loaded, setLoaded] = React.useState(false);
         const [birthday, setBirthday] = React.useState(false);
-        const [kami, setKami] = React.useState(false);
+        const [kami, setKami] = React.useState(0);
         
         const [play, onPlay] = React.useState(false);
 
@@ -74,11 +74,38 @@ function capitalizeFirstLetter(string) {
         }
 
         const Subsc = (val) =>{
-            if (localStorage.getItem("glog") != null && kamin != '') {
-                let msg = window.confirm("You will change Kami-Oshi from \"" + capitalizeFirstLetter(kamin) + "\" to \"" + capitalizeFirstLetter(val) + "\". Are you sure?")
-                if (msg == true) {
+            if (localStorage.getItem("glog") == null)
+            {
+                alert("You need to login to set this member to your Kami-Oshi.")
+            } else {
+                if (localStorage.getItem("glog") != null && kamio != ''  && kamio != '-') {
+                    let msg = window.confirm("You will change Kami-Oshi from \"" + capitalizeFirstLetter(kamio) + "\" to \"" + capitalizeFirstLetter(val) + "\". Are you sure?")
+                    if (msg == true) {
+                        setLoaded(false)
+                        fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
+                            method: 'POST', // or 'PUT'
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            })
+                            .then(response => response.text())
+                            .then(data => {
+                                if (data == "true") {
+                                    setKami(2)
+                                } else {
+                                    setKami(1)
+                                }
+                                setLoaded(true)
+                            })
+                            .catch((error) => {
+                                alert("System will be temporary error for a while. Please try again")
+                                setLoaded(true)
+                                setKami(1)
+                            });
+                      }
+                } else if (kamio == '-') {
                     setLoaded(false)
-                    setKami(true)
                     fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
                         method: 'POST', // or 'PUT'
                         headers: {
@@ -88,40 +115,81 @@ function capitalizeFirstLetter(string) {
                         })
                         .then(response => response.text())
                         .then(data => {
-                            if (data == "false") {
-                                setKami(false)
+                            if (data == "true") {
+                                setKami(2)
+                            } else {
+                                setKami(1)
                             }
                             setLoaded(true)
                         })
                         .catch((error) => {
                             alert("System will be temporary error for a while. Please try again")
                             setLoaded(true)
-                            setKami(false)
+                            setKami(1)
                         });
-                  }
-              } else {
-                setLoaded(false)
-                setKami(true)
-                fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
-                    method: 'POST', // or 'PUT'
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
+                  } else {
+                      setKami(0)
+                    fetch(fet + '/bnk48/getFanMem?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString()  , {
+                        method :'get'
                     })
-                    .then(response => response.text())
-                    .then(data => {
-                        if (data == "false") {
-                            setKami(false)
+                      .then(response => response.json())
+                      .then(data => {
+                        setKami(1)
+                        if (data.obj != 'none') {
+                            let msg = window.confirm("You will change Kami-Oshi from \"" + capitalizeFirstLetter(data.obj.response.name) + "\" to \"" + capitalizeFirstLetter(val) + "\". Are you sure?")
+                            if (msg == true) {
+                                setLoaded(false)
+                                fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
+                                    method: 'POST', // or 'PUT'
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    })
+                                    .then(response => response.text())
+                                    .then(data => {
+                                        if (data == "true") {
+                                            setKami(2)
+                                        } else {
+                                            setKami(1)
+                                        }
+                                        setLoaded(true)
+                                    })
+                                    .catch((error) => {
+                                        alert("System will be temporary error for a while. Please try again")
+                                        setLoaded(true)
+                                        setKami(1)
+                                    });
+                              }
+                        } else {
+                            setLoaded(false)
+                            fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
+                                method: 'POST', // or 'PUT'
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                })
+                                .then(response => response.text())
+                                .then(data => {
+                                    if (data == "true") {
+                                        setKami(2)
+                                    } else {
+                                        setKami(1)
+                                    }
+                                    setLoaded(true)
+                                })
+                                .catch((error) => {
+                                    alert("System will be temporary error for a while. Please try again")
+                                    setLoaded(true)
+                                    setKami(1)
+                                });
                         }
-                        setLoaded(true)
-                    })
-                    .catch((error) => {
-                        alert("System will be temporary error for a while. Please try again")
-                        setLoaded(true)
-                        setKami(false)
-                    });
-              }
+                      }).catch(() => {
+                        setKami(1)
+                      })
+                  }
+            }
         }
 
         React.useEffect(() => {
@@ -129,7 +197,6 @@ function capitalizeFirstLetter(string) {
             var url_string = window.location.href; 
             var url = new URL(url_string);
             var c = url.searchParams.get("name");
-            setKami(true)
             if (c != null && c != "") {
                 if (localStorage.getItem("glog") != null) {
                     fetch(fet + '/bnk48/getFanMem?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString()  , {
@@ -138,11 +205,13 @@ function capitalizeFirstLetter(string) {
                     .then(response => response.json())
                     .then(data => {
                       if (data.obj != 'none' && (data.obj.response.name).toLowerCase() == c) {
-                        setKami(true)
+                        setKami(2)
                       } else {
-                        setKami(false)
+                        setKami(1)
                       }
                     });
+                  } else {
+                    setKami(1)
                   }
                 setmem(c)
                 fetch(fet + '/bnk48/getmember?name=' + c +'&tstamp=' + Math.floor( new Date().getTime()  / 1000), {
@@ -204,9 +273,7 @@ function capitalizeFirstLetter(string) {
                             <Fade in={true} timeout={1200} style={{ transitionDelay: 600}}>
                                 <div className='col-md mt-5 mb-5'>
                                     <h4>{item.fullnameEn[0]} {item.fullnameEn[1]} [{item.name}]</h4>
-                                    {localStorage.getItem("glog") != null && (
-                                        <Button onClick={() => Subsc(mem)} color="primary" variant="contained" disabled={kami}>{kami ? "She's your Kami-Oshi" : 'Set as Kami-Oshi'}</Button> 
-                                    )}
+                                    <Button onClick={() => Subsc(mem)} color="primary" variant="contained" disabled={kami == 1 ? false : true}>{kami == 0 && <img className='pb-1' src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="20px" />} {kami == 2 ? "She's your Kami-Oshi" : kami == 1 ? 'Set as Kami-Oshi' : 'Loading Status'}</Button> 
                                     <hr />
                                     <>
                                         <h6><LocationOnIcon fontSize="small"/> {item.province}</h6>

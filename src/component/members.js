@@ -149,7 +149,6 @@ const Memberlist = ({fet}) => {
              )}
               <Button className={(seGroup != '-' && seFill != '-' ? 'ml-3' : 'ml-5') + ' mt-4 mb-3 mr-2'} color="secondary" onClick={() => onReset()} variant="contained">Reset</Button>
              </ButtonGroup>
-            
              </Card>
             {Loaded ? (
                 <div className='row ml-3 mr-3 mt-5 justify-content-center'>

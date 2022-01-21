@@ -8,8 +8,8 @@ import {
   useHistory
 } from "react-router-dom";
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
-Card, Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Zoom } from '@material-ui/core';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+Card, Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import HomeIcon from '@material-ui/icons/Home';
 import CloseIcon from '@material-ui/icons/Close';
@@ -66,6 +66,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const SmallAvatar = withStyles((theme) => ({
+  root: {
+    width: 30,
+    height: 30,
+    border: `2px solid ${theme.palette.background.paper}`,
+  },
+}))(Avatar);
 
 
 function App() {
@@ -77,6 +84,26 @@ function App() {
   const [login, setLogin] = React.useState(false);
   const [MemberDl, setMemDl] = React.useState(false);
   const [loginLoad, setLogLoad] = React.useState(false);
+  const [kamiimg, setKami] = React.useState('');
+  const [kamin, setKname] = React.useState('');
+  
+  const FetchKami = (fetdata) => {
+    if (localStorage.getItem("glog") != null) {
+      fetch(fetdata + '/bnk48/getFanMem?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString()  , {
+        method :'get'
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.obj != 'none') {
+          setKami(data.obj.response.img)
+          setKname((data.obj.response.name))
+        } else {
+          setKami('')
+          setKname('')
+        }
+      });
+    }
+  }
 
   const ReduceAction = () => {
     if (localStorage.getItem("lowgraphic") == null) {
@@ -103,6 +130,7 @@ function App() {
       if (Fet().ul !== '') {
         clearInterval(dem)
         setUri(Fet().ul)
+        FetchKami(Fet().ul)
       }
   }, 10);
   }, [])
@@ -129,6 +157,11 @@ function App() {
     if (window.location.pathname == '/fandom' || window.location.pathname == '/fandomroom') {
       window.location.href = '/'
     }
+  }
+
+  const closeHand = (fetchdata) => {
+    setOpen(false)
+    FetchKami(fetchdata)
   }
 
   return (
@@ -182,7 +215,7 @@ function App() {
                   </IconButton>
                 </div>
                 <Divider />
-                <d onClick={() => setOpen(false)}>
+                <d onClick={() => closeHand(Fet().ul)}>
                 <ListItem component={Link} to='/' button>
                   <ListItemIcon>
                     <HomeIcon />
@@ -269,7 +302,17 @@ function App() {
                 ) : (
                   <ListItem onClick={() => setMemDl(true)} button>
                   <ListItemIcon>
-                  <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={JSON.parse(localStorage.getItem("glog")).imageUrl} />
+                  <Badge
+                    overlap="circular"
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    }}
+                    badgeContent={kamiimg == '' ? '' : <SmallAvatar src={kamiimg} data-toggle="tooltip" data-placement="top" title={"\"" + kamin + "\" is your Kami-Oshi"} />}
+                  >
+                    <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={JSON.parse(localStorage.getItem("glog")).imageUrl} />
+                  </Badge>
+                  
                   </ListItemIcon>
                   <ListItemText primary="You're logged in" secondary={JSON.parse(localStorage.getItem("glog")).name} />
                 </ListItem>
@@ -283,7 +326,7 @@ function App() {
                       <BasicSwitch>
                       <Route exact path="/" render={() => <Home fet={Fet().ul} />} />
                       <Route exact path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
-                      <Route exact path="/member" render={() => <MamSam fet={Fet().ul} />} />
+                      <Route exact path="/member" render={() => <MamSam fet={Fet().ul} kamin={kamin.toLowerCase()} />} />
                       <Route exact path="/news" render={() => <News fet={Fet().ul} />} />
                       <Route exact path="/music" render={() => <MusicCom gp={Reduce} fet={Fet().ul} />} />
                       <Route exact path="/officialupdate" render={() => <Offici fet={Fet().ul} />} />

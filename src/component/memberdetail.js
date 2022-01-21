@@ -32,12 +32,13 @@ const fwoptions = {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-    const MemDetail = ({fet}) => {
+    const MemDetail = ({fet, kamin}) => {
         const History = useHistory()
         const [mem, setmem] = React.useState('');
         const [arr, setArr] = React.useState([]); 
         const [Loaded, setLoaded] = React.useState(false);
         const [birthday, setBirthday] = React.useState(false);
+        const [kami, setKami] = React.useState(false);
         
         const [play, onPlay] = React.useState(false);
 
@@ -72,12 +73,77 @@ function capitalizeFirstLetter(string) {
             }
         }
 
+        const Subsc = (val) =>{
+            if (localStorage.getItem("glog") != null && kamin != '') {
+                let msg = window.confirm("You will change Kami-Oshi from \"" + capitalizeFirstLetter(kamin) + "\" to \"" + capitalizeFirstLetter(val) + "\". Are you sure?")
+                if (msg == true) {
+                    setLoaded(false)
+                    setKami(true)
+                    fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            if (data == "false") {
+                                setKami(false)
+                            }
+                            setLoaded(true)
+                        })
+                        .catch((error) => {
+                            alert("System will be temporary error for a while. Please try again")
+                            setLoaded(true)
+                            setKami(false)
+                        });
+                  }
+              } else {
+                setLoaded(false)
+                setKami(true)
+                fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
+                    method: 'POST', // or 'PUT'
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        if (data == "false") {
+                            setKami(false)
+                        }
+                        setLoaded(true)
+                    })
+                    .catch((error) => {
+                        alert("System will be temporary error for a while. Please try again")
+                        setLoaded(true)
+                        setKami(false)
+                    });
+              }
+        }
+
         React.useEffect(() => {
             document.body.scrollTop = document.documentElement.scrollTop = 0;
             var url_string = window.location.href; 
             var url = new URL(url_string);
             var c = url.searchParams.get("name");
+            setKami(true)
             if (c != null && c != "") {
+                if (localStorage.getItem("glog") != null) {
+                    fetch(fet + '/bnk48/getFanMem?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString()  , {
+                      method :'get'
+                  })
+                    .then(response => response.json())
+                    .then(data => {
+                      if (data.obj != 'none' && (data.obj.response.name).toLowerCase() == c) {
+                        setKami(true)
+                      } else {
+                        setKami(false)
+                      }
+                    });
+                  }
                 setmem(c)
                 fetch(fet + '/bnk48/getmember?name=' + c +'&tstamp=' + Math.floor( new Date().getTime()  / 1000), {
                     method :'post'
@@ -138,6 +204,9 @@ function capitalizeFirstLetter(string) {
                             <Fade in={true} timeout={1200} style={{ transitionDelay: 600}}>
                                 <div className='col-md mt-5 mb-5'>
                                     <h4>{item.fullnameEn[0]} {item.fullnameEn[1]} [{item.name}]</h4>
+                                    {localStorage.getItem("glog") != null && (
+                                        <Button onClick={() => Subsc(mem)} color="primary" variant="contained" disabled={kami}>{kami ? "She's your Kami-Oshi" : 'Set as Kami-Oshi'}</Button> 
+                                    )}
                                     <hr />
                                     <>
                                         <h6><LocationOnIcon fontSize="small"/> {item.province}</h6>

@@ -12,6 +12,34 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const piedata = {
+  labels: ['BNK48 Team BIII', 'BNK48 Team NV', 'BNK48 Team Trainee', 'CGM48'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [8, 13, 21, 20],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+      ],
+      borderWidth: 5,
+    },
+  ],
+  }
+
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -96,7 +124,6 @@ const Ge = ({fet}) => {
 
   const CheckTZ = (meth) => {
     let dcn = 2;
-    console.log(moment().unix())
     const cur = moment().unix();
     // const cur = 1649501999;
     switch(meth) {
@@ -221,12 +248,13 @@ const Ge = ({fet}) => {
 
 
         <div className={'stage ' + (window.innerWidth > 700 ? 'p-5' : 'p-2')}>
-          <Card>
+          <div className='row mt-5'>
+          <Card className='col-md-5 mr-5'>
             <CardContent>
               <CardHeader title="TimeLine of Election" subheader="Notes: Timeline are subject to change as appropriate due to the situation of the epidemic of Covid-19." />
               <hr />
               <div className='row justify-content-center'> 
-              <List className='col-md-5'>
+              <List className='col-md-8'>
                 <ListItem>
                   <ListItemText className={CheckTZ(1) == 0 ? 'text-muted' : CheckTZ(1) == 1 ? 'text-success' : ''} primary="Members Registration for Election" secondary="Jan 11-24, 2022" />
                   {
@@ -323,6 +351,21 @@ const Ge = ({fet}) => {
               </div>
             </CardContent>
           </Card>
+          <Card className='col-md'>
+            <CardContent>
+            <CardHeader title="General Election Candidate Summary" subheader='We have 62 BNK48 and CGM48 members who candidated' />
+              <hr />
+              <div className='row justify-content-center'>
+                <div className='col-md-8'>
+                <Pie
+                data={piedata}
+              />
+              </div>
+              </div>
+            </CardContent>
+          </Card>
+          </div>
+          
           <Card className='mt-5'>
             <CardContent>
             <CardHeader title="How to voting your member to one of Senbatsu!" />

@@ -65,7 +65,7 @@ const GeMana = ({fet}) => {
 
     const ListSt = () => {
         let temp = []
-        const Number = 64
+        const Number = 48
         for (let i = 0; i < Number; i++) {
             const ob = {
                 label: i + 1,

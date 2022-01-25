@@ -23,6 +23,7 @@ import DnsIcon from '@material-ui/icons/Dns';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import CodeIcon from '@material-ui/icons/Code';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 import Home from './component/home';
 import MemberList from './component/members';
@@ -35,6 +36,7 @@ import FanRoom from './component/fanroom';
 import AddEvent from './component/addNewEvent';
 import Mana from './component/manage';
 import Api from './component/apisupport';
+import SiteMan from './component/manual';
 
 import GeCom from './component/geevent/ge';
 import GeMana from './component/geevent/gemanage';
@@ -262,6 +264,12 @@ function App() {
                   </ListItemIcon>
                   <ListItemText primary='API' />
                 </ListItem>
+                <ListItem component={Link} to='/manual' button>
+                  <ListItemIcon>
+                    <MenuBookIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Site Manual' />
+                </ListItem>
                 </d>
                 <Divider />
                 <ListItem onClick={() => alert('Region mode will enhance system performance. Current region connection has been referenced by IP address')} button>
@@ -333,6 +341,7 @@ function App() {
                       <Route exact path="/addevent" render={() => <AddEvent fet={Fet().ul} />} />
                       <Route exact path="/eventcontrol" render={() => <Mana fet={Fet().ul} />} />
                       <Route exact path="/api" render={() => <Api fet={Fet().ul} />} />
+                      <Route exact path="/manual" render={() => <SiteMan fet={Fet().ul} />} />
 
                       <Route exact path="/ge3" render={() => <GeCom fet={Fet().ul} />} />
                       <Route exact path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />

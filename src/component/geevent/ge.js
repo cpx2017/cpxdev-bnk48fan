@@ -248,12 +248,12 @@ const Ge = ({fet}) => {
 
 
         <div className={'stage ' + (window.innerWidth > 700 ? 'p-5' : 'p-2')}>
-          <div className='row mt-5'>
-          <Card className='col-md-5 mr-5'>
+          <div className='row mt-5 ml-1 mr-1'>
+          <Card className={(window.innerWidth > 700 ? '' : 'mb-5') + ' col-md-5'}>
             <CardContent>
               <CardHeader title="TimeLine of Election" subheader="Notes: Timeline are subject to change as appropriate due to the situation of the epidemic of Covid-19." />
               <hr />
-              <div className='row justify-content-center'> 
+              <div className='row justify-content-center mb-5'> 
               <List className='col-md-8'>
                 <ListItem>
                   <ListItemText className={CheckTZ(1) == 0 ? 'text-muted' : CheckTZ(1) == 1 ? 'text-success' : ''} primary="Members Registration for Election" secondary="Jan 11-24, 2022" />
@@ -351,7 +351,7 @@ const Ge = ({fet}) => {
               </div>
             </CardContent>
           </Card>
-          <Card className='col-md'>
+          <Card className={(window.innerWidth > 700 ? 'ml-3' : '') + ' col-md'}>
             <CardContent>
             <CardHeader title="General Election Candidate Summary" subheader='We have 62 BNK48 and CGM48 members who candidated' />
               <hr />

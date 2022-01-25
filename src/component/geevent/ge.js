@@ -13,7 +13,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
+let delayed;
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -21,24 +22,48 @@ const piedata = {
   labels: ['BNK48 Team BIII', 'BNK48 Team NV', 'BNK48 Team Trainee', 'CGM48'],
   datasets: [
     {
-      label: '# of Votes',
+      label: '# members',
       data: [8, 13, 21, 20],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
+        '#0a6302',
+        '#ff85d4',
+        '#cb96c2',
+        '#49C5A8',
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
+        '#0a6302',
+        '#ff85d4',
+        '#cb96c2',
+        '#49C5A8',
       ],
-      borderWidth: 5,
+      borderWidth: 0,
     },
   ],
   }
+
+const opt ={
+  onClick: function(e, element) {
+    if(element.length > 0) {
+      if (element[0].index >= 0 && element[0].index <= 2) {
+        window.open('https://yt3.ggpht.com/Cy69lvYdueTXV8PNLpCr6Z_k1YiKMH4wFzZe1WN19Ofz1D3Ov6jbt2KuStdQalsj0f9elLdVZo5H=s1024-c-fcrop64=1,00000016ffffffe9-nd-v1', '_blank').focus()
+      } else if (element[0].index >= 3) {
+        window.open('https://yt3.ggpht.com/pD8B-UrGtEdWQL81s_ovgBbhkGKkELF7BxvugevH7_GR_dZ-kZYQsmN0ZjpSkXr0GGNldMD5l84xEnI=s1024-c-fcrop64=1,00000000ffffffff-nd-v1', '_blank').focus()
+      }
+  }  
+},
+animation: {
+  onComplete: () => {
+    delayed = true;
+  },
+  delay: (context) => {
+    let delay = 0;
+    if (context.type === 'data' && context.mode === 'default' && !delayed) {
+      delay = context.dataIndex * 300 + context.datasetIndex * 100;
+    }
+    return delay;
+  },
+}
+}
 
 
 const useStyles = makeStyles((theme) => ({
@@ -357,8 +382,9 @@ const Ge = ({fet}) => {
               <hr />
               <div className='row justify-content-center'>
                 <div className='col-md-8'>
-                <Pie
+                <Doughnut
                 data={piedata}
+                options={opt}
               />
               </div>
               </div>

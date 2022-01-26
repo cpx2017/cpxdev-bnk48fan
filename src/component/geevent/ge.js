@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
+import { AppBar, Toolbar,Typography, IconButton, CardMedia, DialogTitle, DialogContent, ListItem, DialogActions, Dialog, ListItemText,
 Card, CardContent, Avatar, Button, ListItemSecondaryAction, List, Checkbox, Fade, Grow, CardHeader } from '@material-ui/core';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,29 +41,7 @@ const piedata = {
   ],
   }
 
-const opt ={
-  onClick: function(e, element) {
-    if(element.length > 0) {
-      if (element[0].index >= 0 && element[0].index <= 2) {
-        window.open('https://yt3.ggpht.com/Cy69lvYdueTXV8PNLpCr6Z_k1YiKMH4wFzZe1WN19Ofz1D3Ov6jbt2KuStdQalsj0f9elLdVZo5H=s1024-c-fcrop64=1,00000016ffffffe9-nd-v1', '_blank').focus()
-      } else if (element[0].index >= 3) {
-        window.open('https://yt3.ggpht.com/pD8B-UrGtEdWQL81s_ovgBbhkGKkELF7BxvugevH7_GR_dZ-kZYQsmN0ZjpSkXr0GGNldMD5l84xEnI=s1024-c-fcrop64=1,00000000ffffffff-nd-v1', '_blank').focus()
-      }
-  }  
-},
-animation: {
-  onComplete: () => {
-    delayed = true;
-  },
-  delay: (context) => {
-    let delay = 0;
-    if (context.type === 'data' && context.mode === 'default' && !delayed) {
-      delay = context.dataIndex * 300 + context.datasetIndex * 100;
-    }
-    return delay;
-  },
-}
-}
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -96,6 +74,8 @@ const Ge = ({fet}) => {
 
   const [rank, setRank] = React.useState([]); 
   const [spam, setSpam] = React.useState(0); 
+  const [candi, setCandi] = React.useState(false); 
+  const [candiUrl, setCandiUrl] = React.useState(''); 
   const [ts, setts] = React.useState('Updating'); 
   const [urlstream, setStream] = React.useState(''); 
 
@@ -146,6 +126,37 @@ const Ge = ({fet}) => {
   //     ResultFetch()
   //   }
   // }
+
+  const ToggleDialog = (sw, uri) => {
+    if(uri != '') {
+      setCandiUrl(uri)
+    }
+    setCandi(sw)
+  }
+
+  const opt ={
+    onClick: function(e, element) {
+      if(element.length > 0) {
+        if (element[0].index >= 0 && element[0].index <= 2) {
+          ToggleDialog(true, 'https://yt3.ggpht.com/Cy69lvYdueTXV8PNLpCr6Z_k1YiKMH4wFzZe1WN19Ofz1D3Ov6jbt2KuStdQalsj0f9elLdVZo5H=s1024-c-fcrop64=1,00000016ffffffe9-nd-v1')
+        } else if (element[0].index >= 3) {
+          ToggleDialog(true, 'https://yt3.ggpht.com/pD8B-UrGtEdWQL81s_ovgBbhkGKkELF7BxvugevH7_GR_dZ-kZYQsmN0ZjpSkXr0GGNldMD5l84xEnI=s1024-c-fcrop64=1,00000000ffffffff-nd-v1')
+        }
+    }  
+  },
+  animation: {
+    onComplete: () => {
+      delayed = true;
+    },
+    delay: (context) => {
+      let delay = 0;
+      if (context.type === 'data' && context.mode === 'default' && !delayed) {
+        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+      }
+      return delay;
+    },
+  }
+  }
 
   const CheckTZ = (meth) => {
     let dcn = 2;
@@ -459,6 +470,28 @@ const Ge = ({fet}) => {
               </div>
             </CardContent>
           </Card>
+          <Dialog
+              open={candi}
+              onClose={() => ToggleDialog(false, '')}
+              fullWidth={true}
+              maxWidth='sm'
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+          >
+              <DialogTitle id="alert-dialog-title">General Election Candidated members List</DialogTitle>
+              <DialogContent>
+                <CardMedia
+                  src={candiUrl}
+                  component="img"
+                />
+              </DialogContent>
+              <DialogActions>
+             
+              <Button onClick={() => ToggleDialog(false, '')} className="text-dark">
+                  Close
+              </Button>
+              </DialogActions>
+          </Dialog>
         </div>
         </>
     );

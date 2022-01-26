@@ -40,27 +40,15 @@ const HomeCom = ({fet}) => {
     // Create the map chart
     // https://www.amcharts.com/docs/v5/charts/map-chart/
     var chart;
-    if (window.innerWidth < 900) {
-      chart = root.container.children.push(am5map.MapChart.new(root, {
-        zoomX: false,
-        zoomY: false,
-        panX: 'translateX',
-        panY: 'translateY',
-        wheelX: false,
-        wheelY: false,
-        projection: am5map.geoMercator()
-      }));
-    } else {
-      chart = root.container.children.push(am5map.MapChart.new(root, {
-        zoomX: false,
-        zoomY: false,
-        panX: false,
-        panY: false,
-        wheelX: false,
-        wheelY: false,
-        projection: am5map.geoMercator()
-      }));
-    }
+    chart = root.container.children.push(am5map.MapChart.new(root, {
+      zoomX: false,
+      zoomY: false,
+      panX: 'translateX',
+      panY: 'translateY',
+      wheelX: false,
+      wheelY: false,
+      projection: am5map.geoMercator()
+    }));
    
 
     var cont = chart.children.push(am5.Container.new(root, {
@@ -211,15 +199,9 @@ const HomeCom = ({fet}) => {
         autoRotate: true
       });
     })
-    if (window.innerWidth < 900) {
-      polygonSeries.events.on("datavalidated", function () {
-        chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 51.5002 }, 1);
-      })
-    } else {
-      polygonSeries.events.on("datavalidated", function () {
-        chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 51.5002 }, 2);
-      })
-    }
+    polygonSeries.events.on("datavalidated", function () {
+      chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 51.5002 }, 2);
+    })
     chart.appear(50, 1);
   }, [])
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar,Typography, IconButton, CardMedia, DialogTitle, DialogContent, ListItem, DialogActions, Dialog, ListItemText,
-Card, CardContent, Avatar, Button, ListItemSecondaryAction, List, Checkbox, Fade, Grow, CardHeader } from '@material-ui/core';
+Card, CardContent, Avatar, Button, ListItemSecondaryAction, List, Checkbox, Fade, Grow, CardHeadery } from '@material-ui/core';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
@@ -17,6 +17,10 @@ import { Doughnut } from 'react-chartjs-2';
 let delayed;
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Grow ref={ref} {...props} />;
+});
 
 const piedata = {
   labels: ['BNK48 Team BIII', 'BNK48 Team NV', 'BNK48 Team Trainee', 'CGM48'],
@@ -471,6 +475,8 @@ const Ge = ({fet}) => {
             </CardContent>
           </Card>
           <Dialog
+              fullScreen
+              TransitionComponent={Transition}
               open={candi}
               onClose={() => ToggleDialog(false, '')}
               fullWidth={true}
@@ -479,11 +485,8 @@ const Ge = ({fet}) => {
               aria-describedby="alert-dialog-description"
           >
               <DialogTitle id="alert-dialog-title">General Election Candidated members List</DialogTitle>
-              <DialogContent>
-                <CardMedia
-                  src={candiUrl}
-                  component="img"
-                />
+              <DialogContent className='text-center'>
+                <img src={candiUrl} width={800}/>
               </DialogContent>
               <DialogActions>
              

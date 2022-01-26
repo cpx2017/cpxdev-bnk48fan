@@ -196,7 +196,7 @@ const Ge = ({fet}) => {
 
     return ( 
         <>
-           {window.innerWidth > 800 && (
+           {window.innerWidth > 1200 && (
               <div class="video-background">
               {localStorage.getItem('lowgraphic') == null ? (
                 <div class="video-foreground">

@@ -211,10 +211,15 @@ const HomeCom = ({fet}) => {
         autoRotate: true
       });
     })
-
-    polygonSeries.events.on("datavalidated", function () {
-      chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 51.5002 }, 2);
-    })
+    if (window.innerWidth < 900) {
+      polygonSeries.events.on("datavalidated", function () {
+        chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 51.5002 }, 1);
+      })
+    } else {
+      polygonSeries.events.on("datavalidated", function () {
+        chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 51.5002 }, 2);
+      })
+    }
     chart.appear(50, 1);
   }, [])
 
@@ -250,10 +255,6 @@ const HomeCom = ({fet}) => {
       setLoaded2(true)
   });
     }, [])
-
-    const ChangeRoute = (name) =>{
-        History.push("/member?name=" + name.toLowerCase())
-    }
 
     return ( 
         <>

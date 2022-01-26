@@ -115,7 +115,7 @@ const HomeCom = ({fet}) => {
       <CardContent>
             <CardHeader title='Behind of this site' />
             <Typography className='ml-3 mb-4' color="textSecondary">
-                We use React JS for better front-end framework to load website dynamically and faster. And enhance system by Region which have 6 locations in the world. System will be detect the nearest
+                We use React JS for better front-end framework to load website dynamically and faster. And enhance system by region server which have 6 locations in the world. System will be detect the nearest
                 region automatically by refer from IP address.
             </Typography>
             <div className='text-center'>

@@ -88,9 +88,11 @@ function App() {
   const [loginLoad, setLogLoad] = React.useState(false);
   const [kamiimg, setKami] = React.useState('');
   const [kamin, setKname] = React.useState('');
+  const [survey, setSur] = React.useState('');
   
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
+    const rep = JSON.parse(localStorage.getItem("glog"))
       fetch(fetdata + '/bnk48/getFanMem?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString()  , {
         method :'get'
     })
@@ -99,6 +101,7 @@ function App() {
         if (data.obj != 'none') {
           setKami(data.obj.response.img)
           setKname(data.obj.response.name)
+          setSur('https://docs.google.com/forms/d/e/1FAIpQLSeP2A9V6QPqdU7S0F60X5o4y03Mx20jN1nVK9OZx4klyxiKvg/viewform?usp=pp_url&entry.1855303001=' + rep.name + '&entry.1740619332=' + rep.email + '&entry.1830561642=' + data.obj.response.name + ' BNK48&entry.1201087543=' + data.obj.response.name +' BNK48')
         } else {
           setKami('-')
           setKname('-')
@@ -164,9 +167,11 @@ function App() {
     }
   }
 
-  return (
- 
+  const UrlClk = () => {
+    window.open(survey, '_target')
+  }
 
+  return (
 <div> 
     {uri != '' && (
       <BrowserRouter>
@@ -322,6 +327,11 @@ function App() {
                   </ListItemIcon>
                   <ListItemText primary="You're logged in" secondary={JSON.parse(localStorage.getItem("glog")).name} />
                 </ListItem>
+                )}
+                {login && survey != '' && (
+                   <ListItem onClick={() => UrlClk()} button>
+                   <ListItemText primary='BNK48 Fan Space Survey feedback' />
+                 </ListItem>
                 )}
                     </>
                   )

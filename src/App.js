@@ -144,11 +144,38 @@ function App() {
   const responseGoogle = (response) => {
     setLogLoad(false)
     localStorage.setItem("glog", JSON.stringify(response.profileObj))
-    if (window.location.pathname != '/') {
-      window.location.reload();
-    }
-    setLogin(true)
-    setOpen(false)
+    fetch(Fet().ul + '/bnk48/addFanMember?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
+      method: 'POST', // or 'PUT'
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      })
+      .then(response => response.text())
+      .then(data => {
+        if (data == "false") {
+          if (window.location.pathname != '/') {
+            window.location.reload();
+          }
+          setLogin(true)
+          setOpen(false)
+        } else {
+          alert("System will be temporary error for a while. Please try again")
+          setLogLoad(false)
+          setMemDl(false)
+          setLogin(false)
+          localStorage.removeItem("glog")
+          setOpen(false)
+        }
+      })
+      .catch((error) => {
+          alert("System will be temporary error for a while. Please try again")
+          setLogLoad(false)
+          setMemDl(false)
+          setLogin(false)
+          localStorage.removeItem("glog")
+          setOpen(false)
+      });
   }
 
   const errorlog = (response) => {

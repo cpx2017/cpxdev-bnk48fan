@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, ListItem, Zoom, ListItemText,
-    Card, CardActionArea, CardContent, CardMedia, Grow, Fade, CardHeader } from '@material-ui/core';
+    Card, CardActionArea, CardContent, TextField, Grow, Fade, CardHeader } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
@@ -25,185 +25,6 @@ const HomeCom = ({fet}) => {
     const [onMonth, setMonth] = React.useState(false);
     const [birth, setBirth] = React.useState([]);
     const [samplemem, setMem] = React.useState([]);
-
-  React.useEffect(() => {
-    var root = am5.Root.new("chartdiv");
-
-
-    // Set themes
-    // https://www.amcharts.com/docs/v5/concepts/themes/
-    root.setThemes([
-      am5themes_Animated.new(root)
-    ]);
-
-
-    // Create the map chart
-    // https://www.amcharts.com/docs/v5/charts/map-chart/
-    var chart;
-    chart = root.container.children.push(am5map.MapChart.new(root, {
-      zoomX: false,
-      zoomY: false,
-      panX: 'translateX',
-      panY: 'translateY',
-      wheelX: false,
-      wheelY: false,
-      projection: am5map.geoMercator()
-    }));
-   
-
-    var cont = chart.children.push(am5.Container.new(root, {
-      layout: root.horizontalLayout,
-      x: 20,
-      y: 40
-    }));
-
-
-    // Add labels and controls
-    cont.children.push(am5.Label.new(root, {
-      centerY: am5.p50,
-      text: "Map"
-    }));
-
-    var switchButton = cont.children.push(am5.Button.new(root, {
-      themeTags: ["switch"],
-      centerY: am5.p50,
-      icon: am5.Circle.new(root, {
-        themeTags: ["icon"]
-      })
-    }));
-
-    switchButton.on("active", function() {
-      if (!switchButton.get("active")) {
-        chart.set("projection", am5map.geoMercator());
-        chart.set("panX", "translateX");
-        chart.set("panY", "translateY");
-      }
-      else {
-        chart.set("projection", am5map.geoOrthographic());
-        chart.set("panX", "rotateX");
-        chart.set("panY", "rotateY");
-      }
-    });
-
-    cont.children.push(am5.Label.new(root, {
-      centerY: am5.p50,
-      text: "Globe"
-    }));
-
-    var polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
-      geoJSON: am5geodata_worldLow
-    }));
-
-    var graticuleSeries = chart.series.push(am5map.GraticuleSeries.new(root, {}));
-    graticuleSeries.mapLines.template.setAll({
-      stroke: root.interfaceColors.get("alternativeBackground"),
-      strokeOpacity: 0.08
-    });
-
-    var lineSeries = chart.series.push(am5map.MapLineSeries.new(root, {}));
-    lineSeries.mapLines.template.setAll({
-      stroke: root.interfaceColors.get("alternativeBackground"),
-      strokeOpacity: 0.6
-    });
-
-    // destination series
-    var citySeries = chart.series.push(
-      am5map.MapPointSeries.new(root, {})
-    );
-
-    citySeries.bullets.push(function() {
-      var circle = am5.Circle.new(root, {
-        radius: 5,
-        tooltipText: "{title}",
-        tooltipY: 0,
-        fill: am5.color(0x00FF00),
-        stroke: root.interfaceColors.get("background"),
-        strokeWidth: 2
-      });
-
-      return am5.Bullet.new(root, {
-        sprite: circle
-      });
-    });
-
-    // arrow series
-    var arrowSeries = chart.series.push(
-      am5map.MapPointSeries.new(root, {})
-    );
-
-    arrowSeries.bullets.push(function() {
-      var arrow = am5.Graphics.new(root, {
-        fill: am5.color(0x000000),
-        stroke: am5.color(0x000000),
-        draw: function (display) {
-          display.moveTo(0, -3);
-          display.lineTo(8, 0);
-          display.lineTo(0, 3);
-          display.lineTo(0, -3);
-        }
-      });
-
-      return am5.Bullet.new(root, {
-        sprite: arrow
-      });
-    });
-
-    var cities = [
-      {
-        id: "as",
-        title: "Asia Region",
-        geometry: { type: "Point", coordinates: [114.1694, 22.3193] },
-      },
-      {
-        id: "aus",
-        title: "Oceania Region",
-        geometry: { type: "Point", coordinates: [144.9631, -37.840935] },
-      },
-      {
-        id: "eu",
-        title: "Europe Region",
-        geometry: { type: "Point", coordinates: [2.3522, 48.8566] },
-      },
-      {
-        id: "af",
-        title: "Africa Region",
-        geometry: { type: "Point", coordinates: [28.034088, -26.195246] },
-      },
-      {
-        id: "us",
-        title: "United State Region",
-        geometry: { type: "Point", coordinates: [	-96.8089, 32.7767] },
-      },
-      {
-        id: "su",
-        title: "South America Region",
-        geometry: { type: "Point", coordinates: [	-47.334938, -22.729958] },
-      },
-    ];
-
-    citySeries.data.setAll(cities);
-
-    // prepare line series data
-    var destinations = [];
-    // London coordinates
-    var originLongitude = -0.1262;
-    var originLatitude = 51.5002;
-
-    am5.array.each(destinations, function (did) {
-      var destinationDataItem = citySeries.getDataItemById(did);
-      var lineDataItem = lineSeries.pushDataItem({ geometry: { type: "LineString", coordinates: [[originLongitude, originLatitude], [destinationDataItem.get("longitude"), destinationDataItem.get("latitude")]] } });
-
-      arrowSeries.pushDataItem({
-        lineDataItem: lineDataItem,
-        positionOnLine: 0.5,
-        autoRotate: true
-      });
-    })
-    polygonSeries.events.on("datavalidated", function () {
-      chart.zoomToGeoPoint({ longitude: -0.1262, latitude: 51.5002 }, 2);
-    })
-    chart.appear(50, 1);
-  }, [])
 
     React.useEffect(() => {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -297,12 +118,8 @@ const HomeCom = ({fet}) => {
             <CardHeader title='Behind of this site' />
             <Typography className='ml-3 mb-4' color="textSecondary">
                 We use React JS for better front-end framework to load website dynamically and faster. And enhance system by region server which have 6 locations in the world. System will be detect the nearest
-                region automatically by refer from IP address.
+                region automatically by refer from IP address. See realtime status <a href='//status.cpxdev.tk' target='_blank'>here</a>.
             </Typography>
-            <div className='justify-content-center'>
-              <div id="chartdiv"></div>
-                {/* <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/CPXDev%20Studio%20Multi-Region%20Location.jpg' width={1000} /> */}
-            </div>
       </CardContent>
   </Card>
   <Card className='mt-5'>

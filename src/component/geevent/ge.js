@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar,Typography, IconButton, CardMedia, DialogTitle, DialogContent, ListItem, DialogActions, Dialog, ListItemText,
+import { AppBar, Toolbar,Typography, IconButton, FormControlLabel, DialogTitle, DialogContent, ListItem, DialogActions, Dialog, ListItemText,
 Card, CardContent, Avatar, Button, ListItemSecondaryAction, List, Checkbox, Fade, Grow, CardHeader } from '@material-ui/core';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
@@ -101,6 +101,8 @@ const Ge = ({fet}) => {
   const [rank, setRank] = React.useState([]); 
   const [spam, setSpam] = React.useState(0); 
   const [candi, setCandi] = React.useState(false); 
+  
+  const [candiTog, setCandiTog] = React.useState(false); 
   const [candiUrl, setCandiUrl] = React.useState(''); 
   const [ts, setts] = React.useState('Updating'); 
   const [urlstream, setStream] = React.useState(''); 
@@ -419,21 +421,35 @@ const Ge = ({fet}) => {
               <hr />
               <div className='row justify-content-center'>
                 <div className='col-md-8'>
-                  <div className='row'>
-                    <div className='col-md-6'>
-                      <Doughnut
-                        data={piedata}
-                        options={opt}
+                  <div className='col-md-12 text-center'>
+                  <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={candiTog}
+                            onChange={() => setCandiTog(!candiTog)}
+                            name="checkedB"
+                            color="primary"
+                          />
+                        }
+                        label="Filter by Generation"
                       />
                     </div>
-                    <div className='col-md-6'>
+                    {candiTog ? (
+                      <div className='col-md-12'>
                       <Doughnut
                         data={piedata1}
                         options={opt}
                       />
                     </div>
+                    ) : (
+                      <div className='col-md-12'>
+                      <Doughnut
+                        data={piedata}
+                        options={opt}
+                      />
+                    </div>
+                    )}
                   </div>
-              </div>
               </div>
             </CardContent>
           </Card>

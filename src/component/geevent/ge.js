@@ -44,6 +44,28 @@ const piedata = {
     },
   ],
   }
+  const piedata1 = {
+    labels: ['BNK48 1st Generation', 'BNK48 2nd Generation', 'BNK48 3rd Generation', 'CGM48'],
+    datasets: [
+      {
+        label: '# members',
+        data: [11, 13, 18, 20],
+        backgroundColor: [
+          '#0a6302',
+          '#ff85d4',
+          '#cb96c2',
+          '#49C5A8',
+        ],
+        borderColor: [
+          '#0a6302',
+          '#ff85d4',
+          '#cb96c2',
+          '#49C5A8',
+        ],
+        borderWidth: 0,
+      },
+    ],
+    }
 
 
 
@@ -397,10 +419,20 @@ const Ge = ({fet}) => {
               <hr />
               <div className='row justify-content-center'>
                 <div className='col-md-8'>
-                <Doughnut
-                data={piedata}
-                options={opt}
-              />
+                  <div className='row'>
+                    <div className='col-md-6'>
+                      <Doughnut
+                        data={piedata}
+                        options={opt}
+                      />
+                    </div>
+                    <div className='col-md-6'>
+                      <Doughnut
+                        data={piedata1}
+                        options={opt}
+                      />
+                    </div>
+                  </div>
               </div>
               </div>
             </CardContent>

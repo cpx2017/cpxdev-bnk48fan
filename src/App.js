@@ -157,6 +157,7 @@ function App() {
             window.location.reload();
           }
           setLogin(true)
+          setLogLoad(false)
           setOpen(false)
         } else {
           alert("System will be temporary error for a while. Please try again")

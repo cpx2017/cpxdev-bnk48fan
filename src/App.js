@@ -37,6 +37,7 @@ import AddEvent from './component/addNewEvent';
 import Mana from './component/manage';
 import Api from './component/apisupport';
 import SiteMan from './component/manual';
+import PageErr from './component/404'
 
 import GeCom from './component/geevent/ge';
 import GeMana from './component/geevent/gemanage';
@@ -371,20 +372,21 @@ function App() {
                 </Drawer>
                       <BasicSwitch>
                       <Route exact path="/" render={() => <Home fet={Fet().ul} />} />
-                      <Route exact path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
-                      <Route exact path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />
-                      <Route exact path="/news" render={() => <News fet={Fet().ul} />} />
-                      <Route exact path="/music" render={() => <MusicCom gp={Reduce} fet={Fet().ul} />} />
-                      <Route exact path="/officialupdate" render={() => <Offici fet={Fet().ul} />} />
-                      <Route exact path="/fandom" render={() => <FamdomList fet={Fet().ul} />} />
-                      <Route exact path="/fandomroom" render={() => <FanRoom fet={Fet().ul} />} />
-                      <Route exact path="/addevent" render={() => <AddEvent fet={Fet().ul} />} />
-                      <Route exact path="/eventcontrol" render={() => <Mana fet={Fet().ul} />} />
-                      <Route exact path="/api" render={() => <Api fet={Fet().ul} />} />
-                      <Route exact path="/manual" render={() => <SiteMan fet={Fet().ul} />} />
+                      <Route path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
+                      <Route path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />
+                      <Route path="/news" render={() => <News fet={Fet().ul} />} />
+                      <Route path="/music" render={() => <MusicCom gp={Reduce} fet={Fet().ul} />} />
+                      <Route path="/officialupdate" render={() => <Offici fet={Fet().ul} />} />
+                      <Route path="/fandom" render={() => <FamdomList fet={Fet().ul} />} />
+                      <Route path="/fandomroom" render={() => <FanRoom fet={Fet().ul} />} />
+                      <Route path="/addevent" render={() => <AddEvent fet={Fet().ul} />} />
+                      <Route path="/eventcontrol" render={() => <Mana fet={Fet().ul} />} />
+                      <Route path="/api" render={() => <Api fet={Fet().ul} />} />
+                      <Route path="/manual" render={() => <SiteMan fet={Fet().ul} />} />
 
-                      <Route exact path="/ge3" render={() => <GeCom fet={Fet().ul} />} />
-                      <Route exact path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />
+                      <Route path="/ge3" render={() => <GeCom fet={Fet().ul} />} />
+                      <Route path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />
+                      <Route exact render={() => <PageErr />} />
                     </BasicSwitch>
                 
                

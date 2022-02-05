@@ -460,7 +460,7 @@ const Ge = ({fet}) => {
             <CardHeader title="How to voting your member to one of Senbatsu!" />
               <hr />
               <div>
-              1. Activate BNK Token Wallet in iAM48 Application from Feburary 7, 2022 onwards. (Don't forget to update application!) See more description <a href='https://www.bnk48.com/bnktoken/' target='_blank'>here</a>.
+              1. Activate BNK Token Wallet in iAM48 Application from {moment.unix(1644116400).format('DD MMMM YYYY on HH:mm')} onwards. (Please update iAM48 Application to version 1.8.00 or above) See more description <a href='https://www.bnk48.com/bnktoken/' target='_blank'>here</a>.
               </div>
             </CardContent>
           </Card>

@@ -33,7 +33,7 @@ const Stream = ({fet}) => {
                 <CardHeader title='Live Streaming Station' />
                 <div className='container'>
                     {urlstream != '' ? (
-                        <iframe src={urlstream} width="100%" height={700} allowFullScreen />
+                        <iframe src={urlstream} width="100%" height={window.innerHeight > 800 ? 700 : '100%'} allowFullScreen />
                     ) : (
                         <h6>Stream not found</h6>
                     )}

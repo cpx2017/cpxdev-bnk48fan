@@ -7,6 +7,7 @@ import {
   Switch as BasicSwitch,
   useHistory
 } from "react-router-dom";
+import moment from 'moment'
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
 Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -81,7 +82,7 @@ const SmallAvatar = withStyles((theme) => ({
 
 const newspop = {
   title: 'BNK48 3rd Generation Debut Single',
-  desc: 'See in Feb 7, 2022 @ Central World or Live streaming on https://bnk48fan.cpxdev.tk/livestream',
+  desc: 'See in ' + moment.unix(1644228000).format('DD MMMM YYYY on HH:mm') + ' @ Central World or Live streaming on https://bnk48fan.cpxdev.tk/livestream',
   link: 'https://bnk48fan.cpxdev.tk/livestream',
   src:'https://yt3.ggpht.com/3j4JLWxX3j9CsvtC12WqCjvUy00NHB9DWqD63MhVrVOdoce9T7LVs7WJdxqVfFhRk0wWD_Of_F20h6Q=s1600-nd-v1'
 }

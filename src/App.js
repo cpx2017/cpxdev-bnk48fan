@@ -133,6 +133,7 @@ function App() {
 
   React.useEffect(() => {
     if (sessionStorage.getItem("ads") == null) {
+      sessionStorage.setItem("ads", 'i')
       setpopup(true)
     } else {
       setpopup(false)
@@ -458,7 +459,6 @@ function App() {
       open={EvtPop}
       onClose={() => {
         setpopup(false)
-        sessionStorage.setItem("ads", 'i')
       }}
       maxWidth='md'
   >
@@ -477,7 +477,6 @@ function App() {
       <DialogActions>
       <Button onClick={() => {
         setpopup(false)
-        sessionStorage.setItem("ads", 'i')
       }} className="text-dark">
           Close
       </Button>

@@ -100,6 +100,7 @@ function App() {
   const [kamiimg, setKami] = React.useState('');
   const [kamin, setKname] = React.useState('');
   const [survey, setSur] = React.useState('');
+  const [spcLive, setLive] = React.useState(false);
   
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
@@ -131,6 +132,22 @@ function App() {
     }
   }
 
+  const FetLive = (fet) => {
+    fetch(fet + '/bnk48/getstream?ch=2', {
+      method :'post'
+  })
+      .then(response => response.json())
+      .then(data => {
+        if (data.link != '') {
+          setLive(true)
+        } else {
+          setLive(false)
+        }
+      }).catch(() => {
+        setLive(false)
+      })
+  }
+
   React.useEffect(() => {
     if (sessionStorage.getItem("ads") == null) {
       sessionStorage.setItem("ads", 'i')
@@ -153,8 +170,15 @@ function App() {
         clearInterval(dem)
         setUri(Fet().ul)
         FetchKami(Fet().ul)
+        FetLive(Fet().ul)
       }
   }, 10);
+
+  setInterval(function(){ 
+    if (Fet().ul !== '') {
+     FetLive(Fet().ul)
+    }
+}, 60000);
   }, [])
 
 
@@ -285,9 +309,9 @@ function App() {
                 </ListItem>
                 <ListItem component={Link} to='/livestream' button>
                   <ListItemIcon>
-                    <LiveTvIcon />
+                    <LiveTvIcon className={spcLive ? 'text-success' : ''} />
                   </ListItemIcon>
-                  <ListItemText primary="Special Live" />
+                  <ListItemText primary="Special Live" secondary={spcLive ? 'Livestream is launching' : ''} />
                 </ListItem>
                 <ListItem component={Link} to='/music' button>
                   <ListItemIcon>

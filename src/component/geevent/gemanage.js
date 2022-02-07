@@ -170,12 +170,8 @@ const GeMana = ({fet}) => {
 
     const sub2 = (e) => {
         e.preventDefault()
-        if (Str.length != 11) {
-            alert("Please add youtube ID.")
-            setStr("")
-            return false
-        }
-        setLoad(true)
+        if (Str.length == 11 || Str == '-') {
+            setLoad(true)
           fetch(fet + '/bnk48/setstream?ch=' + ChannelSet+'&uri=' + Str, {
             method: 'POST', // or 'PUT'
             headers: {
@@ -200,6 +196,11 @@ const GeMana = ({fet}) => {
                 setStr("")
                 setChannel("")
             });
+        } else {
+            alert("Please add youtube ID.")
+            setStr("")
+            return false
+        }
     }
 
     if (done) {

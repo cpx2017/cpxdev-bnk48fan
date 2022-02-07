@@ -132,6 +132,11 @@ function App() {
   }
 
   React.useEffect(() => {
+    if (sessionStorage.getItem("ads") == null) {
+      setpopup(true)
+    } else {
+      setpopup(false)
+    }
     if (localStorage.getItem("lowgraphic") == null) {
       setReduce(false)
     } else {
@@ -451,7 +456,10 @@ function App() {
   </Dialog>
   <Dialog
       open={EvtPop}
-      onClose={() => setpopup(false)}
+      onClose={() => {
+        setpopup(false)
+        sessionStorage.setItem("ads", 'i')
+      }}
       maxWidth='md'
   >
       <DialogTitle id="alert-dialog-title">Advertisement - {newspop.title}</DialogTitle>
@@ -467,7 +475,10 @@ function App() {
         </CardContent>
       </DialogContent>
       <DialogActions>
-      <Button onClick={() => setpopup(false)} className="text-dark">
+      <Button onClick={() => {
+        setpopup(false)
+        sessionStorage.setItem("ads", 'i')
+      }} className="text-dark">
           Close
       </Button>
       </DialogActions>

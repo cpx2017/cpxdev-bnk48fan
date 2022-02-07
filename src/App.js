@@ -8,7 +8,7 @@ import {
   useHistory
 } from "react-router-dom";
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
-Card, Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge } from '@material-ui/core';
+Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import HomeIcon from '@material-ui/icons/Home';
@@ -24,9 +24,11 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import CodeIcon from '@material-ui/icons/Code';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import LiveTvIcon from '@material-ui/icons/LiveTv';
 
 import Home from './component/home';
 import MemberList from './component/members';
+import LiveCom from './component/livestream'
 import MamSam from './component/memberdetail';
 import News from './component/news';
 import MusicCom from './component/music';
@@ -77,11 +79,19 @@ const SmallAvatar = withStyles((theme) => ({
   },
 }))(Avatar);
 
+const newspop = {
+  title: 'BNK48 3rd Generation Debut Single',
+  desc: 'See in Feb 7, 2022 @ Central World or Live streaming on https://bnk48fan.cpxdev.tk/livestream',
+  link: 'https://bnk48fan.cpxdev.tk/livestream',
+  src:'https://yt3.ggpht.com/3j4JLWxX3j9CsvtC12WqCjvUy00NHB9DWqD63MhVrVOdoce9T7LVs7WJdxqVfFhRk0wWD_Of_F20h6Q=s1600-nd-v1'
+}
+
 
 function App() {
   const cls = useStyles();
   const History = useHistory()
   const [ Reduce, setReduce] = React.useState(false)
+  const [ EvtPop, setpopup] = React.useState(true)
   const [open, setOpen] = React.useState(false);
   const [uri, setUri] = React.useState('');
   const [login, setLogin] = React.useState(false);
@@ -267,6 +277,12 @@ function App() {
                   </ListItemIcon>
                   <ListItemText primary="News" />
                 </ListItem>
+                <ListItem component={Link} to='/livestream' button>
+                  <ListItemIcon>
+                    <LiveTvIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Special Live" />
+                </ListItem>
                 <ListItem component={Link} to='/music' button>
                   <ListItemIcon>
                     <YouTubeIcon />
@@ -373,6 +389,7 @@ function App() {
                       <BasicSwitch>
                       <Route exact path="/" render={() => <Home fet={Fet().ul} />} />
                       <Route path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
+                      <Route path="/livestream" render={() => <LiveCom fet={Fet().ul} />} />
                       <Route path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />
                       <Route path="/news" render={() => <News fet={Fet().ul} />} />
                       <Route path="/music" render={() => <MusicCom gp={Reduce} fet={Fet().ul} />} />
@@ -428,6 +445,29 @@ function App() {
       isSignedIn={login}
     />
       <Button onClick={() => setMemDl(false)} className="text-dark">
+          Close
+      </Button>
+      </DialogActions>
+  </Dialog>
+  <Dialog
+      open={EvtPop}
+      onClose={() => setpopup(false)}
+      maxWidth='md'
+  >
+      <DialogTitle id="alert-dialog-title">Advertisement - {newspop.title}</DialogTitle>
+      <DialogContent>
+        <CardContent>
+          <CardMedia src={newspop.src} component="img" />
+          <Typography className='mt-3'>
+              {newspop.desc}
+          </Typography>
+          <a href={newspop.link} className='mt-1'>
+              Reference Link
+          </a>
+        </CardContent>
+      </DialogContent>
+      <DialogActions>
+      <Button onClick={() => setpopup(false)} className="text-dark">
           Close
       </Button>
       </DialogActions>

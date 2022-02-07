@@ -9,6 +9,17 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+  const Streamchannel = [
+      {
+          label: 'General Election',
+          value: '1',
+      },
+      {
+        label: 'Special Event Stream',
+        value: '2',
+    }
+  ]
+
 const GeMana = ({fet}) => {
     const classes = useStyles();
     const [ done, setDone ] = React.useState(false);
@@ -18,6 +29,7 @@ const GeMana = ({fet}) => {
     const [ Tar, setTar ] = React.useState('-');
     const [mem, setMem] = React.useState([]); 
     const [ MemTar, setMemTar ] = React.useState('-');
+    const [ ChannelSet, setChannel ] = React.useState('');
     const [Score, setScore] = React.useState(''); 
     const [Str, setStr] = React.useState(''); 
 
@@ -164,7 +176,7 @@ const GeMana = ({fet}) => {
             return false
         }
         setLoad(true)
-          fetch(fet + '/bnk48/setstream?uri=' + Str, {
+          fetch(fet + '/bnk48/setstream?ch=' + ChannelSet+'&uri=' + Str, {
             method: 'POST', // or 'PUT'
             headers: {
                 'Accept': 'application/json',
@@ -180,11 +192,13 @@ const GeMana = ({fet}) => {
                 }
                 setLoad(false)
                 setStr("")
+                setChannel("")
             })
             .catch((error) => {
                 alert("System will be temporary error for a while. Please try again")
                 setLoad(false)
                 setStr("")
+                setChannel("")
             });
     }
 
@@ -257,7 +271,7 @@ const GeMana = ({fet}) => {
             <hr />
             <form autoComplete='off' onSubmit={sub2}>
             <CardContent className='row pl-5 pr-5'>
-                <div className='col-md-8'>
+                <div className='col-md-5'>
                     <TextField
                         required={true}
                         label="Add Youtube Stream ID"
@@ -267,6 +281,24 @@ const GeMana = ({fet}) => {
                         type="text"
                         onChange={(e) => setStr(e.target.value)}
                     />
+                </div>
+                <div className='col-md-3'>
+                <TextField
+                        required={true}
+                        fullWidth={true}
+                        select
+                        label="Channel"
+                        value={ChannelSet}
+                        className="mb-3"
+                        onChange={(e) => setChannel(e.target.value)}
+                        required
+                        >
+                            {Streamchannel.length > 0 && Streamchannel.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                                </MenuItem>
+                            ))}
+                    </TextField>
                 </div>
                 <Button color='primary' type='submit'>Update</Button>
             </CardContent>

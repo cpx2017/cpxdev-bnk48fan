@@ -120,7 +120,7 @@ const Ge = ({fet}) => {
         setRank([])
         setts(moment().format("DD MMMM YYYY HH:mm:ss") + ' (Error fetching)')
       })
-      fetch(fet + '/bnk48/getstream', {
+      fetch(fet + '/bnk48/getstream?ch=1', {
         method :'post'
     })
         .then(response => response.json())

@@ -458,7 +458,7 @@ function App() {
       <DialogContent>
         <CardContent>
           <CardMedia src={newspop.src} component="img" />
-          <Typography className='mt-3'>
+          <Typography className='mt-3' variant="body2" component="p">
               {newspop.desc}
           </Typography>
           <a href={newspop.link} className='mt-1'>

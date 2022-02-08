@@ -437,7 +437,7 @@ function App() {
                 
                 </Drawer>
                       <BasicSwitch>
-                      <Route exact path="/" render={() => <Home fet={Fet().ul} />} />
+                      <Route exact path="/" render={() => <Home fet={Fet().ul} gp={Reduce} />} />
                       <Route path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
                       <Route path="/livestream" render={() => <LiveCom fet={Fet().ul} />} />
                       <Route path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />

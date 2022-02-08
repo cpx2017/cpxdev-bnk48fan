@@ -1,15 +1,17 @@
 import React from 'react';
 import { Typography, ListItem, Zoom, ListItemText,
-    Card, CardActionArea, CardContent, CardMedia, Grow, Fade } from '@material-ui/core';
+    Card, CardActionArea, CardContent, CardMedia, Grow, Fade, CardHeader } from '@material-ui/core';
     import { useHistory } from 'react-router-dom';
 
-const HomeCom = ({fet}) => {
+const HomeCom = ({fet, gp}) => {
     const History = useHistory()
     const [Loaded1, setLoaded1] = React.useState(false);
     const [Loaded2, setLoaded2] = React.useState(false);
+    const [Loaded3, setLoaded3] = React.useState(false);
     const [onMonth, setMonth] = React.useState(false);
     const [birth, setBirth] = React.useState([]);
     const [samplemem, setMem] = React.useState([]);
+    const [highMV, setMV] = React.useState([]);
     React.useEffect(() => {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(fet + '/bnk48/getmemberbybirth?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
@@ -41,6 +43,20 @@ const HomeCom = ({fet}) => {
       setMem(data.response)
       setLoaded2(true)
   });
+
+  fetch(encodeURI(fet + '/bnk48/getVideo?tstamp=' + Math.floor( new Date().getTime()  / 1000)), {
+    method: 'post', // or 'PUT'
+    })
+    .then(response => response.json())
+    .then(data => {
+        setLoaded3(true)
+        setMV(data.items)
+    console.log('Success:', data);
+    })
+    .catch((error) => {
+        setLoaded3(true)
+    console.error('Error:', error);
+    });
     }, [])
 
     const ChangeRoute = (name) =>{
@@ -135,6 +151,37 @@ const HomeCom = ({fet}) => {
           )}
   
   <div className="stage text-center pt-5 pb-2">
+  <h3 className='mb-5'>Highlight Music Video</h3>
+  {Loaded3 ? (
+      <div className='row ml-3 mr-3 justify-content-center'>
+      {highMV.length > 0 ? (
+        <Zoom in={true} timeout={250}>
+           <div className="col-md-10 mb-5">
+                     <Card>
+                     <CardHeader
+                     className='text-left'
+                     title={highMV[0].snippet.title}
+                     subheader={'Uploaded by ' + highMV[0].snippet.videoOwnerChannelTitle + ' on ' + new Date(highMV[0].snippet.publishedAt).toLocaleString()}
+                     />
+                     <CardMedia
+                     component='iframe'
+                     height={600}
+                     src={'https://www.youtube.com/embed/' + highMV[0].snippet.resourceId.videoId +'?mute=1' + (window.innerWidth <= 600 || gp == true ? '' : '&autoplay=1')}
+                     allowFullScreen
+                     />
+                     <CardContent>
+                     </CardContent>
+                     </Card>
+                     </div>
+          </Zoom>
+      ) : (
+          <h6>No Highlight MV.</h6>
+      )}
+      </div>
+  ) : (
+    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" className='text-center' />
+  )}
+  <hr />
   {onMonth ? (
   <h3 className='mb-5'>BNK48 Members Birthday in this month</h3>
   ) : (

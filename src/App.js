@@ -240,10 +240,9 @@ function App() {
     window.open(survey, '_target')
   }
 
-  return (
-<div> 
-    {uri != '' && (
-      <BrowserRouter>
+  if (uri != '') {
+    return (<>
+       <BrowserRouter>
       <AppBar position="sticky" className='bnktheme'>
           <Toolbar>
             {open == false && (
@@ -277,7 +276,7 @@ function App() {
                   className={cls.drawer}
                   variant="temporary"
                   color="primary"
-                  anchor="right"
+                  anchor="left"
                   open={open}
                   classes={{
                     paper: cls.drawerPaper,
@@ -443,16 +442,7 @@ function App() {
           <br /> All BNK48 and CGM48 contents are licensed by Independent Artist Management (iAM). We don't affiliated with them. Please don't be to copy and modified contents for any commercial use.
         </footer>
         </BrowserRouter>
-    )}
-    {
-      uri == '' && (
-        <div className='text-center mt-5 pt-5'>
-           <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" className='text-center' />
-        Welcome to BNK48 Fan Space, please wait
-      </div>
-      )
-    }
-    <Dialog
+        <Dialog
       open={MemberDl}
       onClose={() => setMemDl(false)}
       fullWidth={true}
@@ -507,9 +497,14 @@ function App() {
       </Button>
       </DialogActions>
   </Dialog>
-    
-  </div> 
-    )
+    </>)
+  }
+  return (
+    <div className='text-center mt-5 pt-5'>
+       <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" className='text-center' />
+    Welcome to BNK48 Fan Space, please wait
+  </div>
+  )
 }
 
 export default App;

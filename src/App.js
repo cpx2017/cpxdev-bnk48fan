@@ -26,6 +26,7 @@ import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import CodeIcon from '@material-ui/icons/Code';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import Home from './component/home';
 import MemberList from './component/members';
@@ -195,9 +196,7 @@ function App() {
       .then(response => response.text())
       .then(data => {
         if (data == "false") {
-          if (window.location.pathname != '/') {
-            window.location.reload();
-          }
+          FetchKami(Fet().ul)
           setLogin(true)
           setLogLoad(false)
           setOpen(false)
@@ -238,6 +237,27 @@ function App() {
 
   const UrlClk = () => {
     window.open(survey, '_target')
+  }
+
+  const DelKami = () => {
+    const dlg = window.confirm("Are you sure to delete " + kamin + " from your Kami-Oshi?")
+    if (dlg == true) {
+      fetch(Fet().ul + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + encodeURI('-'), {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        })
+        .then(response => response.text())
+        .then(data => {
+          FetchKami(Fet().ul)
+        })
+        .catch((error) => {
+            alert("System will be temporary error for a while. Please try again")
+        });
+    }
+    
   }
 
   if (uri != '') {
@@ -452,7 +472,24 @@ function App() {
   >
       <DialogTitle id="alert-dialog-title">Are you sure to sign-out</DialogTitle>
       <DialogContent>
-        Some feature cannot be used when you don't login.
+        {kamin != '-' ? (
+      <ListItem onClick={() => window.location.href = "/member?name=" + kamin.toLowerCase()} button>
+          <ListItemIcon>
+          <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={kamiimg} />
+        </ListItemIcon>
+        <ListItemText primary={'Your Kami-Oshi is ' + kamin + ' BNK48'} secondary='Click here to see more description of your Kami-Oshi' />
+        </ListItem>
+        ) : (
+      <ListItem button>
+          <ListItemIcon>
+                    <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src="" />
+                  </ListItemIcon>
+                  <ListItemText primary="You don't have any Kami-Oshi" secondary='Please choose your member which you love only once person.' />
+                  </ListItem>
+        )}
+                <ListItem className='text-info' button>
+                  <ListItemText primary='Feature will be unavaliable when you not sign in' secondary='Choose and share your Kami-Oshi member, Fandom group view and add new event' />
+                </ListItem>
       </DialogContent>
       <DialogActions>
       <GoogleLogout

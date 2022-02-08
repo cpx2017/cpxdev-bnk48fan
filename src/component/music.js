@@ -54,15 +54,15 @@ const Music = ({gp, fet}) => {
                  <br />
                  <div className='row justify-content-center'>
                  {Arr.length > 0 ? Arr.map((item,i) => (
-                     <div className="col-md-4 mb-5">
-                     <Card>
+                     <div className={i == 0 ? "col-md-10 mb-5" : "col-md-4 mb-5"}>
+                     <Card className={i == 0 ? "border border-warning border-5" : ""}>
                      <CardHeader
-                     title={item.snippet.title}
+                     title={(i == 0 ? 'Highlight Music Video | ' : '') +item.snippet.title}
                      subheader={'Uploaded by ' + item.snippet.videoOwnerChannelTitle + ' on ' + new Date(item.snippet.publishedAt).toLocaleString()}
                      />
                      <CardMedia
                      component='iframe'
-                     height={350}
+                     height={i == 0 ? 700 : 350}
                      src={'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId +'?mute=1' + (window.innerWidth <= 600 || gp == true ? '' : '&autoplay=1')}
                      allowFullScreen
                      />

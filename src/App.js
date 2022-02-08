@@ -81,10 +81,10 @@ const SmallAvatar = withStyles((theme) => ({
 }))(Avatar);
 
 const newspop = {
-  title: 'BNK48 3rd Generation Debut Single',
-  desc: 'See in ' + moment.unix(1644228000).format('DD MMMM YYYY on HH:mm') + ' @ Central World or Live streaming on https://bnk48fan.cpxdev.tk/livestream',
-  link: 'https://bnk48fan.cpxdev.tk/livestream',
-  src:'https://yt3.ggpht.com/3j4JLWxX3j9CsvtC12WqCjvUy00NHB9DWqD63MhVrVOdoce9T7LVs7WJdxqVfFhRk0wWD_Of_F20h6Q=s1600-nd-v1'
+  title: 'BNK48 3rd Generation Debut Single "First Rabbit" Music video is released on Youtube and also avaliable all Streaming Platform',
+  desc: 'The first rabbit is coming! Let\'s appreciate the cuteness of these rabbits on all streaming platform and Music Video.',
+  link: 'https://BNK48.bfan.link/FirstRa3bitTH',
+  src:'https://yt3.ggpht.com/Nw_L8Ld9tiedec6fVR_Nz9IbCYE7aU7K83oZmjamz3CtnidwXWuRT4sP95rutPYHrTqJzafwfSewKMs=s1024-c-fcrop64=1,00000000ffffffff-nd-v1'
 }
 
 

@@ -243,7 +243,7 @@ const Ge = ({fet}) => {
               </div>
               ) : (
                 <Fade in={true} timeout={800}>
-                  <iframe src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/frabbit.jpg" scrolling="no" />
+                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/frabbit.jpg"  width={window.innerWidth} />
                   </Fade>
               )}
           </div>

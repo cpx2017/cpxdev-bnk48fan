@@ -276,7 +276,7 @@ function App() {
                   className={cls.drawer}
                   variant="temporary"
                   color="primary"
-                  anchor="left"
+                  anchor="right"
                   open={open}
                   classes={{
                     paper: cls.drawerPaper,

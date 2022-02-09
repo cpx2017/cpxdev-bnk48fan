@@ -119,3 +119,7 @@ iframe[id*="twitter-widget"] {
 .border-5 {
   border-width:3px !important;
 }
+
+.nl {
+  white-space: pre-line
+}

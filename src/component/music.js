@@ -3,6 +3,7 @@ import { Card, CardHeader, CardContent, CardMedia, Typography, Zoom, CardActions
 import ShareIcon from '@material-ui/icons/Share';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import MusicCom from './MusicComRe';
 
 const Music = ({gp, fet}) => {
     const [Loaded, setLoaded] = React.useState(false);
@@ -54,27 +55,7 @@ const Music = ({gp, fet}) => {
                  <br />
                  <div className='row justify-content-center'>
                  {Arr.length > 0 ? Arr.map((item,i) => (
-                     <div className={i == 0 ? "col-md-10 mb-5" : "col-md-4 mb-5"}>
-                     <Card className={i == 0 ? "border border-warning border-5" : ""}>
-                     <CardHeader
-                     title={(i == 0 ? 'Highlight Music Video | ' : '') +item.snippet.title}
-                     subheader={'Uploaded by ' + item.snippet.videoOwnerChannelTitle + ' on ' + new Date(item.snippet.publishedAt).toLocaleString()}
-                     />
-                     <CardMedia
-                     component='iframe'
-                     height={i == 0 ? 700 : 350}
-                     src={'https://www.youtube.com/embed/' + item.snippet.resourceId.videoId +'?mute=1' + (window.innerWidth <= 600 || gp == true ? '' : '&autoplay=1')}
-                     allowFullScreen
-                     />
-                     <CardContent>
-                     </CardContent>
-                     <CardActions disableSpacing>
-                     <IconButton onClick={() => handleClick(item.snippet.resourceId.videoId,item.snippet.title)}>
-                         <ShareIcon />
-                     </IconButton>
-                     </CardActions>
-                     </Card>
-                     </div>
+                    <MusicCom item={item} i={i} gp={gp} />
                  )) : (
                      <div className='text-center col-md-12'>
                          Music Video is not found.

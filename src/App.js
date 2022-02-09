@@ -26,12 +26,13 @@ import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import CodeIcon from '@material-ui/icons/Code';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
-import DeleteIcon from '@material-ui/icons/Delete';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
 import Home from './component/home';
 import MemberList from './component/members';
 import LiveCom from './component/livestream'
 import MamSam from './component/memberdetail';
+import TokenCom from './component/token';
 import News from './component/news';
 import MusicCom from './component/music';
 import Offici from './component/official';
@@ -351,6 +352,12 @@ function App() {
                   </ListItemIcon>
                   <ListItemText primary="Fandom Event" />
                 </ListItem>
+                <ListItem component={Link} to='/token' button>
+                  <ListItemIcon>
+                    <MonetizationOnIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Blockchain Technology' />
+                </ListItem>
                 <ListItem component={Link} to='/ge3' button>
                   <ListItemIcon>
                     <HowToVoteIcon />
@@ -442,6 +449,7 @@ function App() {
                       <Route path="/livestream" render={() => <LiveCom fet={Fet().ul} />} />
                       <Route path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />
                       <Route path="/news" render={() => <News fet={Fet().ul} />} />
+                      <Route path="/token" render={() => <TokenCom fet={Fet().ul} />} />
                       <Route path="/music" render={() => <MusicCom gp={Reduce} fet={Fet().ul} />} />
                       <Route path="/officialupdate" render={() => <Offici fet={Fet().ul} />} />
                       <Route path="/fandom" render={() => <FamdomList fet={Fet().ul} />} />
@@ -462,51 +470,54 @@ function App() {
           <br /> All BNK48 and CGM48 contents are licensed by Independent Artist Management (iAM). We don't affiliated with them. Please don't be to copy and modified contents for any commercial use.
         </footer>
         </BrowserRouter>
-        <Dialog
-      open={MemberDl}
-      onClose={() => setMemDl(false)}
-      fullWidth={true}
-      maxWidth='sm'
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-  >
-      <DialogTitle id="alert-dialog-title">Are you sure to sign-out</DialogTitle>
-      <DialogContent>
-        {kamin != '-' ? (
-      <ListItem onClick={() => window.location.href = "/member?name=" + kamin.toLowerCase()} button>
-          <ListItemIcon>
-          <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={kamiimg} />
-        </ListItemIcon>
-        <ListItemText primary={'Your Kami-Oshi is ' + kamin + ' BNK48'} secondary='Click here to see more description of your Kami-Oshi' />
-        </ListItem>
-        ) : (
-      <ListItem button>
-          <ListItemIcon>
-                    <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src="" />
-                  </ListItemIcon>
-                  <ListItemText primary="You don't have any Kami-Oshi" secondary='Please choose your member which you love only once person.' />
-                  </ListItem>
+        {localStorage.getItem("glog") != null && (
+           <Dialog
+           open={localStorage.getItem("glog") != null ? MemberDl : false}
+           onClose={() => setMemDl(false)}
+           fullWidth={true}
+           maxWidth='sm'
+           aria-labelledby="alert-dialog-title"
+           aria-describedby="alert-dialog-description"
+       >
+           <DialogTitle id="alert-dialog-title">Are you sure to sign-out</DialogTitle>
+           <DialogContent>
+             {kamin != '-' ? (
+           <ListItem onClick={() => window.location.href = "/member?name=" + kamin.toLowerCase()} button>
+               <ListItemIcon>
+               <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={kamiimg} />
+             </ListItemIcon>
+             <ListItemText primary={'Your Kami-Oshi is ' + kamin + ' BNK48'} secondary='Click here to see more description of your Kami-Oshi' />
+             </ListItem>
+             ) : (
+           <ListItem button>
+               <ListItemIcon>
+                         <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src="" />
+                       </ListItemIcon>
+                       <ListItemText primary="You don't have any Kami-Oshi" secondary='Please choose your member which you love only once person.' />
+                       </ListItem>
+             )}
+                     <ListItem className='text-info' button>
+                       <ListItemText primary='Feature will be unavaliable when you not sign in' secondary='Choose and share your Kami-Oshi member, Fandom group view and add new event' />
+                     </ListItem>
+           </DialogContent>
+           <DialogActions>
+           <GoogleLogout
+           clientId={Client}
+           render={renderProps => (
+             <Button onClick={renderProps.onClick} className="text-danger">
+             Sign out
+         </Button>
+           )}
+           onLogoutSuccess={(e) => Signout(e)}
+           isSignedIn={login}
+         />
+           <Button onClick={() => setMemDl(false)} className="text-dark">
+               Close
+           </Button>
+           </DialogActions>
+       </Dialog>
         )}
-                <ListItem className='text-info' button>
-                  <ListItemText primary='Feature will be unavaliable when you not sign in' secondary='Choose and share your Kami-Oshi member, Fandom group view and add new event' />
-                </ListItem>
-      </DialogContent>
-      <DialogActions>
-      <GoogleLogout
-      clientId={Client}
-      render={renderProps => (
-        <Button onClick={renderProps.onClick} className="text-danger">
-        Sign out
-    </Button>
-      )}
-      onLogoutSuccess={(e) => Signout(e)}
-      isSignedIn={login}
-    />
-      <Button onClick={() => setMemDl(false)} className="text-dark">
-          Close
-      </Button>
-      </DialogActions>
-  </Dialog>
+       
   <Dialog
       open={EvtPop}
       onClose={() => {

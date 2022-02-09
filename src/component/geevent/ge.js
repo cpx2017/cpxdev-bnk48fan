@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar,Typography, IconButton, FormControlLabel, DialogTitle, DialogContent, ListItem, DialogActions, Dialog, ListItemText,
 Card, CardContent, Avatar, Button, ListItemSecondaryAction, List, Checkbox, Fade, Grow, CardHeader } from '@material-ui/core';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
@@ -84,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Ge = ({fet}) => {
+  const History = useHistory()
   const classes = useStyles();
 
   const timesch = {
@@ -258,7 +260,7 @@ const Ge = ({fet}) => {
                 </Typography>
                 <hr />
                 <Typography color="textSecondary">
-                GE3 or BNK48 12th Single General Election is the third of BNK48 general election. And the first Election of BNK48 which use Blockchain Technology also part of this election. Operated by Token X of SCB X.
+                GE3 or BNK48 12th Single General Election is the third of BNK48 general election. And the first Election of BNK48 which use Blockchain Technology also part of this election. Operated by Token X of SCB X. <a onClick={() => History.push('token')}>See more description here</a>
                 </Typography>
                 <hr />
                 <Typography variant="body1" component="p">
@@ -287,7 +289,7 @@ const Ge = ({fet}) => {
                 </Typography>
                 <hr />
                 <Typography color="textSecondary">
-                GE3 or BNK48 12th Single General Election is the third of BNK48 general election. And the first Election of BNK48 which use Blockchain Technology also part of this election. Operated by Token X of SCB X.
+                GE3 or BNK48 12th Single General Election is the third of BNK48 general election. And the first Election of BNK48 which use Blockchain Technology also part of this election. Operated by Token X of SCB X. <a onClick={() => History.push('token')}>See more description here</a>
                 </Typography>
                 <hr />
                 <Typography variant="body1" component="p">
@@ -458,7 +460,7 @@ const Ge = ({fet}) => {
             <CardHeader title="How to voting your member to one of Senbatsu!" />
               <hr />
               <div>
-              1. Activate BNK Token Wallet in iAM48 Application from {moment.unix(1644116400).format('DD MMMM YYYY on HH:mm')} onwards. (Please update iAM48 Application to version 1.8.00 or above) See more description <a href='https://www.bnk48.com/bnktoken/' target='_blank'>here</a>.
+              1. Activate BNK Token Wallet in iAM48 Application from {moment.unix(1644116400).format('DD MMMM YYYY on HH:mm')} onwards. (Please update iAM48 Application to version 1.8.00 or above) See whitepaper <a href='https://www.bnk48.com/bnktoken/' target='_blank'>here</a>. Or reading clearly for international fan on <a onClick={() => History.push('token')}>here</a>
               </div>
             </CardContent>
           </Card>

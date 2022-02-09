@@ -1,33 +1,10 @@
 import React from 'react';
 import { Card, CardHeader, CardContent, CardMedia, Typography, Zoom, CardActions, IconButton, ButtonGroup } from '@material-ui/core';
-import ShareIcon from '@material-ui/icons/Share';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import MusicCom from './MusicComRe';
+import MusicCom from './MusicComRe'
 
 const Music = ({gp, fet}) => {
     const [Loaded, setLoaded] = React.useState(false);
     const [Arr, setArr] = React.useState([]);
-    const [open, setOpen] = React.useState(false);
-    const [alt, setAlert] = React.useState('');
-
-    function Alert(props) {
-        return <MuiAlert elevation={6} variant="filled" {...props} />;
-      }
-
-      const handleClick = (id, til) => {
-        navigator.clipboard.writeText('https://www.youtube.com/watch?v=' + id);
-        setOpen(true);
-        setAlert(til)
-      };
-    
-      const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-        setAlert('')
-        setOpen(false);
-      };
 
     React.useEffect(() => {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -55,18 +32,13 @@ const Music = ({gp, fet}) => {
                  <br />
                  <div className='row justify-content-center'>
                  {Arr.length > 0 ? Arr.map((item,i) => (
-                    <MusicCom item={item} i={i} gp={gp} />
+                       <MusicCom item={item} i={i} gp={gp} />
                  )) : (
                      <div className='text-center col-md-12'>
                          Music Video is not found.
                      </div>
                  )}
                  </div>
-                 <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success">
-                            Link of song "{alt}" has copied to clipboard
-                            </Alert>
-                        </Snackbar>
                  </div>
             ) : (
                 <div className='text-center'>

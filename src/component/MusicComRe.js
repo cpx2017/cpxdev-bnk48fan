@@ -7,14 +7,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
+import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import MuiAlert from '@material-ui/lab/Alert';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -34,18 +33,42 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
 }));
 
 const CardLoop = ({item, i, gp}) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(window.innerWidth > 900 ? true : false);
+  const [alt, setAlert] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlert('')
+    setOpen(false);
+  };
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
+  const handleClick = (id, til) => {
+    navigator.clipboard.writeText('https://www.youtube.com/watch?v=' + id);
+    setOpen(true);
+    setAlert(til)
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <div className={i == 0 ? "col-md-10 mb-5" : "col-md-4 mb-5"}>
+    <div className={i == 0 ? "col-md-9 mb-5" : "col-md-4 mb-5"}>
      <Card className={i == 0 ? "border border-warning border-5" : ""}>
       <CardHeader
         title={(i == 0 ? 'Highlight Music Video | ' : '') +item.snippet.title}
@@ -58,6 +81,9 @@ const CardLoop = ({item, i, gp}) => {
         allowFullScreen
     />
       <CardActions disableSpacing>
+      <IconButton onClick={() => handleClick(item.snippet.resourceId.videoId,item.snippet.title)}>
+        <ShareIcon />
+    </IconButton>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -77,6 +103,11 @@ const CardLoop = ({item, i, gp}) => {
         </CardContent>
       </Collapse>
     </Card>
+    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+        Link of song "{alt}" has copied to clipboard
+        </Alert>
+    </Snackbar>
     </div>
   );
 }

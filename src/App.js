@@ -540,7 +540,7 @@ function App() {
   >
     
     {newspop.length > 1 ?
-    (<Carousel>{
+    (<Carousel interval={8000}>{
       newspop.map((item, i) => (
         <>
         <DialogTitle id="alert-dialog-title">Advertisement - {item.title}</DialogTitle>

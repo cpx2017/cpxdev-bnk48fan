@@ -30,9 +30,7 @@ const News = ({fet}) => {
         {window.innerWidth > 800 && (
           <div class="video-background">
            <Fade in={true} timeout={800}>
-           <div class="">
-           <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/myport/fav/bnk48.jpg" />
-              </div>
+           <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/myport/fav/bnk48.jpg" width={window.innerWidth} />
               </Fade>
       </div>
         )}

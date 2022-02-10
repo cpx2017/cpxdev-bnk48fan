@@ -49,6 +49,7 @@ import GeMana from './component/geevent/gemanage';
 
 import Fet from './fetch'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import Carousel from 'react-material-ui-carousel'
 
 const drawerWidth = 240;
 const Client = '961896647339-roenm2ee6i60ed2rhbe2sqee0unlqj0f.apps.googleusercontent.com'
@@ -82,12 +83,20 @@ const SmallAvatar = withStyles((theme) => ({
   },
 }))(Avatar);
 
-const newspop = {
-  title: 'BNK48 3rd Generation Debut Single "First Rabbit" Music video is released on Youtube and also avaliable all Streaming Platform',
-  desc: 'The first rabbit is coming! Let\'s appreciate the cuteness of these rabbits on all streaming platform and Music Video.',
-  link: 'https://BNK48.bfan.link/FirstRa3bitTH',
-  src:'https://yt3.ggpht.com/Nw_L8Ld9tiedec6fVR_Nz9IbCYE7aU7K83oZmjamz3CtnidwXWuRT4sP95rutPYHrTqJzafwfSewKMs=s1024-c-fcrop64=1,00000000ffffffff-nd-v1'
-}
+const newspop = [
+  {
+    title: 'BNK48 3rd Generation Debut Single "First Rabbit" Music video is released on Youtube and also avaliable all Streaming Platform',
+    desc: 'The first rabbit is coming! Let\'s appreciate the cuteness of these rabbits on all streaming platform and Music Video.',
+    link: 'https://BNK48.bfan.link/FirstRa3bitTH',
+    src:'https://yt3.ggpht.com/Nw_L8Ld9tiedec6fVR_Nz9IbCYE7aU7K83oZmjamz3CtnidwXWuRT4sP95rutPYHrTqJzafwfSewKMs=s1024-c-fcrop64=1,00000000ffffffff-nd-v1'
+  },
+  {
+    title: 'Are you ready for Charaline Fanmeet Concert?',
+    desc: 'Five BNK48 members are waiting to you in Charaline Fanmeet concert. Don\'t for get to see them in 12 to 13 of February, 2022 at Union Hall, Union Mall Latprao, Bangkok TH',
+    link: 'https://twitter.com/bnk48official/status/1491351174175416321',
+    src:'https://pbs.twimg.com/media/FLJACVmaMAAs0Ok?format=jpg&name=large'
+  }
+]
 
 
 function App() {
@@ -527,19 +536,44 @@ function App() {
         setpopup(false)
       }}
       maxWidth='md'
+      scroll='body'
   >
-      <DialogTitle id="alert-dialog-title">Advertisement - {newspop.title}</DialogTitle>
-      <DialogContent>
-        <CardContent>
-          <CardMedia src={newspop.src} component="img" />
-          <Typography className='mt-3' variant="body2" component="p">
-              {newspop.desc}
-          </Typography>
-          <a href={newspop.link} className='mt-1'>
-              Reference Link
-          </a>
-        </CardContent>
-      </DialogContent>
+    
+    {newspop.length > 1 ?
+    (<Carousel>{
+      newspop.map((item, i) => (
+        <>
+        <DialogTitle id="alert-dialog-title">Advertisement - {item.title}</DialogTitle>
+          <DialogContent>
+            <CardContent>
+              <CardMedia src={item.src} component="img" width={100} />
+              <Typography className='mt-3' variant="body2" component="p">
+                  {item.desc}
+              </Typography>
+              <a href={item.link} className='mt-1'>
+                  Reference Link
+              </a>
+            </CardContent>
+          </DialogContent>
+        </>
+      ))
+    }</Carousel>) : (
+      <>
+      <DialogTitle id="alert-dialog-title">Advertisement - {newspop[0].title}</DialogTitle>
+        <DialogContent>
+          <CardContent>
+            <CardMedia src={newspop[0].src} component="img" />
+            <Typography className='mt-3' variant="body2" component="p">
+                {newspop[0].desc}
+            </Typography>
+            <a href={newspop[0].link} className='mt-1'>
+                Reference Link
+            </a>
+          </CardContent>
+        </DialogContent>
+      </>
+    )}
+    
       <DialogActions>
       <Button onClick={() => {
         setpopup(false)

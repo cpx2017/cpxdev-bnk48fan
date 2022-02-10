@@ -123,3 +123,8 @@ iframe[id*="twitter-widget"] {
 .nl {
   white-space: pre-line
 }
+
+.app-barcurve {
+  border-bottom-right-radius: 18px !important;
+  border-bottom-left-radius: 18px !important;
+}

@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import moment from 'moment'
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
-Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia } from '@material-ui/core';
+Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import HomeIcon from '@material-ui/icons/Home';
@@ -264,7 +264,8 @@ function App() {
   if (uri != '') {
     return (<>
        <BrowserRouter>
-      <AppBar position="sticky" className='bnktheme'>
+       <Slide in={localStorage.getItem('lowgraphic') == null && window.innerWidth > 1100 ? !open : true} timeout={600} direction='down'>
+       <AppBar position="sticky" className='bnktheme app-barcurve'>
           <Toolbar>
             {open == false && (
             <IconButton onClick={() => setOpen(true)} edge="start" color="inherit" aria-label="menu">
@@ -293,6 +294,8 @@ function App() {
               )}
           </Toolbar>
         </AppBar>
+       </Slide>
+     
         <Drawer
                   className={cls.drawer}
                   variant="temporary"

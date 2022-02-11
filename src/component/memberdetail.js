@@ -77,7 +77,12 @@ function capitalizeFirstLetter(string) {
         const Subsc = (val) =>{
             if (localStorage.getItem("glog") == null)
             {
-                alert("You need to login to set this member to your Kami-Oshi.")
+                Swal.fire({
+                    title: 'Confirm to Change your Kami-Oshi',
+                    text: "You need to login to set this member to your Kami-Oshi.",
+                    icon: 'warning',
+                    iconColor: 'rgb(203, 150, 194)',
+                  })
             } else {
                 if (localStorage.getItem("glog") != null && kamio != ''  && kamio != '-') {
                     Swal.fire({

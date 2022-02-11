@@ -403,7 +403,7 @@ function App() {
                   loginLoad ? (
                     <ListItem onClick={() => setMemDl(true)} button>
                     <ListItemIcon>
-                    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="40px" />
+                    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="40px" />
                     </ListItemIcon>
                     <ListItemText primary="Signing in" />
                   </ListItem>
@@ -586,7 +586,7 @@ function App() {
   }
   return (
     <div className='text-center mt-5 pt-5'>
-       <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" className='text-center' />
+       <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center' />
     Welcome to BNK48 Fan Space, please wait
   </div>
   )

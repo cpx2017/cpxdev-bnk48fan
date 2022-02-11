@@ -179,7 +179,7 @@ const HomeCom = ({fet, gp}) => {
       )}
       </div>
   ) : (
-    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" className='text-center' />
+    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center' />
   )}
   <hr />
   {onMonth ? (
@@ -212,7 +212,7 @@ const HomeCom = ({fet, gp}) => {
       )}
       </div>
   ) : (
-    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" className='text-center' />
+    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center' />
   )}
   < hr />
   <h3 className='mb-5'>Sample BNK48 Members</h3>
@@ -240,7 +240,7 @@ const HomeCom = ({fet, gp}) => {
       )}
       </div>
   ) : (
-    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" className='text-center' />
+    <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center' />
   )}
   </div>
         </>

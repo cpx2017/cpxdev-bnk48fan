@@ -306,7 +306,7 @@ const GeMana = ({fet}) => {
             </form>
         </Card>
         <Backdrop className={classes.backdrop} open={load}>
-            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" />
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" />
         </Backdrop>
         </>
      );

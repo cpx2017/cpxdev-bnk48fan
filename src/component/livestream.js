@@ -41,7 +41,7 @@ const Stream = ({fet}) => {
             </CardContent>
         </Card>
             <Backdrop className={classes.backdrop} open={Load}>
-            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/cpx-circular.svg" width="50px" />
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" />
         </Backdrop>
         </>
      );

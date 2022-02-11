@@ -3,6 +3,7 @@ import { Card, CardActionArea, CardContent, CardMedia, TextField, Zoom, MenuItem
 import CheckIcon from '@material-ui/icons/Check';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
+import Swal from 'sweetalert2'
 
 const useStyles = makeStyles((theme) => ({
     backdrop: {
@@ -33,7 +34,12 @@ const Add = ({fet}) => {
               if (file.type.includes('jpeg') || file.type.includes('png') && file.size < 1572864) {
                 setImg(e.target.result)
               } else {
-                alert("Files type is not support or too large. Please upload only image file (JPG, JPEG or PNG) and file size up to 1.5 MB.")
+                Swal.fire({
+                    title: 'File type is unsupport or too large.',
+                    text: "Files type is not support or too large. Please upload only image file (JPG, JPEG or PNG) and file size up to 1.5 MB.",
+                    icon: 'warning',
+                    iconColor: 'rgb(203, 150, 194)'
+                  })
                 e.target.value = ''
               }
             }
@@ -72,11 +78,21 @@ const Add = ({fet}) => {
     const onSub = (e) => {
         e.preventDefault()
         if (moment(tstart).unix() >= moment(tend).unix()) {
-            alert("Please check event start datetime and end datetime and try again.")
+            Swal.fire({
+                title: 'File type is unsupport or too large.',
+                text: "Please check event start datetime and end datetime and try again.",
+                icon: 'warning',
+                iconColor: 'rgb(203, 150, 194)'
+              })
             return false
         }
         if (current == '-') {
-            alert("Please choose hosted BNK48 member for this event.")
+            Swal.fire({
+                title: 'BNK48 member cannot tagged',
+                text: "Please choose hosted BNK48 member for this event.",
+                icon: 'warning',
+                iconColor: 'rgb(203, 150, 194)'
+              })
             return false
         }
         setLoad(true)
@@ -102,8 +118,13 @@ const Add = ({fet}) => {
             .then(response => response.json())
             .then(data => {
                 if (data.errorcode == 0) {
-                    alert("Event form is sent successfully, Please check email after today about 3 days or less to approving event.")
-                    window.location.href = "/fandomroom?name=" + current
+                    Swal.fire({
+                        title: 'Event form has been sent!',
+                        text: "Event form is sent successfully, Please check email after today about 3 days or less to approving event.",
+                        icon: 'success',
+                      }).then(() => {
+                        window.location.href = "/fandomroom?name=" + current
+                      })
                 } else {
                     alert("System will be temporary error for a while. Please try again")
                 }

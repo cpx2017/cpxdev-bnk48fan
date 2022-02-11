@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, TextField, Zoom, MenuItem, Button, ButtonGroup } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import vPack from './pack.json'
+import Swal from 'sweetalert2'
 
 const FanList = ({fet}) => {
 
@@ -19,8 +20,13 @@ const FanList = ({fet}) => {
 
     React.useEffect(() => {
         if (localStorage.getItem("glog") == null) {
-            alert("You need to login before use this feature.")
-            History.goBack()
+            Swal.fire({
+                title: 'You need to login before use this feature.',
+                icon: 'warning',
+                iconColor: 'rgb(203, 150, 194)'
+              }).then(() => {
+                History.goBack()
+              })
         } else {
             document.body.scrollTop = document.documentElement.scrollTop = 0;
             fetch(fet + '/bnk48/memberlist?tstamp=' + Math.floor(new Date().getTime()  / 1000), {

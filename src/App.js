@@ -7,6 +7,7 @@ import {
   Switch as BasicSwitch,
   useHistory
 } from "react-router-dom";
+import 'sweetalert2/dist/sweetalert2.min.css'
 import moment from 'moment'
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
 Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide } from '@material-ui/core';
@@ -50,6 +51,7 @@ import GeMana from './component/geevent/gemanage';
 import Fet from './fetch'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import Carousel from 'react-material-ui-carousel'
+import Swal from 'sweetalert2'
 
 const drawerWidth = 240;
 const Client = '961896647339-roenm2ee6i60ed2rhbe2sqee0unlqj0f.apps.googleusercontent.com'
@@ -249,27 +251,6 @@ function App() {
     window.open(survey, '_target')
   }
 
-  const DelKami = () => {
-    const dlg = window.confirm("Are you sure to delete " + kamin + " from your Kami-Oshi?")
-    if (dlg == true) {
-      fetch(Fet().ul + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + encodeURI('-'), {
-        method: 'POST', // or 'PUT'
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        })
-        .then(response => response.text())
-        .then(data => {
-          FetchKami(Fet().ul)
-        })
-        .catch((error) => {
-            alert("System will be temporary error for a while. Please try again")
-        });
-    }
-    
-  }
-
   if (uri != '') {
     return (<>
        <BrowserRouter>
@@ -391,8 +372,14 @@ function App() {
                 </d>
                 <Divider />
                 <ListItem onClick={() => {
-                  alert('Region mode will enhance system performance. Current region connection has been referenced by IP address')
-                  window.open('https://status.cpxdev.tk', '_blank').focus()
+                  setOpen(false)
+                  Swal.fire({
+                    text: 'Region mode will enhance system performance. Current region connection has been referenced by IP address',
+                    icon: 'info',
+                    iconColor: 'rgb(203, 150, 194)'
+                  }).then(() => {
+                    window.open('https://status.cpxdev.tk', '_blank').focus()
+                  })
                 }} button>
                   <ListItemIcon>
                     <DnsIcon />

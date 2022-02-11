@@ -5,7 +5,7 @@ import { Button, Avatar, Grow, ListItemIcon, Typography, Zoom, Link, Breadcrumbs
 import moment from 'moment';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import PerfectScrollbar from 'react-perfect-scrollbar'
+import Swal from 'sweetalert2'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +32,13 @@ function capitalizeFirstLetter(string) {
 
         const NonLoginDetect = () => {
             if (localStorage.getItem("glog") == null) {
-                alert("You need to login before use this feature.")
-                History.goBack()
+                Swal.fire({
+                    title: 'You need to login before use this feature.',
+                    icon: 'warning',
+                    iconColor: 'rgb(203, 150, 194)'
+                  }).then(() => {
+                    History.goBack()
+                  })
             }
         }
 

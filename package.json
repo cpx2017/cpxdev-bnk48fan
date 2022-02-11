@@ -32,6 +32,7 @@
     "react-twitter-embed": "^3.0.3",
     "react-youtube-background": "^1.0.0",
     "react-youtube-playlist": "^2.2.8",
+    "sweetalert2": "^11.4.0",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

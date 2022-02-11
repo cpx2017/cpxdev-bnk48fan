@@ -13,6 +13,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import NaturePeopleIcon from '@material-ui/icons/NaturePeople';
 
 import { Fireworks } from 'fireworks-js/dist/react'
+import Swal from 'sweetalert2'
 
 var pm = new Audio('https://p.scdn.co/mp3-preview/26031551568cba193fbb55d6e4dcf3eb8fb99b04?cid=774b29d4f13844c495f206cafdad9c86')
 
@@ -79,26 +80,33 @@ function capitalizeFirstLetter(string) {
                 alert("You need to login to set this member to your Kami-Oshi.")
             } else {
                 if (localStorage.getItem("glog") != null && kamio != ''  && kamio != '-') {
-                    let msg = window.confirm("You will change Kami-Oshi from \"" + capitalizeFirstLetter(kamio) + "\" to \"" + capitalizeFirstLetter(val) + "\". Are you sure?")
-                    if (msg == true) {
-                        setLoaded(false)
-                        fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
-                            method: 'POST', // or 'PUT'
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            })
-                            .then(response => response.text())
-                            .then(data => {
-                               window.location.reload()
-                            })
-                            .catch((error) => {
-                                alert("System will be temporary error for a while. Please try again")
-                                setLoaded(true)
-                                setKami(1)
-                            });
-                      }
+                    Swal.fire({
+                        title: 'Confirm to Change your Kami-Oshi',
+                        text: "You will change Kami-Oshi from \"" + capitalizeFirstLetter(kamio) + "\" to \"" + capitalizeFirstLetter(val) + "\". Are you sure?",
+                        icon: 'question',
+                        iconColor: 'rgb(203, 150, 194)',
+                        showCancelButton: true
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                            setLoaded(false)
+                            fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
+                                method: 'POST', // or 'PUT'
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                })
+                                .then(response => response.text())
+                                .then(data => {
+                                   window.location.reload()
+                                })
+                                .catch((error) => {
+                                    alert("System will be temporary error for a while. Please try again")
+                                    setLoaded(true)
+                                    setKami(1)
+                                });
+                        }
+                      })
                 } else if (kamio == '-') {
                     setLoaded(false)
                     fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
@@ -126,27 +134,33 @@ function capitalizeFirstLetter(string) {
                       .then(data => {
                         setKami(1)
                         if (data.obj != 'none') {
-                            let msg = window.confirm("You will change Kami-Oshi from \"" + capitalizeFirstLetter(data.obj.response.name) + "\" to \"" + capitalizeFirstLetter(val) + "\". Are you sure?")
-                            if (msg == true) {
-                                setLoaded(false)
-                                fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
-                                    method: 'POST', // or 'PUT'
-                                    headers: {
-                                        'Accept': 'application/json',
-                                        'Content-Type': 'application/json'
-                                    },
-                                    })
-                                    .then(response => response.text())
-                                    .then(data => {
-                                        window.location.reload()
-                                        setLoaded(true)
-                                    })
-                                    .catch((error) => {
-                                        alert("System will be temporary error for a while. Please try again")
-                                        setLoaded(true)
-                                        setKami(1)
-                                    });
-                              }
+                            Swal.fire({
+                                title: 'Confirm to Change your Kami-Oshi',
+                                text: "You will change Kami-Oshi from \"" + capitalizeFirstLetter(kamio) + "\" to \"" + capitalizeFirstLetter(val) + "\". Are you sure?",
+                                icon: 'question',
+                                iconColor: 'rgb(203, 150, 194)',
+                                showCancelButton: true
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                    setLoaded(false)
+                                    fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {
+                                        method: 'POST', // or 'PUT'
+                                        headers: {
+                                            'Accept': 'application/json',
+                                            'Content-Type': 'application/json'
+                                        },
+                                        })
+                                        .then(response => response.text())
+                                        .then(data => {
+                                           window.location.reload()
+                                        })
+                                        .catch((error) => {
+                                            alert("System will be temporary error for a while. Please try again")
+                                            setLoaded(true)
+                                            setKami(1)
+                                        });
+                                }
+                              })
                         } else {
                             setLoaded(false)
                             fetch(fet + '/bnk48/uptkami?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&name=' + val, {

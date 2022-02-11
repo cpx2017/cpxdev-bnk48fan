@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, CardHeader, CardContent, CardMedia, Typography, Zoom, CardActions, IconButton, ButtonGroup } from '@material-ui/core';
 import MusicCom from './MusicComRe'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpotify, faItunes, faDeezer, faYoutube, faTiktok, faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
 
 const Music = ({gp, fet}) => {
     const [Loaded, setLoaded] = React.useState(false);
@@ -27,6 +29,21 @@ const Music = ({gp, fet}) => {
             <>
             <h3 className='text-center mt-5'>Music Video Promote</h3>
             <p className='text-center'>You can see new release songs of BNK48 on below. Powered by Youtube.</p>
+            <div className='container border border-success rounded mb-3'>
+                <div className='row'>
+                    <div className='col-md-12 text-center'>
+                        Also avaliable on below streaming platform
+                    </div>
+                    <div className='col-md-12 text-center'>
+                        <FontAwesomeIcon icon={faYoutubeSquare} size="lg" className='mr-1 cur' onClick={() => window.open('https://www.youtube.com/c/BNK48OfficialYouTubeChannel', '_target').focus()} />
+                        <FontAwesomeIcon icon={faSpotify} size="lg" className='mr-1 cur' onClick={() => window.open('https://open.spotify.com/artist/0A7q0U0IEdNOHWnQpMRQdD?si=x3cudpoXQLi8L4hD18ekng', '_target').focus()} />
+                        <FontAwesomeIcon icon={faDeezer} size="lg" className='mr-1 cur' onClick={() => window.open('https://www.deezer.com/en/artist/12806207', '_target').focus()} />
+                        <FontAwesomeIcon icon={faItunes} size="lg" className='mr-1 cur' onClick={() => window.open('https://music.apple.com/us/artist/bnk48/1255496438', '_target').focus()} />
+                        <FontAwesomeIcon icon={faYoutube} size="lg" className='mr-1 cur' onClick={() => window.open('https://music.youtube.com/channel/UCngfn4Q-XOei9tQeJxvQR_w?feature=share', '_target').focus()} />
+                        <FontAwesomeIcon icon={faTiktok} size="lg" className='cur' onClick={() => window.open('https://www.tiktok.com/@bnk48official_th', '_target').focus()} />
+                    </div>
+                </div>
+            </div>
             {Loaded ? (
                  <div className="stage pt-5 pl-3 pr-3">
                  <br />

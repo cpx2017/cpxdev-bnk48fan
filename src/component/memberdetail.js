@@ -78,8 +78,7 @@ function capitalizeFirstLetter(string) {
             if (localStorage.getItem("glog") == null)
             {
                 Swal.fire({
-                    title: 'Confirm to Change your Kami-Oshi',
-                    text: "You need to login to set this member to your Kami-Oshi.",
+                    title: "You need to login to set this member to your Kami-Oshi.",
                     icon: 'warning',
                     iconColor: 'rgb(203, 150, 194)',
                   })

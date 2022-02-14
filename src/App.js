@@ -87,6 +87,12 @@ const SmallAvatar = withStyles((theme) => ({
 
 const newspop = [
   {
+    title: 'Are you ready, Hat Yai fan?',
+    desc: 'Let\'s meet them at D\'AAA Road Show and Group Hi-Touch at Floor 1 of Central Festival Hat-Yai in Feburary 19-20, 2022',
+    link: 'https://www.facebook.com/CentralHatyaiFanpage/posts/4753036328107553',
+    src:'https://pbs.twimg.com/media/FLjIDCFagAULW4k?format=jpg&name=large'
+  },
+  {
     title: 'BNK48 3rd Generation Debut Single "First Rabbit" Music video is released on Youtube and also avaliable all Streaming Platform',
     desc: 'The first rabbit is coming! Let\'s appreciate the cuteness of these rabbits on all streaming platform and Music Video.',
     link: 'https://BNK48.bfan.link/FirstRa3bitTH',

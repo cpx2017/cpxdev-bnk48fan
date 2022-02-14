@@ -150,6 +150,14 @@ const Memberlist = ({fet}) => {
               <Button className={(seGroup != '-' && seFill != '-' ? 'ml-3' : 'ml-5') + ' mt-4 mb-3 mr-2'} color="secondary" onClick={() => onReset()} variant="contained">Reset</Button>
              </ButtonGroup>
              </Card>
+             <Zoom in={mem.length > 0 ? Loaded : false}>
+             <Card className='mt-2 ml-5 mr-5'>
+                     <CardContent>
+                         Found {mem.length} matched BNK48 members
+                     </CardContent>
+                 </Card>
+             </Zoom>
+            
             {Loaded ? (
                 <div className='row ml-3 mr-3 mt-5 justify-content-center'>
                 {mem.length > 0 ? mem.map((item, i) => (

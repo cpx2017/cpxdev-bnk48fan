@@ -91,12 +91,6 @@ const newspop = [
     desc: 'The first rabbit is coming! Let\'s appreciate the cuteness of these rabbits on all streaming platform and Music Video.',
     link: 'https://BNK48.bfan.link/FirstRa3bitTH',
     src:'https://yt3.ggpht.com/Nw_L8Ld9tiedec6fVR_Nz9IbCYE7aU7K83oZmjamz3CtnidwXWuRT4sP95rutPYHrTqJzafwfSewKMs=s1024-c-fcrop64=1,00000000ffffffff-nd-v1'
-  },
-  {
-    title: 'Are you ready for Charaline Fanmeet Concert?',
-    desc: 'Five BNK48 members are waiting to you in Charaline Fanmeet concert. Don\'t for get to see them in 12 to 13 of February, 2022 at Union Hall, Union Mall Latprao, Bangkok TH',
-    link: 'https://twitter.com/bnk48official/status/1491351174175416321',
-    src:'https://pbs.twimg.com/media/FLJACVmaMAAs0Ok?format=jpg&name=large'
   }
 ]
 

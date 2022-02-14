@@ -261,9 +261,10 @@ function App() {
                BNK48 Fans Space
               </Typography>
             </div>
-              {window.innerWidth > 800 && (
                 <div className={cls.search + ' mt-2'}>
+              {window.innerWidth > 800 && (
                 <FormControlLabel
+                className={login ? 'pb-3' : ''}
                 control={
                   <Switch
                     checked={Reduce}
@@ -274,8 +275,22 @@ function App() {
                 }
                 label="Reduce Graphic"
               />
-                </div>
               )}
+              {login&& (
+                 <ListItemIcon onClick={() => setMemDl(true)} className={(window.innerWidth > 800 ? 'mt-2' : '') + ' cur'}>
+                 <Badge
+                   overlap="circular"
+                   anchorOrigin={{
+                     vertical: 'bottom',
+                     horizontal: 'right',
+                   }}
+                   badgeContent={kamiimg != '' && kamiimg != '-' ? <SmallAvatar src={kamiimg} data-toggle="tooltip" data-placement="top" title={"\"" + kamin + "\" is your Kami-Oshi"} /> : ''}
+                 >
+                   <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={JSON.parse(localStorage.getItem("glog")).imageUrl} />
+                 </Badge>
+                 </ListItemIcon>
+              )}
+              </div>
           </Toolbar>
         </AppBar>
        </Slide>

@@ -243,7 +243,7 @@ function capitalizeFirstLetter(string) {
         }, [])
         return (  
         <>
-            <div className="stage pt-5 pb-2">
+            <div className="pt-5 pb-2">
                 <h3 className={window.innerWidth > 600 ? ' ml-5' : ' ml-3'}>{mem != '' ? 'About ' + capitalizeFirstLetter(mem) + ' BNK48' : 'Fetching Header'}</h3>
                 <Breadcrumbs className={window.innerWidth > 600 ? ' ml-5' : ' ml-3'} aria-label="breadcrumb">
                     <Link color="inherit" onClick={() => History.push("/memberlist")}>
@@ -261,7 +261,7 @@ function capitalizeFirstLetter(string) {
                             <Fireworks options={fwoptions} style={fwstyle} />
                             </Fade>
 
-                            <Card className={(window.innerWidth > 600 ? ' m-5' : ' m-3') + " row"} key={i}>
+                            <Card className={(window.innerWidth > 600 ? ' m-5' : ' m-3') + " bnktheme row"} key={i}>
                             <div className={window.innerWidth > 1600 ? 'col-lg-3 mb-1' : 'col-lg-4 mb-1'}>
                                 <Fade in={true} timeout={600} style={{ transitionDelay: 300}}>
                                     <CardMedia
@@ -273,7 +273,7 @@ function capitalizeFirstLetter(string) {
                             <Fade in={true} timeout={1200} style={{ transitionDelay: 600}}>
                                 <div className='col-md mt-5 mb-5'>
                                     <h4>{item.fullnameEn[0]} {item.fullnameEn[1]} [{item.name}]</h4>
-                                    <Button onClick={() => Subsc(mem)} color="primary" variant="contained" disabled={kami == 1 ? false : true}>{kami == 0 && <img className='pb-1' src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="20px" />} {kami == 2 ? "She's your Kami-Oshi" : kami == 1 ? 'Set as Kami-Oshi' : 'Loading Status'}</Button> 
+                                    <Button onClick={() => Subsc(mem)} className={kami == 1 ? 'bg-primary' : 'text-dark'} variant="contained" disabled={kami == 1 ? false : true}>{kami == 0 && <img className='pb-1' src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="20px" />} {kami == 2 ? "She's your Kami-Oshi" : kami == 1 ? 'Set as Kami-Oshi' : 'Loading Status'}</Button> 
                                     <hr />
                                     <>
                                         <h6><LocationOnIcon fontSize="small"/> {item.province}</h6>
@@ -304,8 +304,8 @@ function capitalizeFirstLetter(string) {
                                         {!item.graduated && (
                                             <>
                                             Follow her:&nbsp;
-                                            <a className='bnktext' href={item.follow[0]} target='_blank'><FacebookIcon/></a>
-                                            <a className='bnktext' href={item.follow[1]} target='_blank'><InstagramIcon/></a>
+                                            <a className='text-light' href={item.follow[0]} target='_blank'><FacebookIcon/></a>
+                                            <a className='text-light' href={item.follow[1]} target='_blank'><InstagramIcon/></a>
                                             </>
                                         )}
                                     </>

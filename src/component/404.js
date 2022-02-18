@@ -28,9 +28,9 @@ const ErrCom = () => {
             </Grow>
           </div>
           ) : (
-        <div className="bnktheme pb-5 pt-2">
+        <div className="pb-5 pt-2">
     <Grow in={true} timeout={1000}>
-  <Card className="ml-2 mr-2">
+  <Card className="bnktheme ml-2 mr-2">
             <CardContent>
                 <Typography variant="h5" component="h2">
                   Error 404 | Page not Found

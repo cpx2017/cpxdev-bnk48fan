@@ -136,3 +136,6 @@ iframe[id*="twitter-widget"] {
 .cur{
   cursor: pointer;
 }
+.pt-10{
+  margin-top: 5% !important;
+}

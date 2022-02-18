@@ -110,10 +110,10 @@ const Memberlist = ({fet}) => {
 
     return ( 
         <>
+        <h3 className='text-center mt-4'>Members</h3>
+        <br />
         <div className="stage text-center pt-5 pb-2">
-            <h3>Members</h3>
-            <br />
-            <Card className="text-left ml-5 mr-5">
+            <Card className={"text-left " + (window.innerWidth > 700 ? 'ml-5 mr-5' : 'ml-2 mr-2')}>
             <TextField label="Search Member" value={search} className="m-3" onChange={(e) => SearchEng(e.target.value)} />
             <TextField
                 select

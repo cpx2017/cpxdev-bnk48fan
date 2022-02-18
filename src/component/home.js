@@ -12,6 +12,8 @@ const HomeCom = ({fet, gp}) => {
     const [birth, setBirth] = React.useState([]);
     const [samplemem, setMem] = React.useState([]);
     const [highMV, setMV] = React.useState([]);
+    const [GenRan, setGenRan] = React.useState(0);
+
     React.useEffect(() => {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(fet + '/bnk48/getmemberbybirth?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
@@ -40,6 +42,7 @@ const HomeCom = ({fet, gp}) => {
         })
   .then(response => response.json())
   .then(data => {
+      setGenRan(ran)
       setMem(data.response)
       setLoaded2(true)
   });
@@ -114,9 +117,9 @@ const HomeCom = ({fet, gp}) => {
             </Grow>
           </div>
           ) : (
-        <div className="bnktheme pb-5 pt-2">
+        <div className="pb-5 pt-2">
     <Grow in={true} timeout={1000}>
-  <Card className="ml-2 mr-2">
+  <Card className="bnktheme ml-2 mr-2">
       <CardContent>
         <Typography variant="h5" component="h2">
           Welcome to BNK48 Fan Space
@@ -215,7 +218,7 @@ const HomeCom = ({fet, gp}) => {
     <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center' />
   )}
   < hr />
-  <h3 className='mb-5'>Sample BNK48 Members</h3>
+  <CardHeader title={(<h3>Sample Members</h3>)} subheader={GenRan != 0 ? ('Generation ' + GenRan) : ''} className='mb-5' />
   {Loaded2 ? (
       <div className='row ml-3 mr-3 justify-content-center'>
       {samplemem.length > 0 ? samplemem.map((item, i) => (

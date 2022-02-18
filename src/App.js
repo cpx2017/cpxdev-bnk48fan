@@ -446,18 +446,13 @@ function App() {
                   <ListItemText primary="You're logged in" secondary={JSON.parse(localStorage.getItem("glog")).name} />
                 </ListItem>
                 )}
-                {login && survey != '' && (
-                   <ListItem onClick={() => UrlClk()} button>
-                   <ListItemText primary='BNK48 Fan Space Survey feedback' />
-                 </ListItem>
-                )}
                     </>
                   )
                 }
                 
                 
                 </Drawer>
-                      <BasicSwitch>
+                <BasicSwitch>
                       <Route exact path="/" render={() => <Home fet={Fet().ul} gp={Reduce} />} />
                       <Route path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
                       <Route path="/livestream" render={() => <LiveCom fet={Fet().ul} />} />
@@ -477,6 +472,7 @@ function App() {
                       <Route path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />
                       <Route exact render={() => <PageErr />} />
                     </BasicSwitch>
+                      
                 
                
         <footer className="bg-white text-center pt-2 pb-2 bnktheme">

@@ -87,6 +87,12 @@ const SmallAvatar = withStyles((theme) => ({
 
 const newspop = [
   {
+    title: 'Vote "First Rabbit" by BNK48 to The highest of T-POP Top Chart',
+    desc: 'Download and vote First Rabbit to T-POP Top Chart. See Chart ranking result on T-POP Stage TV Show every Saturday in ' + moment.utc('14.30', 'HH:mm').local().format('HH:mm') + ' on Workpoint TV',
+    link: 'https://t-pop.com/?locate=en',
+    src:'https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/bnk48frabbitvotefortpop.jpg'
+  },
+  {
     title: 'The Rabbit : BNK48 3rd Generation Short Film',
     desc: 'Coming soon on Youtube : BNK48',
     link: 'https://www.youtube.com/watch?v=T2EITga2Cdw',

@@ -88,7 +88,7 @@ const SmallAvatar = withStyles((theme) => ({
 const newspop = [
   {
     title: 'The Rabbit : BNK48 3rd Generation Short Film',
-    desc: 'Coming soon on Yotube : BNK48',
+    desc: 'Coming soon on Youtube : BNK48',
     link: 'https://www.youtube.com/watch?v=T2EITga2Cdw',
     src:'https://yt3.ggpht.com/H7ZPsZh9BzmTglOmW6v5gLhMnJhfn0pNKbYlf83Z943d4AotmwBrPddLi13uePtDcmd6Z6TNb5X2=s1600-nd-v1'
   },

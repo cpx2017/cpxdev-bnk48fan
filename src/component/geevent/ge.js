@@ -462,6 +462,21 @@ const Ge = ({fet}) => {
               <div>
               1. Activate BNK Token Wallet in iAM48 Application from {moment.unix(1644116400).format('DD MMMM YYYY on HH:mm')} onwards. (Please update iAM48 Application to version 1.8.00 or above) See whitepaper <a href='https://www.bnk48.com/bnktoken/' target='_blank'>here</a>. Or reading clearly for international fan on <a onClick={() => History.push('token')}>here</a>
               </div>
+              <div>
+              2. Pre-Order BNK48 11th Single on one of 3 types
+              <ListItem>
+                  <ListItemText primary="CD and Mini photobook Type Package" secondary="Earn 2 Tokens. Started to pre-ordered in March 3, 2022" />
+                  </ListItem>
+                  <ListItem>
+                  <ListItemText primary="Digital Goods Type Package (Music Code)" secondary="Earn 2.4 Tokens. Started to pre-ordered in March 7, 2022" />
+                  </ListItem>
+              </div>
+              <div>
+              3. You can vote to favorite member(s) at least 0.1 tokens but unlimited maximum number of tokens until end of voting.
+              </div>
+              <div>
+              4. After General Election event is ended. All usaged tokens will be burned out and cannot be retrieved.
+              </div>
             </CardContent>
           </Card>
           <Card className='mt-5'>

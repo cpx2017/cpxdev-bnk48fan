@@ -87,6 +87,12 @@ const SmallAvatar = withStyles((theme) => ({
 
 const newspop = [
   {
+    title: "The first RoadShow of 3rd Generation. Let's join us.",
+    desc: "Let's meet them in Feburary 26-27, 2022 @ Central Rama 3, Ratchadaphisek Rd, Chong Nonsi, Yan Nawa, Bangkok 10120",
+    link: 'https://www.facebook.com/CentralRama3Fanpage/posts/5846948261986091',
+    src:'https://pbs.twimg.com/media/FMHVGFqagAIzeCb?format=jpg&name=large'
+  },
+  {
     title: 'Vote "First Rabbit" by BNK48 to The highest of T-POP Top Chart',
     desc: 'Download and vote First Rabbit to T-POP Top Chart. See Chart ranking result on T-POP Stage TV Show every Saturday in ' + moment.utc('14.30', 'HH:mm').local().format('HH:mm') + ' on Workpoint TV',
     link: 'https://t-pop.com/?locate=en',

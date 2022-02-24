@@ -139,3 +139,6 @@ iframe[id*="twitter-widget"] {
 .pt-10{
   margin-top: 5% !important;
 }
+.tw{
+  white-space: pre-line !important;
+}

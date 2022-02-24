@@ -88,7 +88,7 @@ const SmallAvatar = withStyles((theme) => ({
 const newspop = [
   {
     title: "The first RoadShow of 3rd Generation. Let's join us.",
-    desc: "Let's meet them in Feburary 26-27, 2022 @ Central Rama 3, Ratchadaphisek Rd, Chong Nonsi, Yan Nawa, Bangkok 10120",
+    desc: "Let's meet them in Feburary 26-27, 2022 @ Central Rama 3.\nNotes: Due to the escalating situation of the COVID-19 epidemic therefore need to change the BNK48 members to join this event.",
     link: 'https://www.facebook.com/CentralRama3Fanpage/posts/5846948261986091',
     src:'https://pbs.twimg.com/media/FMHVGFqagAIzeCb?format=jpg&name=large'
   },
@@ -573,7 +573,7 @@ function App() {
         <DialogContent>
           <CardContent>
             <CardMedia src={newspop[0].src} component="img" />
-            <Typography className='mt-3' variant="body2" component="p">
+            <Typography className='mt-3 tw' variant="body2" component="p">
                 {newspop[0].desc}
             </Typography>
             <a href={newspop[0].link} className='mt-1'>

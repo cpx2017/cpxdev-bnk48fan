@@ -220,7 +220,12 @@ const HomeCom = ({fet}) => {
                <div className='text-center mb-3'>
                 <img src={FSMemBad} />
             </div>
-            Notes: After you choose your Kami-Oshi member who you love. You will see your Kami-Oshi member image on right-buttom of your profile image.
+            <Typography className='ml-3 mt-5 mb-4' color="textSecondary">
+              Notes: After you choose your Kami-Oshi member who you love. You will see your Kami-Oshi member image on right-buttom of your profile image.
+            </Typography>
+            <Typography className='ml-3 mb-4' color="textPrimary" component='b'>
+              If you received error page <code>403: disallowed_useragent</code> from Google while sign-in. Please try to open this website from another browser such as Safari for iOS or Chrome for Android then try to login again.
+            </Typography>
             </Typography>
             <div>
                 <CardHeader title='1. Set or change member as your Kami-Oshi' />

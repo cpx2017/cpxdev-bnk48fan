@@ -5,8 +5,9 @@ import {
   Route,
   Link,
   Switch as BasicSwitch,
-  useHistory
+  useHistory,
 } from "react-router-dom";
+
 import 'sweetalert2/dist/sweetalert2.min.css'
 import moment from 'moment'
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
@@ -265,7 +266,7 @@ function App() {
 
   if (uri != '') {
     return (<>
-       <BrowserRouter>
+    <BrowserRouter>
        <Slide in={localStorage.getItem('lowgraphic') == null && window.innerWidth > 1100 ? !open : true} timeout={600} direction='down'>
        <AppBar position="sticky" className='bnktheme app-barcurve'>
           <Toolbar>
@@ -330,67 +331,67 @@ function App() {
                 </div>
                 <Divider />
                 <d onClick={() => setOpen(false)}>
-                <ListItem component={Link} to='/' button>
+                <ListItem component={Link} className={window.location.pathname == '/' ? 'activeNav' : ''} to='/' button>
                   <ListItemIcon>
                     <HomeIcon />
                   </ListItemIcon>
                   <ListItemText primary="Home" />
                 </ListItem>
-                <ListItem component={Link} to='/memberlist' button>
+                <ListItem component={Link} to='/memberlist' className={window.location.pathname == '/memberlist' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <PeopleIcon />
                   </ListItemIcon>
                   <ListItemText primary="Members" />
                 </ListItem>
-                <ListItem component={Link} to='/news' button>
+                <ListItem component={Link} to='/news' className={window.location.pathname == '/news' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <ListAltIcon />
                   </ListItemIcon>
                   <ListItemText primary="News" />
                 </ListItem>
-                <ListItem component={Link} to='/livestream' button>
+                <ListItem component={Link} to='/livestream' className={window.location.pathname == '/livestream' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <LiveTvIcon className={spcLive ? 'text-success' : ''} />
                   </ListItemIcon>
                   <ListItemText primary="Special Live" secondary={spcLive ? 'Livestream is launching' : ''} />
                 </ListItem>
-                <ListItem component={Link} to='/music' button>
+                <ListItem component={Link} to='/music' className={window.location.pathname == '/music' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <YouTubeIcon />
                   </ListItemIcon>
                   <ListItemText primary="Music" />
                 </ListItem>
-                <ListItem component={Link} to='/officialupdate' button>
+                <ListItem component={Link} to='/officialupdate' className={window.location.pathname == '/officialupdate' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <LanguageIcon />
                   </ListItemIcon>
                   <ListItemText primary="Official Update" />
                 </ListItem>
-                <ListItem component={Link} to='/fandom' button>
+                <ListItem component={Link} to='/fandom' className={window.location.pathname == '/fandom' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <AcUnitIcon />
                   </ListItemIcon>
                   <ListItemText primary="Fandom Event" />
                 </ListItem>
-                <ListItem component={Link} to='/token' button>
+                <ListItem component={Link} to='/token' className={window.location.pathname == '/token' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <MonetizationOnIcon />
                   </ListItemIcon>
                   <ListItemText primary='Blockchain Technology' />
                 </ListItem>
-                <ListItem component={Link} to='/ge3' button>
+                <ListItem component={Link} to='/ge3' className={window.location.pathname == '/ge3' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <HowToVoteIcon />
                   </ListItemIcon>
                   <ListItemText primary='BNK48 12th Single General Election' />
                 </ListItem>
-                <ListItem component={Link} to='/api' button>
+                <ListItem component={Link} to='/api' className={window.location.pathname == '/api' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <CodeIcon />
                   </ListItemIcon>
                   <ListItemText primary='API' />
                 </ListItem>
-                <ListItem component={Link} to='/manual' button>
+                <ListItem component={Link} to='/manual' className={window.location.pathname == '/manual' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <MenuBookIcon />
                   </ListItemIcon>
@@ -486,12 +487,11 @@ function App() {
                     </BasicSwitch>
                       
                 
-               
+                    </BrowserRouter>   
         <footer className="bg-white text-center pt-2 pb-2 bnktheme">
           Copyright {new Date().getFullYear()}, CPXDevStudio Allright Reserved
           <br /> All BNK48 and CGM48 contents are licensed by Independent Artist Management (iAM). We don't affiliated with them. Please don't be to copy and modified contents for any commercial use.
         </footer>
-        </BrowserRouter>
         {localStorage.getItem("glog") != null && (
            <Dialog
            open={localStorage.getItem("glog") != null ? MemberDl : false}

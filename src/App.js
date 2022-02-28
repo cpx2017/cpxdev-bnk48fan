@@ -88,22 +88,22 @@ const SmallAvatar = withStyles((theme) => ({
 
 const newspop = [
   {
-    title: "The first RoadShow of 3rd Generation. Let's join us.",
-    desc: "Let's meet them in Feburary 26-27, 2022 @ Central Rama 3.\nNotes: Due to the escalating situation of the COVID-19 epidemic therefore need to change the BNK48 members to join this event.",
-    link: 'https://www.facebook.com/bnk48official/posts/515943936556924',
-    src:'https://pbs.twimg.com/media/FMHVGFqagAIzeCb?format=jpg&name=large'
+    title: 'The Rabbit : BNK48 3rd Generation premiere Short Film and Mini-Fanmeet',
+    desc: 'Become the first of group to watching short movie film of The Rabbit. and see exclusive members in reserved time.',
+    link: 'https://www.facebook.com/bnk48official/posts/519134706237847',
+    src:'https://pbs.twimg.com/media/FMrrcgnakAETTXZ?format=jpg&name=4096x4096'
+  },
+  {
+    title: "It's time for E-San fan!",
+    desc: "BNK48 10th Single D-AAA Roadshow and Hi-Touch. Let's join them at Central Udon",
+    link: 'https://www.facebook.com/CentralUdon/posts/5365828890128499',
+    src:'https://pbs.twimg.com/media/FMqwwRTacAEwASg?format=jpg&name=large'
   },
   {
     title: 'Vote "First Rabbit" by BNK48 to The highest of T-POP Top Chart',
     desc: 'Download and vote First Rabbit to T-POP Top Chart. See Chart ranking result on T-POP Stage TV Show every Saturday in ' + moment.utc('14.30', 'HH:mm').local().format('HH:mm') + ' on Workpoint TV',
     link: 'https://t-pop.com/?locate=en',
     src:'https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/bnk48frabbitvotefortpop.jpg'
-  },
-  {
-    title: 'The Rabbit : BNK48 3rd Generation Short Film',
-    desc: 'Coming soon on Youtube : BNK48',
-    link: 'https://www.youtube.com/watch?v=T2EITga2Cdw',
-    src:'https://yt3.ggpht.com/H7ZPsZh9BzmTglOmW6v5gLhMnJhfn0pNKbYlf83Z943d4AotmwBrPddLi13uePtDcmd6Z6TNb5X2=s1600-nd-v1'
   },
   {
     title: 'BNK48 3rd Generation Debut Single "First Rabbit" Music video is released on Youtube and also avaliable all Streaming Platform',

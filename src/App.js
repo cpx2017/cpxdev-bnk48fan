@@ -88,6 +88,12 @@ const SmallAvatar = withStyles((theme) => ({
 
 const newspop = [
   {
+    title: 'These rabbits jump reached to 2 million views on Youtube!',
+    desc: 'Thank you for all supporting.',
+    link: 'https://www.youtube.com/watch?v=579M0US5_8Q',
+    src:'https://yt3.ggpht.com/IvSPKWgoUzO9zwCpn2Iu30JfcNKnqu-vI2ZxofKSKBOiZIEKc0Nx7ok6oBjTN-kIX76275leT0jk7Q=s800-nd-v1'
+  },
+  {
     title: 'The Rabbit : BNK48 3rd Generation premiere Short Film and Mini-Fanmeet',
     desc: 'Become the first of group to watching short movie film of The Rabbit. and see exclusive members in reserved time.',
     link: 'https://www.facebook.com/bnk48official/posts/519134706237847',
@@ -556,7 +562,7 @@ function App() {
         <DialogTitle id="alert-dialog-title">Advertisement - {item.title}</DialogTitle>
           <DialogContent>
             <CardContent>
-              <CardMedia src={item.src} component="img" width={100} />
+              <CardMedia src={item.src} component="img" width={80} />
               <Typography className='mt-3' variant="body2" component="p">
                   {item.desc}
               </Typography>
@@ -572,7 +578,7 @@ function App() {
       <DialogTitle id="alert-dialog-title">Advertisement - {newspop[0].title}</DialogTitle>
         <DialogContent>
           <CardContent>
-            <CardMedia src={newspop[0].src} component="img" />
+            <CardMedia src={newspop[0].src} component="img" width={80} />
             <Typography className='mt-3 tw' variant="body2" component="p">
                 {newspop[0].desc}
             </Typography>

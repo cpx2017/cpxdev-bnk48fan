@@ -29,6 +29,7 @@ import CodeIcon from '@material-ui/icons/Code';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 
 import Home from './component/home';
 import MemberList from './component/members';
@@ -44,6 +45,7 @@ import AddEvent from './component/addNewEvent';
 import Mana from './component/manage';
 import Api from './component/apisupport';
 import SiteMan from './component/manual';
+import FollowCom from './component/follow';
 import PageErr from './component/404'
 
 import GeCom from './component/geevent/ge';
@@ -397,6 +399,12 @@ function App() {
                   </ListItemIcon>
                   <ListItemText primary='API' />
                 </ListItem>
+                <ListItem component={Link} to='/follow' className={window.location.pathname == '/follow' ? 'activeNav' : ''} button>
+                  <ListItemIcon>
+                    <ThumbUpAltIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Follow and Support' />
+                </ListItem>
                 <ListItem component={Link} to='/manual' className={window.location.pathname == '/manual' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <MenuBookIcon />
@@ -486,6 +494,7 @@ function App() {
                       <Route path="/eventcontrol" render={() => <Mana fet={Fet().ul} />} />
                       <Route path="/api" render={() => <Api fet={Fet().ul} />} />
                       <Route path="/manual" render={() => <SiteMan fet={Fet().ul} />} />
+                      <Route path="/follow" render={() => <FollowCom fet={Fet().ul} />} />
 
                       <Route path="/ge3" render={() => <GeCom fet={Fet().ul} />} />
                       <Route path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />

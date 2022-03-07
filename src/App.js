@@ -88,39 +88,6 @@ const SmallAvatar = withStyles((theme) => ({
   },
 }))(Avatar);
 
-const newspop = [
-  {
-    title: 'These rabbits jump reached to 2 million views on Youtube!',
-    desc: 'Thank you for all supporting.',
-    link: 'https://www.youtube.com/watch?v=579M0US5_8Q',
-    src:'https://yt3.ggpht.com/IvSPKWgoUzO9zwCpn2Iu30JfcNKnqu-vI2ZxofKSKBOiZIEKc0Nx7ok6oBjTN-kIX76275leT0jk7Q=s800-nd-v1'
-  },
-  {
-    title: 'The Rabbit : BNK48 3rd Generation premiere Short Film and Mini-Fanmeet',
-    desc: 'Become the first of group to watching short movie film of The Rabbit. and see exclusive members in reserved time.',
-    link: 'https://www.facebook.com/bnk48official/posts/519134706237847',
-    src:'https://pbs.twimg.com/media/FMrrcgnakAETTXZ?format=jpg&name=4096x4096'
-  },
-  {
-    title: "It's time for E-San fan!",
-    desc: "BNK48 10th Single D-AAA Roadshow and Hi-Touch. Let's join them at Central Udon",
-    link: 'https://www.facebook.com/CentralUdon/posts/5365828890128499',
-    src:'https://pbs.twimg.com/media/FMqwwRTacAEwASg?format=jpg&name=large'
-  },
-  {
-    title: 'Vote "First Rabbit" by BNK48 to The highest of T-POP Top Chart',
-    desc: 'Download and vote First Rabbit to T-POP Top Chart. See Chart ranking result on T-POP Stage TV Show every Saturday in ' + moment.utc('14.30', 'HH:mm').local().format('HH:mm') + ' on Workpoint TV',
-    link: 'https://t-pop.com/?locate=en',
-    src:'https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/bnk48frabbitvotefortpop.jpg'
-  },
-  {
-    title: 'BNK48 3rd Generation Debut Single "First Rabbit" Music video is released on Youtube and also avaliable all Streaming Platform',
-    desc: 'The first rabbit is coming! Let\'s appreciate the cuteness of these rabbits on all streaming platform and Music Video.',
-    link: 'https://BNK48.bfan.link/FirstRa3bitTH',
-    src:'https://yt3.ggpht.com/Nw_L8Ld9tiedec6fVR_Nz9IbCYE7aU7K83oZmjamz3CtnidwXWuRT4sP95rutPYHrTqJzafwfSewKMs=s1024-c-fcrop64=1,00000000ffffffff-nd-v1'
-  }
-]
-
 
 function App() {
   const cls = useStyles();
@@ -136,6 +103,7 @@ function App() {
   const [kamin, setKname] = React.useState('');
   const [survey, setSur] = React.useState('');
   const [spcLive, setLive] = React.useState(false);
+  const [newspop, setNewspop] = React.useState([]);
   
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
@@ -183,13 +151,25 @@ function App() {
       })
   }
 
-  React.useEffect(() => {
+  const FetchPopNews = (fet) => {
     if (sessionStorage.getItem("ads") == null) {
-      sessionStorage.setItem("ads", 'i')
       setpopup(true)
+      fetch(fet + '/bnk48/getSpotUpdate', {
+        method :'post'
+    })
+        .then(response => response.json())
+        .then(data => {
+          console.log('fetch pop',data)
+          setNewspop(data.response.data)
+          sessionStorage.setItem("ads", 'i')
+        }).catch(() => {
+        })
     } else {
       setpopup(false)
     }
+  }
+
+  React.useEffect(() => {
     if (localStorage.getItem("lowgraphic") == null) {
       setReduce(false)
     } else {
@@ -206,6 +186,7 @@ function App() {
         setUri(Fet().ul)
         FetchKami(Fet().ul)
         FetLive(Fet().ul)
+        FetchPopNews(Fet().ul)
       }
   }, 10);
 
@@ -555,7 +536,8 @@ function App() {
        </Dialog>
         )}
        
-  <Dialog
+       {newspop.length >0 && (
+        <Dialog
       open={EvtPop}
       onClose={() => {
         setpopup(false)
@@ -607,7 +589,9 @@ function App() {
       </Button>
       </DialogActions>
   </Dialog>
-    </>)
+       )}
+       </>
+  )
   }
   return (
     <div className='text-center mt-5 pt-5'>

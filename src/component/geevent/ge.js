@@ -84,21 +84,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Ge = ({fet}) => {
+const Ge = ({fet, timesch}) => {
   const History = useHistory()
   const classes = useStyles();
 
-  const timesch = {
-    regis: {
-      open: 1641834000,
-      close: 1643043599
-    },
-    vote: {
-      open: 1646845200, 
-      close: 1649264399
-    },
-    announ: 1649473200
-  }
 
   const [rank, setRank] = React.useState([]); 
   const [spam, setSpam] = React.useState(0); 

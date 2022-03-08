@@ -89,6 +89,18 @@ const SmallAvatar = withStyles((theme) => ({
 }))(Avatar);
 
 
+const timesch = {
+  regis: {
+    open: 1641834000,
+    close: 1643043599
+  },
+  vote: {
+    open: 1646845200, 
+    close: 1649264399
+  },
+  announ: 1649473200
+}
+
 function App() {
   const cls = useStyles();
   const History = useHistory()
@@ -302,7 +314,22 @@ function App() {
           </Toolbar>
         </AppBar>
        </Slide>
-     
+     {moment().unix() >= timesch.vote.open && moment().unix() <= timesch.vote.close ? (
+       <div className="alert alert-warning alert-dismissible fade show" role="alert">
+       <strong>Election War is coming!</strong> You can vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')}
+       <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     ) : moment().unix() >= timesch.vote.open + 48*3600 && moment().unix() < timesch.vote.open ? (
+    <div className="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Election War will coming soon!</strong> Please redeem token and starting to vote favorite member to the highest rank of BNK48 12th Single General Election since {moment.unix(timesch.vote.open).local().format('DD MMMM YYYY HH:mm')}
+        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     ) : null
+     }
         <Drawer
                   className={cls.drawer}
                   variant="temporary"
@@ -477,7 +504,7 @@ function App() {
                       <Route path="/manual" render={() => <SiteMan fet={Fet().ul} />} />
                       <Route path="/follow" render={() => <FollowCom fet={Fet().ul} />} />
 
-                      <Route path="/ge3" render={() => <GeCom fet={Fet().ul} />} />
+                      <Route path="/ge3" render={() => <GeCom fet={Fet().ul} timesch={timesch} />} />
                       <Route path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />
                       <Route exact render={() => <PageErr />} />
                     </BasicSwitch>

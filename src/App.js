@@ -338,7 +338,7 @@ function App() {
       </div>
      ) : null
      }
-      {geready && moment().unix() >= timesch.preannoun && moment().unix() <= (timesch.preannoun + 3* 86400) && (
+      {geready && moment().unix() >= timesch.preannoun && moment().unix() <= (timesch.preannoun + 7* 86400) && (
        <div className="alert alert-info alert-dismissible fade show" role="alert" onClick={() => window.location.href = '/ge3'}>
        <strong>Premiere General Election Result has been announced!</strong> Click here to see more
        <button type="button" className="close" data-dismiss="alert" aria-label="Close">

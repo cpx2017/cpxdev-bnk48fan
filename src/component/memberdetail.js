@@ -383,10 +383,10 @@ function capitalizeFirstLetter(string) {
                         </AppBar>
                         <div className='container mt-3 pb-3'>
                         <div className='row'>
-                            <div className='col-md-5'>
+                            <div className='col-md-2'>
                                 <img src={GEPoster} width='100%' className='imgge' onDoubleClick={() => downGEPost(item.name)} />
                             </div>
-                            <div className='col-md'>
+                            <div className='col-md mt-3'>
                                 {item.ge != '' ? (
                                  <CardMedia
                                      component='iframe'

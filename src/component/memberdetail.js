@@ -384,20 +384,23 @@ function capitalizeFirstLetter(string) {
                         <div className='container mt-3 pb-3'>
                         <div className='row'>
                             <div className='col-md-4'>
-                                <img src={GEPoster} width='100%' className='imgge' onDoubleClick={() => downGEPost(item.name)} />
+                                <Slide direction='right' in={open} timeout={600} style={open ? { transitionDelay: 400 } : {}}>
+                                    <img src={GEPoster} width='100%' className='imgge' onDoubleClick={() => downGEPost(item.name)} />
+                                </Slide>
                             </div>
                             <div className={'col-md' + (window.innerWidth < 600 ? ' mt-3' : '')}>
-                                {item.ge != '' ? (
-                                 <CardMedia
-                                     component='iframe'
-                                     height={600}
-                                     src={'https://www.youtube.com/embed/' + item.ge +'?mute=1' + (window.innerWidth <= 600 ? '' : '&autoplay=1')}
-                                     allowFullScreen
-                                 />
-                                ) : (
-                                    <h5 className='mt-3'>GE Appeal Comment Video of "{item.name} BNK48" is coming soon</h5>
-                                )}
-                            
+                                <Slide direction='left' in={open} timeout={600} style={open ? { transitionDelay: 400 } : {}}>
+                                    {item.ge != '' ? (
+                                    <CardMedia
+                                        component='iframe'
+                                        height={600}
+                                        src={'https://www.youtube.com/embed/' + item.ge +'?mute=1' + (window.innerWidth <= 600 ? '' : '&autoplay=1')}
+                                        allowFullScreen
+                                    />
+                                    ) : (
+                                        <h5 className='mt-3'>GE Appeal Comment Video of "{item.name} BNK48" is coming soon</h5>
+                                    )}
+                                </Slide>
                             </div>
                         </div>
                         </div>

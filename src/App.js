@@ -321,7 +321,7 @@ function App() {
          <span aria-hidden="true">&times;</span>
        </button>
      </div>
-     ) : moment().unix() >= (timesch.vote.open + 2* 86400000) && moment().unix() < timesch.vote.open ? (
+     ) : moment().unix() >= (timesch.vote.open - 2* 86400) && moment().unix() < timesch.vote.open ? (
     <div className="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>Election War will coming soon!</strong> Please redeem token and starting to vote favorite member to the highest rank of BNK48 12th Single General Election since {moment.unix(timesch.vote.open).local().format('DD MMMM YYYY HH:mm')}
         <button type="button" className="close" data-dismiss="alert" aria-label="Close">

@@ -315,7 +315,7 @@ function App() {
         </AppBar>
        </Slide>
      {moment().unix() >= timesch.vote.open && moment().unix() <= timesch.vote.close ? (
-       <div className="alert alert-warning alert-dismissible fade show" role="alert">
+       <div className="alert alert-success alert-dismissible fade show" role="alert">
        <strong>Election War is coming!</strong> You can vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')}
        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
          <span aria-hidden="true">&times;</span>

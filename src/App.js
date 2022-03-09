@@ -95,9 +95,10 @@ const timesch = {
     close: 1643043599
   },
   vote: {
-    open: 1646845200, 
-    close: 1649264399
+    open: 1646888400, 
+    close: 1649307600
   },
+  preannoun: 1647000000,
   announ: 1649473200
 }
 
@@ -323,7 +324,7 @@ function App() {
        </Slide>
      {geready && moment().unix() >= timesch.vote.open && moment().unix() <= timesch.vote.close ? (
        <div className="alert alert-success alert-dismissible fade show" role="alert">
-       <strong>Election War is coming!</strong> You can vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')}
+       <strong>Election War is ready!</strong> You can vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')} on iAM48 Application
        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
          <span aria-hidden="true">&times;</span>
        </button>
@@ -337,6 +338,14 @@ function App() {
       </div>
      ) : null
      }
+      {geready && moment().unix() >= timesch.preannoun && moment().unix() <= (timesch.preannoun + 3* 86400) && (
+       <div className="alert alert-info alert-dismissible fade show" role="alert" onClick={() => window.location.href = '/ge3'}>
+       <strong>Premiere General Election Result has been announced!</strong> Click here to see more
+       <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     )}
         <Drawer
                   className={cls.drawer}
                   variant="temporary"

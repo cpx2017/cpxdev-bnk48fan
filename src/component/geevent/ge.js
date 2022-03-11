@@ -123,7 +123,11 @@ const Ge = ({fet, timesch}) => {
   }
 
   function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const options = { 
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2 
+    };
+    return Number(x).toLocaleString('en', options);
 }
 
   React.useEffect(() => {
@@ -485,7 +489,7 @@ const Ge = ({fet, timesch}) => {
                       <TableCell align="right">Scores</TableCell>
                     </TableRow>
                   </TableHead>
-                  {rank.length > 0 ? rank.map((item) => (
+                  {rank.length > 0 ? rank.map((item, i) => (
                     <TableBody key={item.id} className={item.rank == 1 ? 'centerGE' : item.rank > 1 && item.rank <= 16 ? 'senGE' : item.rank > 16 && item.rank <= 32 ? 'nextGE' : ''}
                       data-toggle="tooltip" data-placement="bottom" title={(item.rank == 1 ? item.obj.response.name + ' is both Center position and Senbatsu of BNK48 12th Single' : item.rank > 1 && item.rank <= 16 ? item.obj.response.name + ' is Senbatsu of BNK48 12th Single' : item.rank > 16 && item.rank <= 32 ? item.obj.response.name + ' is participate in second song of BNK48 12th Single' : item.obj.response.name +' is participate in last song of BNK48 12th Single') + (moment().unix() < timesch.vote.close ? ' (Premiere First Day\'s Result)' : '')}
                     >

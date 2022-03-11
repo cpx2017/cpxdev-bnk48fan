@@ -137,7 +137,7 @@ const GeMana = ({fet}) => {
         const Obj = {
             rank: Tar,
             name: MemTar,
-            sc: parseInt(Score)
+            sc: parseFloat(Score)
           }
           fetch(fet + '/bnk48/addelec', {
             method: 'POST', // or 'PUT'
@@ -292,7 +292,6 @@ const GeMana = ({fet}) => {
                         value={ChannelSet}
                         className="mb-3"
                         onChange={(e) => setChannel(e.target.value)}
-                        required
                         >
                             {Streamchannel.length > 0 && Streamchannel.map((option) => (
                                 <MenuItem key={option.value} value={option.value}>

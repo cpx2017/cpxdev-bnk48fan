@@ -480,12 +480,15 @@ const Ge = ({fet, timesch}) => {
                       <TableCell className={classes.rank}>Rank</TableCell>
                       <TableCell className={classes.img} align="center">Member Image</TableCell>
                       <TableCell align="center">Name</TableCell>
+                      <TableCell align="center">Band</TableCell>
                       <TableCell align="right">Team</TableCell>
                       <TableCell align="right">Scores</TableCell>
                     </TableRow>
                   </TableHead>
                   {rank.length > 0 ? rank.map((item) => (
-                    <TableBody key={item.id}>
+                    <TableBody key={item.id} className={item.rank == 1 ? 'centerGE' : item.rank > 1 && item.rank <= 16 ? 'senGE' : item.rank > 16 && item.rank <= 32 ? 'nextGE' : ''}
+                      data-toggle="tooltip" data-placement="bottom" title={(item.rank == 1 ? item.obj.response.name + ' is both Center position and Senbatsu of BNK48 12th Single' : item.rank > 1 && item.rank <= 16 ? item.obj.response.name + ' is Senbatsu of BNK48 12th Single' : item.rank > 16 && item.rank <= 32 ? item.obj.response.name + ' is participate in second song of BNK48 12th Single' : item.obj.response.name +' is participate in last song of BNK48 12th Single') + (moment().unix() < timesch.vote.close ? ' (Premiere First Day\'s Result)' : '')}
+                    >
                     <TableCell component="th" className={classes.rank}>
                           {item.rank}
                         </TableCell>
@@ -493,7 +496,10 @@ const Ge = ({fet, timesch}) => {
                         <img src={item.obj.response.img} className={classes.large + ' cir'} />
                           </TableCell>
                           <TableCell align="center">
-                          {item.obj.response.fullnameEn[0]}  {item.obj.response.fullnameEn[1]}
+                          {item.obj.response.fullnameEn[0]}  {item.obj.response.fullnameEn[1]} ({item.obj.response.name})
+                          </TableCell>
+                          <TableCell align="center">
+                          {item.obj.response.ref.includes('bnk48') ? 'BNK48' : item.obj.response.ref.includes('cgm48') ? 'CGM48' : ''}
                           </TableCell>
                           <TableCell align="right">
                           {item.obj.response.team == "" ? 'None' : item.obj.response.team}

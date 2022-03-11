@@ -145,3 +145,15 @@ iframe[id*="twitter-widget"] {
 .activeNav{
   background-color: rgb(203, 150, 194) !important;
 }
+.centerGE{
+  background-color: gold;
+  color: #000;
+}
+.senGE{
+  background-color: lightblue;
+  color: #fff;
+}
+.nextGE{
+  background-color: limegreen;
+  color: #fff;
+}

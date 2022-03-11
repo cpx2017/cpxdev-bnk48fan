@@ -510,7 +510,7 @@ const Ge = ({fet, timesch}) => {
                   </TableBody>
                   )): (
                     <TableBody>
-                       <TableCell colSpan={5} align='center'>No record(s) found</TableCell>
+                       <TableCell colSpan={6} align='center'>No record(s) found</TableCell>
                   </TableBody>
                   )}
                 </Table>

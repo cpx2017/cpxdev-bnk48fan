@@ -64,7 +64,7 @@ const HomeCom = ({fet}) => {
         {window.innerWidth > 800 && (
           <div class="video-background">
            <Fade in={true} timeout={800}>
-                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/frabbit.jpg"  width={window.innerWidth} />
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa"  width={window.innerWidth} />
               </Fade>
       </div>
         )}
@@ -116,7 +116,7 @@ const HomeCom = ({fet}) => {
             <CardHeader title='Behind of this site' />
             <Typography className='ml-3 mb-4' color="textSecondary">
                 We use React JS for better front-end framework to load website dynamically and faster. And enhance system by region server which have 6 locations in the world. System will be detect the nearest
-                region automatically by refer from IP address. See realtime status <a href='//status.cpxdev.tk' target='_blank'>here</a>.
+                region automatically by refer from IP address. All region servers are operated by <a href='//www.azure.com' target='_blank'>Microsoft Azure</a>. See realtime status <a href='//status.cpxdev.tk' target='_blank'>here</a>.
             </Typography>
       </CardContent>
   </Card>

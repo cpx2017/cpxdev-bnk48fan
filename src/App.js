@@ -346,8 +346,8 @@ function App() {
        </button>
      </div>
      ) : geready && moment().unix() < timesch.preannoun ? (
-      <div className="alert alert-info alert-dismissible fade show" role="alert" onClick={() => window.location.href = '/ge3'}>
-       Premiere General Election Result will be announce in {moment.unix(timesch.preannoun).local().format('DD MMMM YYYY HH:mm')}
+      <div className="alert alert-info alert-dismissible fade show" role="alert">
+       Premiere General Election Result will be announce in {moment.unix(timesch.preannoun).local().format('DD MMMM YYYY HH:mm')} in https://bnk48fan.cpxdev.tk/ge3
        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
          <span aria-hidden="true">&times;</span>
        </button>

@@ -157,3 +157,6 @@ iframe[id*="twitter-widget"] {
   background-color: limegreen;
   color: #fff;
 }
+.avatarlimit{
+  object-fit:contain;
+}

@@ -133,7 +133,7 @@ const Ge = ({fet, timesch}) => {
   React.useEffect(() => {
     ResultFetch()
     setInterval(function () {
-      if (moment().unix() >= timesch.announ && moment().unix() <= timesch.announ + 86400) {
+      if (moment().unix() >= timesch.announ - 3600 && moment().unix() <= timesch.announ + 86400) {
         ResultFetch()
         setSpam(0)
       }
@@ -450,30 +450,6 @@ const Ge = ({fet, timesch}) => {
           
           <Card className='mt-5'>
             <CardContent>
-            <CardHeader title="How to voting your member to one of Senbatsu!" />
-              <hr />
-              <div>
-              1. Activate BNK Token Wallet in iAM48 Application from {moment.unix(1644116400).format('DD MMMM YYYY on HH:mm')} onwards. (Please update iAM48 Application to version 1.8.00 or above) See whitepaper <a href='https://www.bnk48.com/bnktoken/' target='_blank'>here</a>. Or reading clearly for international fan on <a onClick={() => History.push('token')}>here</a>
-              </div>
-              <div>
-              2. Pre-Order BNK48 11th Single on one of 3 types
-              <ListItem>
-                  <ListItemText primary="CD and Mini photobook Type Package" secondary="Earn 2 Tokens. Started to pre-ordered in March 3, 2022" />
-                  </ListItem>
-                  <ListItem>
-                  <ListItemText primary="Digital Goods Type Package (Music Code)" secondary="Earn 2.4 Tokens. Started to pre-ordered in March 7, 2022" />
-                  </ListItem>
-              </div>
-              <div>
-              3. You can vote to favorite member(s) at least 0.1 tokens but unlimited maximum number of tokens until end of voting.
-              </div>
-              <div>
-              4. After General Election event is ended. All usaged tokens will be burned out and cannot be retrieved.
-              </div>
-            </CardContent>
-          </Card>
-          <Card className='mt-5'>
-            <CardContent>
               <CardHeader title="Result of Election" subheader={'Latest update: ' + ts} />
               <hr />
               <TableContainer>
@@ -490,14 +466,15 @@ const Ge = ({fet, timesch}) => {
                     </TableRow>
                   </TableHead>
                   {rank.length > 0 ? rank.map((item, i) => (
-                    <TableBody key={item.id} className={item.rank == 1 ? 'centerGE' : item.rank > 1 && item.rank <= 16 ? 'senGE' : item.rank > 16 && item.rank <= 32 ? 'nextGE' : ''}
+                    <TableBody key={item.id} className={(item.rank == 1 ? 'centerGE' : item.rank > 1 && item.rank <= 16 ? 'senGE' : item.rank > 16 && item.rank <= 32 ? 'nextGE' : '') + ' cur'}
                       data-toggle="tooltip" data-placement="bottom" title={(item.rank == 1 ? item.obj.response.name + ' is both Center position and Senbatsu of BNK48 12th Single' : item.rank > 1 && item.rank <= 16 ? item.obj.response.name + ' is Senbatsu of BNK48 12th Single' : item.rank > 16 && item.rank <= 32 ? item.obj.response.name + ' is participate in second song of BNK48 12th Single' : item.obj.response.name +' is participate in last song of BNK48 12th Single') + (moment().unix() < timesch.vote.close ? ' (Premiere First Day\'s Result)' : '')}
+                      onClick={() => item.obj.response.ref.includes('bnk48') ? History.push('member?name=' + item.name.toLowerCase()) : item.obj.response.ref.includes('cgm48') ? window.open('//cgm48fan.cpxdev.tk/member?name=' + item.name.toLowerCase(), '_target') : ''}
                     >
                     <TableCell component="th" className={classes.rank}>
                           {item.rank}
                         </TableCell>
                         <TableCell align="center" className={classes.img}>
-                        <img src={item.obj.response.img} className={classes.large + ' cir'} />
+                        <img src={item.obj.response.img} className={classes.large + ' cir avatarlimit'} />
                           </TableCell>
                           <TableCell align="center">
                           {item.obj.response.fullnameEn[0]}  {item.obj.response.fullnameEn[1]} ({item.obj.response.name})
@@ -519,6 +496,31 @@ const Ge = ({fet, timesch}) => {
                   )}
                 </Table>
               </TableContainer>
+            </CardContent>
+          </Card>
+          
+          <Card className='mt-5'>
+            <CardContent>
+            <CardHeader title="How to voting your member to one of Senbatsu!" />
+              <hr />
+              <div>
+              1. Activate BNK Token Wallet in iAM48 Application from {moment.unix(1644116400).format('DD MMMM YYYY on HH:mm')} onwards. (Please update iAM48 Application to version 1.8.00 or above) See whitepaper <a href='https://www.bnk48.com/bnktoken/' target='_blank'>here</a>. Or reading clearly for international fan on <a onClick={() => History.push('token')}>here</a>
+              </div>
+              <div>
+              2. Pre-Order BNK48 11th Single on one of 3 types
+              <ListItem>
+                  <ListItemText primary="CD and Mini photobook Type Package" secondary="Earn 2 Tokens. Started to pre-ordered in March 3, 2022" />
+                  </ListItem>
+                  <ListItem>
+                  <ListItemText primary="Digital Goods Type Package (Music Code)" secondary="Earn 2.4 Tokens. Started to pre-ordered in March 7, 2022" />
+                  </ListItem>
+              </div>
+              <div>
+              3. You can vote to favorite member(s) at least 0.1 tokens but unlimited maximum number of tokens until end of voting.
+              </div>
+              <div>
+              4. After General Election event is ended. All usaged tokens will be burned out and cannot be retrieved.
+              </div>
             </CardContent>
           </Card>
           <Card className='mt-5'>

@@ -3,7 +3,7 @@ import { Typography, ListItem, Zoom, ListItemText,
     Card, CardActionArea, CardContent, CardMedia, Grow, Fade, CardHeader } from '@material-ui/core';
     import { useHistory } from 'react-router-dom';
 
-const HomeCom = ({fet, gp}) => {
+const HomeCom = ({fet, gp, ImgThumb}) => {
     const History = useHistory()
     const [Loaded1, setLoaded1] = React.useState(false);
     const [Loaded2, setLoaded2] = React.useState(false);
@@ -154,24 +154,52 @@ const HomeCom = ({fet, gp}) => {
           )}
   
   <div className="stage text-center pt-5 pb-2">
-  <h3 className='mb-5'>Highlight Music Video</h3>
   {Loaded3 ? (
+    <>
+      <d>
+        {ImgThumb != '' ? (
+          <h3 className='mb-5'>Special Live Streamming</h3>
+        ) : (
+          <h3 className='mb-5'>Highlight Music Video</h3>
+        )}
+      </d>
       <div className='row ml-3 mr-3 justify-content-center'>
       {highMV.length > 0 ? (
         <Zoom in={true} timeout={250}>
            <div className="col-md-10 mb-5">
                      <Card>
-                     <CardHeader
+                     {
+                         ImgThumb != '' ? (
+                          <CardHeader
+                     className='text-left'
+                     title='Special Live Streaming from BNK48 Offical is on-air now!'
+                     subheader={'Click image thumbnail below to view Live Streaming'}
+                     />
+                         ) : (
+                          <CardHeader
                      className='text-left'
                      title={highMV[0].snippet.title}
                      subheader={'Uploaded by ' + highMV[0].snippet.videoOwnerChannelTitle + ' on ' + new Date(highMV[0].snippet.publishedAt).toLocaleString()}
                      />
-                     <CardMedia
-                     component='iframe'
-                     height={600}
-                     src={'https://www.youtube.com/embed/' + highMV[0].snippet.resourceId.videoId +'?mute=1' + (window.innerWidth <= 600 || gp == true ? '' : '&autoplay=1')}
-                     allowFullScreen
-                     />
+                         )
+                       }
+                     
+                     {
+                       ImgThumb != '' ? (
+                        <CardMedia
+                        component='img'
+                        onClick={() => History.push('/livestream')}
+                        src={ImgThumb}
+                        />
+                       ) : (
+                        <CardMedia
+                        component='iframe'
+                        height={600}
+                        src={'https://www.youtube.com/embed/' + highMV[0].snippet.resourceId.videoId +'?mute=1' + (window.innerWidth <= 600 || gp == true ? '' : '&autoplay=1')}
+                        allowFullScreen
+                        />
+                       )
+                     }
                      <CardContent>
                      </CardContent>
                      </Card>
@@ -181,6 +209,7 @@ const HomeCom = ({fet, gp}) => {
           <h6>No Highlight MV.</h6>
       )}
       </div>
+    </>
   ) : (
     <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center' />
   )}

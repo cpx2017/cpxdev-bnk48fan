@@ -115,6 +115,7 @@ function App() {
   const [kamiimg, setKami] = React.useState('');
   const [kamin, setKname] = React.useState('');
   const [survey, setSur] = React.useState('');
+  const [ImgThumb, setImageThumb] = React.useState('');
   const [spcLive, setLive] = React.useState(false);
   const [geready, setReadyGE] = React.useState(false);
   const [newspop, setNewspop] = React.useState([]);
@@ -156,6 +157,8 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (data.link != '') {
+          const templink = data.link.replace('https://www.youtube.com/embed/', '').replace('?mute=1&autoplay=1', '')
+          setImageThumb('https://i3.ytimg.com/vi/'+templink + '/maxresdefault.jpg')
           setLive(true)
         } else {
           setLive(false)
@@ -513,7 +516,7 @@ function App() {
                 
                 </Drawer>
                 <BasicSwitch>
-                      <Route exact path="/" render={() => <Home fet={Fet().ul} gp={Reduce} />} />
+                      <Route exact path="/" render={() => <Home fet={Fet().ul} gp={Reduce} ImgThumb={ImgThumb} />} />
                       <Route path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
                       <Route path="/livestream" render={() => <LiveCom fet={Fet().ul} />} />
                       <Route path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />

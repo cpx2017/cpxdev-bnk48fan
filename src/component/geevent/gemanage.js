@@ -19,6 +19,16 @@ const useStyles = makeStyles((theme) => ({
         value: '2',
     }
   ]
+  const streamplat = [
+    {
+        label: 'Youtube',
+        value: 'youtube',
+    },
+    {
+      label: 'Facebook',
+      value: 'facebook',
+  }
+]
 
 const GeMana = ({fet}) => {
     const classes = useStyles();
@@ -32,6 +42,7 @@ const GeMana = ({fet}) => {
     const [ ChannelSet, setChannel ] = React.useState('');
     const [Score, setScore] = React.useState(''); 
     const [Str, setStr] = React.useState(''); 
+    const [Plat, setPlat] = React.useState(''); 
 
     const [load, setLoad] = React.useState(false); 
 
@@ -170,9 +181,9 @@ const GeMana = ({fet}) => {
 
     const sub2 = (e) => {
         e.preventDefault()
-        if (Str.length == 11 || Str == '-') {
+        if (Str != '') {
             setLoad(true)
-          fetch(fet + '/bnk48/setstream?ch=' + ChannelSet+'&uri=' + Str, {
+          fetch(fet + '/bnk48/setstream?ch=' + ChannelSet+'&uri=' + Str + '&plat=' + Plat, {
             method: 'POST', // or 'PUT'
             headers: {
                 'Accept': 'application/json',
@@ -275,7 +286,7 @@ const GeMana = ({fet}) => {
                 <div className='col-md-5'>
                     <TextField
                         required={true}
-                        label="Add Youtube Stream ID"
+                        label="Add Youtube Stream ID or Facebook Live Url / Facebook Watch Url"
                         value={Str}
                         fullWidth={true}
                         className="mb-3"
@@ -294,6 +305,24 @@ const GeMana = ({fet}) => {
                         onChange={(e) => setChannel(e.target.value)}
                         >
                             {Streamchannel.length > 0 && Streamchannel.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                                </MenuItem>
+                            ))}
+                    </TextField>
+                </div>
+                <div className='col-md-3'>
+                <TextField
+                        required={true}
+                        fullWidth={true}
+                        id="platselect"
+                        select
+                        label="Platform"
+                        value={Plat}
+                        className="mb-3"
+                        onChange={(e) => setPlat(e.target.value)}
+                        >
+                            {streamplat.length > 0 && streamplat.map((option) => (
                                 <MenuItem key={option.value} value={option.value}>
                                 {option.label}
                                 </MenuItem>

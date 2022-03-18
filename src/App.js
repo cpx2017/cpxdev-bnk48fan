@@ -119,6 +119,7 @@ function App() {
   const [spcLive, setLive] = React.useState(false);
   const [geready, setReadyGE] = React.useState(false);
   const [newspop, setNewspop] = React.useState([]);
+  const [stream, setStream] = React.useState(null);
   
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
@@ -157,8 +158,8 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (data.link != '') {
-          const templink = data.link.replace('https://www.youtube.com/embed/', '').replace('?mute=1&autoplay=1', '')
-          setImageThumb('https://i3.ytimg.com/vi/'+templink + '/maxresdefault.jpg')
+          setStream(data)
+          setImageThumb(data.src)
           setLive(true)
         } else {
           setLive(false)
@@ -516,7 +517,7 @@ function App() {
                 
                 </Drawer>
                 <BasicSwitch>
-                      <Route exact path="/" render={() => <Home fet={Fet().ul} gp={Reduce} ImgThumb={ImgThumb} />} />
+                      <Route exact path="/" render={() => <Home fet={Fet().ul} gp={Reduce} ImgThumb={ImgThumb} stream={stream} />} />
                       <Route path="/memberlist" render={() => <MemberList fet={Fet().ul} />} />
                       <Route path="/livestream" render={() => <LiveCom fet={Fet().ul} />} />
                       <Route path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />

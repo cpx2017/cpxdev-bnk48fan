@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 const Stream = ({fet}) => {
     const classes = useStyles();
     const [urlstream, setStream] = React.useState('');
+    const [streaminfo, setInfo] = React.useState(null);
     const [Load, setLoad] = React.useState(true);
     React.useEffect(() => {
         fetch(fet + '/bnk48/getstream?ch=2', {
@@ -20,6 +21,7 @@ const Stream = ({fet}) => {
             .then(response => response.json())
             .then(data => {
               setStream(data.link)
+              setInfo(data)
               setLoad(false)
             }).catch(() => {
               setStream('')
@@ -29,8 +31,13 @@ const Stream = ({fet}) => {
     return ( 
         <>
         <Card>
-            <CardContent className='text-center'>
-                <CardHeader title='Live Streaming Station' />
+            <CardContent className='text-center align-center'>
+                {streaminfo != null ? (
+                     <CardHeader title='Live Streaming Station' subheader={(streaminfo.livestatus == 'live' ? '[LIVE] "' + streaminfo.title : streaminfo.title) + '" by ' + streaminfo.uploader} />
+                ): (
+                    <CardHeader title='Live Streaming Station' subheader='Special Live Streaming will coming soon' />
+                )}
+               
                 <div className='container'>
                     {urlstream != '' ? (
                         <iframe src={urlstream} width="100%" height={window.innerHeight > 800 ? 700 : '100%'} allowFullScreen />

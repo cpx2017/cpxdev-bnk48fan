@@ -3,7 +3,7 @@ import { Typography, ListItem, Zoom, ListItemText,
     Card, CardActionArea, CardContent, CardMedia, Grow, Fade, CardHeader } from '@material-ui/core';
     import { useHistory } from 'react-router-dom';
 
-const HomeCom = ({fet, gp, ImgThumb}) => {
+const HomeCom = ({fet, gp, ImgThumb, stream}) => {
     const History = useHistory()
     const [Loaded1, setLoaded1] = React.useState(false);
     const [Loaded2, setLoaded2] = React.useState(false);
@@ -157,8 +157,8 @@ const HomeCom = ({fet, gp, ImgThumb}) => {
   {Loaded3 ? (
     <>
       <d>
-        {ImgThumb != '' ? (
-          <h3 className='mb-5'>Special Live Streamming</h3>
+        {ImgThumb != '' && stream != null ? (
+          <h3 className='mb-5'>Special Live Streaming</h3>
         ) : (
           <h3 className='mb-5'>Highlight Music Video</h3>
         )}
@@ -172,8 +172,8 @@ const HomeCom = ({fet, gp, ImgThumb}) => {
                          ImgThumb != '' ? (
                           <CardHeader
                      className='text-left'
-                     title='Special Live Streaming from BNK48 Offical is on-air now!'
-                     subheader={'Click image thumbnail below to view Live Streaming'}
+                     title={stream.livestatus == 'live' ? (<p className='form-inline'><div class="circleload redload"></div>&nbsp;{stream.title}</p>) : stream.title}
+                     subheader={'Streamed by ' + stream.uploader + ' since '+ new Date(stream.start).toLocaleString() + '. Click image thumbnail to watching Live'}
                      />
                          ) : (
                           <CardHeader

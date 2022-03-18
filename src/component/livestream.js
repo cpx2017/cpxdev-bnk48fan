@@ -40,7 +40,7 @@ const Stream = ({fet}) => {
                
                 <div className='container'>
                     {urlstream != '' ? (
-                        <iframe src={urlstream} width="100%" height={window.innerHeight > 800 ? 700 : '100%'} allowFullScreen />
+                        <iframe src={urlstream} width="100%" height={window.innerHeight > 650 ? 700 : '100%'} allowFullScreen />
                     ) : (
                         <h6>Stream not found</h6>
                     )}

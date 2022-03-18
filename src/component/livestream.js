@@ -32,7 +32,7 @@ const Stream = ({fet}) => {
         <>
         <Card>
             <CardContent className='text-center align-center'>
-                {streaminfo != null ? (
+                {streaminfo != null && urlstream != '' ? (
                      <CardHeader title='Live Streaming Station' subheader={(streaminfo.livestatus == 'live' ? '[LIVE] "' + streaminfo.title : streaminfo.title) + '" by ' + streaminfo.uploader} />
                 ): (
                     <CardHeader title='Live Streaming Station' subheader='Special Live Streaming will coming soon' />

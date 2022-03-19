@@ -76,7 +76,7 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
           </div>
           ) : (
             <Fade in={true} timeout={800}>
-                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/frabbit.jpg" width={window.innerWidth} />
+                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayoteaser.jpg" width={window.innerWidth} />
               </Fade>
           )}
       </div>

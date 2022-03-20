@@ -30,7 +30,7 @@ const Contact = ({fet}) => {
         {window.innerWidth > 800 && (
           <div class="video-background">
            <Fade in={true} timeout={800}>
-           <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayoteaser.jpg" width={window.innerWidth} />
+           <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayomain.jpg" width={window.innerWidth} />
               </Fade>
       </div>
         )}

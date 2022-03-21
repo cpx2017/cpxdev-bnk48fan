@@ -83,8 +83,9 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     zIndex: 1,
     bottom: 80,
-    left: "50%",
-    right: "50%",
+    left: "45%",
+    right: "45%",
+    width: "10%"
   },
   fabButton2: {
     position: 'fixed',

@@ -12,7 +12,7 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import 'sweetalert2/dist/sweetalert2.min.css'
 import moment from 'moment'
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
-Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide, Fab, Fade } from '@material-ui/core';
+Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide, Grow, Fade } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
@@ -844,22 +844,22 @@ function App() {
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/18.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={uri != '' && geready ? true : false} timeout={1000}>
+      <Grow in={uri != '' && geready ? true : false} timeout={1000}>
       <div className={cls.fabButton}>
           <Alert severity="info">
             <AlertTitle>Relax in summer with the latest Single of BNK48 "Sayonara Crawl" on both Youtube Music Video and Music Streaming Platform</AlertTitle>
             Double click or tap on image to skip this page
           </Alert>
           </div>
-      </Fade>
-      <Fade in={uri != '' && !geready ? true : false} timeout={1000}>
+      </Grow>
+      <Grow in={uri != '' && !geready ? true : false} timeout={1000}>
       <div className={cls.fabButton}>
           <Alert severity="info">
             <AlertTitle>Relax in summer with the latest Single of BNK48 "Sayonara Crawl" on both Youtube Music Video and Music Streaming Platform</AlertTitle>
                   Double click/tap here on image or wait 5 seconds to skip this page
           </Alert>
           </div>
-      </Fade>
+      </Grow>
     </div>
 </div>
   )

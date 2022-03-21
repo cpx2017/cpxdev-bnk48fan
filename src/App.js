@@ -203,8 +203,12 @@ function App() {
   }
 
   React.useEffect(() => {
-    const ran = Math.floor((Math.random() * 3) + 1);
-    setSty(ran)
+    function isOdd() {
+      const ran = Math.floor((Math.random() * 1000) + 1);
+      return Math.abs(ran % 2) == 1;
+   }
+   
+    setSty(isOdd() == true ? 2 :1)
     if (localStorage.getItem("lowgraphic") == null) {
       setReduce(false)
     } else {
@@ -745,97 +749,97 @@ function App() {
   return (
     <div class="container mt-5 mb-5">
     <div class="row" onDoubleClick={() => setAllDone(true)}>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 0 : styleFade == 3 ? 0 : 350 }}>
+      <Fade in={styleFade != 0 ? true : false} timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 0 : 350 }}>
         <div class="col pr-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/1.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 350 : styleFade == 3 ? 1450 : 450 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1250 : 450 }}>
         <div class="col p-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/2.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 0 : styleFade == 3 ? 1550 : 550 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1350 : 550 }}>
         <div class="col pl-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/3.jpg" width="100%" />
         </div>
       </Fade>
         <div class="w-100"></div>
-        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 350 : styleFade == 3 ? 450 :  650 }}>
+        <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 250 :  650 }}>
         <div class="col pr-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/4.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 450 : styleFade == 3 ? 1350 :  750 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1150 :  750 }}>
         <div class="col p-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/5.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 350 : styleFade == 3 ? 1650 :  850 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1450 :  850 }}>
         <div class="col pl-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/6.jpg" width="100%" />
         </div>
       </Fade>
         <div class="w-100"></div>
-        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 450 : styleFade == 3 ? 550 :  950 }}>
+        <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 350 :  950 }}>
         <div class="col pr-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/7.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 550 : styleFade == 3 ? 1250 :  1050 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1050 :  1050 }}>
         <div class="col p-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/8.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 450 : styleFade == 3 ? 1750 :  1150 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1550 :  1150 }}>
         <div class="col pl-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/9.jpg" width="100%" />
         </div>
       </Fade>
         <div class="w-100"></div>
-        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 550 : styleFade == 3 ? 650 :  1250 }}>
+        <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 450 :  1250 }}>
         <div class="col pr-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/10.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 650 : styleFade == 3 ? 1150 :  1350 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 950 :  1350 }}>
         <div class="col p-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/11.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 550 : styleFade == 3 ? 1850 :  1450 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1650 :  1450 }}>
         <div class="col pl-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/12.jpg" width="100%" />
         </div>
       </Fade>
         <div class="w-100"></div>
-        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 650 : styleFade == 3 ? 750 :  1550 }}>
+        <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 550 :  1550 }}>
         <div class="col pr-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/13.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 750 : styleFade == 3 ? 1050 :  1650 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 850 :  1650 }}>
         <div class="col p-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/14.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 650 : styleFade == 3 ? 1950 :  1750 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1750 :  1750 }}>
         <div class="col pl-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/15.jpg" width="100%" />
         </div>
       </Fade>
         <div class="w-100"></div>
-        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 750 : styleFade == 3 ? 850 :  1850 }}>
+        <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 650 :  1850 }}>
         <div class="col pr-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/16.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 850 : styleFade == 3 ? 950 :  1950 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 750 :  1950 }}>
         <div class="col p-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/17.jpg" width="100%" />
         </div>
       </Fade>
-      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 750 : styleFade == 3 ? 2050 :  2050 }}>
+      <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1850 :  2050 }}>
         <div class="col pl-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/18.jpg" width="100%" />
         </div>

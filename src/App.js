@@ -847,7 +847,7 @@ function App() {
       <Fade in={uri != '' && geready ? true : false} timeout={1000}>
       <div className={cls.fabButton}>
           <Alert severity="info">
-            <AlertTitle>Relex in summer with latest Single of BNK48 "Sayonara Crawl"</AlertTitle>
+            <AlertTitle>Relax in summer with the latest Single of BNK48 "Sayonara Crawl" on both Youtube Music Video and Music Streaming Platform</AlertTitle>
             Double click or tap on image to skip this page
           </Alert>
           </div>
@@ -855,7 +855,7 @@ function App() {
       <Fade in={uri != '' && !geready ? true : false} timeout={1000}>
       <div className={cls.fabButton}>
           <Alert severity="info">
-            <AlertTitle>Relex in summer with latest Single of BNK48 "Sayonara Crawl"</AlertTitle>
+            <AlertTitle>Relax in summer with the latest Single of BNK48 "Sayonara Crawl" on both Youtube Music Video and Music Streaming Platform</AlertTitle>
                   Double click/tap here on image or wait 5 seconds to skip this page
           </Alert>
           </div>

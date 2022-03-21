@@ -139,6 +139,8 @@ function App() {
   
   const [allDone, setAllDone] = React.useState(false);
   const [styleFade, setSty] = React.useState(0);
+
+  const [isShownHoverContent, setIsShownHoverContent] = React.useState(false);
   
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
@@ -198,7 +200,6 @@ function App() {
         .then(data => {
           console.log('fetch pop',data)
           setNewspop(data.response.data)
-          sessionStorage.setItem("ads", 'i')
         }).catch(() => {
         })
     } else {
@@ -230,8 +231,8 @@ function App() {
       if (Fet().ul !== '') {
         clearInterval(dem)
         var timeo = setInterval(function(){ 
-          clearInterval(timeo)
-          if (geready == false) {
+          if (sessionStorage.getItem('ads') != null) {
+            clearInterval(timeo)
             setAllDone(true)
           }
         }, 3000);
@@ -625,6 +626,7 @@ function App() {
       open={EvtPop}
       onClose={() => {
         setpopup(false)
+        sessionStorage.setItem("ads", 'i')
       }}
       maxWidth='md'
       scroll='body'
@@ -668,6 +670,7 @@ function App() {
       <DialogActions>
       <Button onClick={() => {
         setpopup(false)
+        sessionStorage.setItem("ads", 'i')
       }} className="text-dark">
           Close
       </Button>
@@ -776,9 +779,19 @@ function App() {
         </div>
       </Fade>
       <Fade in={uri != '' && geready ? true : false} timeout={1000}>
-        <Fab color="primary" aria-label="skip" className={cls.fabButton} onClick={() => setAllDone(true)}>
-            <SkipNextIcon />
-          </Fab>
+        {
+          !isShownHoverContent ? (
+            <Fab color="primary" aria-label="skip" className={cls.fabButton}  onMouseEnter={() => setIsShownHoverContent(true)} onMouseLeave={() => setIsShownHoverContent(false)} onClick={() => setAllDone(true)}>
+                <SkipNextIcon />
+              </Fab>
+          ) : (
+            <Button color="primary" className={cls.fabButton2} variant="contained" onMouseEnter={() => setIsShownHoverContent(true)} onMouseLeave={() => setIsShownHoverContent(false)} onClick={() => setAllDone(true)}>
+            Click here to skip this page
+          </Button>
+          )
+         
+        }
+        
       </Fade>
       <Fade in={uri != '' && !geready ? true : false} timeout={1000}>
         <Button color="primary" className={cls.fabButton2} variant="contained" onClick={() => setAllDone(true)}>

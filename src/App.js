@@ -112,6 +112,9 @@ const timesch = {
   announ: 1649473200
 }
 
+var url = new URL(window.location.href);
+var imgget = url.searchParams.get("imgstar");
+
 function App() {
   const cls = useStyles();
   const History = useHistory()
@@ -671,6 +674,73 @@ function App() {
        )}
        </>
   )
+  }
+  if (imgget != null) {
+    return (
+      <div class="container">
+      <div class="row">
+          <div class="col pr-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/1.jpg" width="100%" />
+          </div>
+          <div class="col p-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/2.jpg" width="100%" />
+          </div>
+          <div class="col pl-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/3.jpg" width="100%" />
+          </div>
+          <div class="w-100"></div>
+          <div class="col pr-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/4.jpg" width="100%" />
+          </div>
+          <div class="col p-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/5.jpg" width="100%" />
+          </div>
+          <div class="col pl-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/6.jpg" width="100%" />
+          </div>
+          <div class="w-100"></div>
+          <div class="col pr-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/7.jpg" width="100%" />
+          </div>
+          <div class="col p-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/8.jpg" width="100%" />
+          </div>
+          <div class="col pl-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/9.jpg" width="100%" />
+          </div>
+          <div class="w-100"></div>
+          <div class="col pr-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/10.jpg" width="100%" />
+          </div>
+          <div class="col p-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/11.jpg" width="100%" />
+          </div>
+          <div class="col pl-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/12.jpg" width="100%" />
+          </div>
+          <div class="w-100"></div>
+          <div class="col pr-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/13.jpg" width="100%" />
+          </div>
+          <div class="col p-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/14.jpg" width="100%" />
+          </div>
+          <div class="col pl-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/15.jpg" width="100%" />
+          </div>
+          <div class="w-100"></div>
+          <div class="col pr-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/16.jpg" width="100%" />
+          </div>
+          <div class="col p-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/17.jpg" width="100%" />
+          </div>
+          <div class="col pl-0">
+              <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/18.jpg" width="100%" />
+          </div>
+      </div>
+  </div>
+    )
   }
   return (
     <div class="container mt-5 mb-5">

@@ -82,14 +82,14 @@ const useStyles = makeStyles((theme) => ({
   fabButton: {
     position: 'fixed',
     zIndex: 1,
-    bottom: 80,
-    right: 10,
+    bottom: 50,
+    right: 50,
   },
   fabButton2: {
     position: 'fixed',
     zIndex: 1,
-    bottom: 80,
-    right: 10,
+    bottom: 50,
+    right: 50,
     width: "20%"
   },
 }));

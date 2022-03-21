@@ -11,8 +11,9 @@ import {
 import 'sweetalert2/dist/sweetalert2.min.css'
 import moment from 'moment'
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
-Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide } from '@material-ui/core';
+Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide, Fab, Fade } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 import HomeIcon from '@material-ui/icons/Home';
 import CloseIcon from '@material-ui/icons/Close';
@@ -78,6 +79,21 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+  fabButton: {
+    position: 'fixed',
+    zIndex: 1,
+    bottom: 80,
+    left: "50%",
+    right: "50%",
+  },
+  fabButton2: {
+    position: 'fixed',
+    zIndex: 1,
+    bottom: 80,
+    left: "40%",
+    right: "40%",
+    width: "20%"
+  },
 }));
 
 const SmallAvatar = withStyles((theme) => ({
@@ -120,6 +136,9 @@ function App() {
   const [geready, setReadyGE] = React.useState(false);
   const [newspop, setNewspop] = React.useState([]);
   const [stream, setStream] = React.useState(null);
+  
+  const [allDone, setAllDone] = React.useState(false);
+  const [styleFade, setSty] = React.useState(0);
   
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
@@ -188,6 +207,8 @@ function App() {
   }
 
   React.useEffect(() => {
+    const ran = Math.floor((Math.random() * 3) + 1);
+    setSty(ran)
     if (localStorage.getItem("lowgraphic") == null) {
       setReduce(false)
     } else {
@@ -198,21 +219,28 @@ function App() {
     } else {
       setLogin(true)
     }
+    
+  if (sessionStorage.getItem('ads') == null) {
+    setReadyGE(true)
+  } else {
+    setReadyGE(false)
+  }
+
     var dem = setInterval(function(){ 
       if (Fet().ul !== '') {
         clearInterval(dem)
+        var timeo = setInterval(function(){ 
+          clearInterval(timeo)
+          if (geready == false) {
+            setAllDone(true)
+          }
+        }, 3000);
         setUri(Fet().ul)
         FetchKami(Fet().ul)
         FetLive(Fet().ul)
         FetchPopNews(Fet().ul)
       }
   }, 10);
-
-  if (sessionStorage.getItem('ads') == null) {
-    setReadyGE(true)
-  } else {
-    setReadyGE(false)
-  }
 
   setInterval(function(){ 
     if (Fet().ul !== '') {
@@ -277,7 +305,7 @@ function App() {
     window.open(survey, '_target')
   }
 
-  if (uri != '') {
+  if (uri != '' && allDone) {
     return (<>
     <BrowserRouter>
        <Slide in={localStorage.getItem('lowgraphic') == null && window.innerWidth > 1100 ? !open : true} timeout={600} direction='down'>
@@ -650,10 +678,115 @@ function App() {
   )
   }
   return (
-    <div className='text-center mt-5 pt-5'>
-       <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center' />
-    Welcome to BNK48 Fan Space, please wait
-  </div>
+    <div class="container mt-5 mb-5">
+    <div class="row">
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 0 : styleFade == 3 ? 0 : 350 }}>
+        <div class="col pr-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/1.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 350 : styleFade == 3 ? 1450 : 450 }}>
+        <div class="col p-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/2.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 0 : styleFade == 3 ? 1550 : 550 }}>
+        <div class="col pl-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/3.jpg" width="100%" />
+        </div>
+      </Fade>
+        <div class="w-100"></div>
+        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 350 : styleFade == 3 ? 450 :  650 }}>
+        <div class="col pr-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/4.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 450 : styleFade == 3 ? 1350 :  750 }}>
+        <div class="col p-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/5.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 350 : styleFade == 3 ? 1650 :  850 }}>
+        <div class="col pl-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/6.jpg" width="100%" />
+        </div>
+      </Fade>
+        <div class="w-100"></div>
+        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 450 : styleFade == 3 ? 550 :  950 }}>
+        <div class="col pr-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/7.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 550 : styleFade == 3 ? 1250 :  1050 }}>
+        <div class="col p-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/8.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 450 : styleFade == 3 ? 1750 :  1150 }}>
+        <div class="col pl-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/9.jpg" width="100%" />
+        </div>
+      </Fade>
+        <div class="w-100"></div>
+        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 550 : styleFade == 3 ? 650 :  1250 }}>
+        <div class="col pr-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/10.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 650 : styleFade == 3 ? 1150 :  1350 }}>
+        <div class="col p-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/11.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 550 : styleFade == 3 ? 1850 :  1450 }}>
+        <div class="col pl-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/12.jpg" width="100%" />
+        </div>
+      </Fade>
+        <div class="w-100"></div>
+        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 650 : styleFade == 3 ? 750 :  1550 }}>
+        <div class="col pr-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/13.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 750 : styleFade == 3 ? 1050 :  1650 }}>
+        <div class="col p-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/14.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 650 : styleFade == 3 ? 1950 :  1750 }}>
+        <div class="col pl-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/15.jpg" width="100%" />
+        </div>
+      </Fade>
+        <div class="w-100"></div>
+        <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 750 : styleFade == 3 ? 850 :  1850 }}>
+        <div class="col pr-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/16.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 850 : styleFade == 3 ? 950 :  1950 }}>
+        <div class="col p-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/17.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 750 : styleFade == 3 ? 2050 :  2050 }}>
+        <div class="col pl-0">
+            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/18.jpg" width="100%" />
+        </div>
+      </Fade>
+      <Fade in={uri != '' && geready ? true : false} timeout={1000}>
+        <Fab color="primary" aria-label="skip" className={cls.fabButton} onClick={() => setAllDone(true)}>
+            <SkipNextIcon />
+          </Fab>
+      </Fade>
+      <Fade in={uri != '' && !geready ? true : false} timeout={1000}>
+        <Button color="primary" className={cls.fabButton2} variant="contained" onClick={() => setAllDone(true)}>
+            Click here or wait 3 seconds to skip this page
+          </Button>
+      </Fade>
+    </div>
+</div>
   )
 }
 

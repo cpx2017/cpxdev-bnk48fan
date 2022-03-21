@@ -83,14 +83,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     zIndex: 1,
     bottom: 80,
-    left: "45%",
-    right: "45%",
-    width: "10%"
-  },
-  fabButton2: {
-    position: 'fixed',
-    zIndex: 1,
-    bottom: 80,
     left: "40%",
     right: "40%",
     width: "20%"
@@ -786,7 +778,7 @@ function App() {
                 <SkipNextIcon />
               </Fab>
           ) : (
-            <Button color="primary" className={cls.fabButton2} variant="contained" onMouseEnter={() => setIsShownHoverContent(true)} onMouseLeave={() => setIsShownHoverContent(false)} onClick={() => setAllDone(true)}>
+            <Button color="primary" className={cls.fabButton} variant="contained" onMouseEnter={() => setIsShownHoverContent(true)} onMouseLeave={() => setIsShownHoverContent(false)} onClick={() => setAllDone(true)}>
             Click here to skip this page
           </Button>
           )

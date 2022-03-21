@@ -72,7 +72,7 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
           <div class="video-background">
           {localStorage.getItem('lowgraphic') == null ? (
             <div class="video-foreground">
-            <iframe src="https://www.youtube.com/embed/579M0US5_8Q?autoplay=1&mute=1&controls=0&loop=1&playlist=579M0US5_8Q" frameborder="0"></iframe>
+            <iframe src="https://www.youtube.com/embed/FppYrZtcAO0?autoplay=1&mute=1&controls=0&loop=1&playlist=FppYrZtcAO0" frameborder="0"></iframe>
           </div>
           ) : (
             <Fade in={true} timeout={800}>

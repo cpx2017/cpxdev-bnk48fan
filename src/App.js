@@ -7,6 +7,7 @@ import {
   Switch as BasicSwitch,
   useHistory,
 } from "react-router-dom";
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 import 'sweetalert2/dist/sweetalert2.min.css'
 import moment from 'moment'
@@ -81,16 +82,11 @@ const useStyles = makeStyles((theme) => ({
   },
   fabButton: {
     position: 'fixed',
-    zIndex: 1,
-    bottom: 50,
-    right: 50,
-  },
-  fabButton2: {
-    position: 'fixed',
-    zIndex: 1,
-    bottom: 50,
-    right: 50,
-    width: "20%"
+    zIndex: 1000,
+    bottom: 30,
+    left: window.innerWidth > 600 ? 100 : 20,
+    width: "auto",
+    right: window.innerWidth > 600 ? 100 : 20,
   },
 }));
 
@@ -137,8 +133,6 @@ function App() {
   
   const [allDone, setAllDone] = React.useState(false);
   const [styleFade, setSty] = React.useState(0);
-
-  const [isShownHoverContent, setIsShownHoverContent] = React.useState(false);
   
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
@@ -233,7 +227,7 @@ function App() {
             clearInterval(timeo)
             setAllDone(true)
           }
-        }, 3000);
+        }, 4500);
         setUri(Fet().ul)
         FetchKami(Fet().ul)
         FetLive(Fet().ul)
@@ -680,7 +674,7 @@ function App() {
   }
   return (
     <div class="container mt-5 mb-5">
-    <div class="row">
+    <div class="row" onDoubleClick={() => setAllDone(true)}>
       <Fade in={styleFade != 0 ? true : false} timeout={500} style={{ transitionDelay: styleFade == 2 ? 0 : styleFade == 3 ? 0 : 350 }}>
         <div class="col pr-0">
             <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/1.jpg" width="100%" />
@@ -777,24 +771,20 @@ function App() {
         </div>
       </Fade>
       <Fade in={uri != '' && geready ? true : false} timeout={1000}>
-        {
-          !isShownHoverContent ? (
-            <Fab color="primary" aria-label="skip" className={cls.fabButton}  onMouseEnter={() => setIsShownHoverContent(true)} onMouseLeave={() => setIsShownHoverContent(false)} onClick={() => setAllDone(true)}>
-                <SkipNextIcon />
-              </Fab>
-          ) : (
-            <Button color="primary" className={cls.fabButton2} variant="contained" onMouseEnter={() => setIsShownHoverContent(true)} onMouseLeave={() => setIsShownHoverContent(false)} onClick={() => setAllDone(true)}>
-            Click here to skip this page
-          </Button>
-          )
-         
-        }
-        
+      <div className={cls.fabButton}>
+          <Alert severity="info">
+            <AlertTitle>Relex in summer with latest Single of BNK48 "Sayonara Crawl"</AlertTitle>
+            Double click or tap on image to skip this page
+          </Alert>
+          </div>
       </Fade>
       <Fade in={uri != '' && !geready ? true : false} timeout={1000}>
-        <Button color="primary" className={cls.fabButton2} variant="contained" onClick={() => setAllDone(true)}>
-            Click here or wait 3 seconds to skip this page
-          </Button>
+      <div className={cls.fabButton}>
+          <Alert severity="info">
+            <AlertTitle>Relex in summer with latest Single of BNK48 "Sayonara Crawl"</AlertTitle>
+                  Double click/tap here on image or wait 5 seconds to skip this page
+          </Alert>
+          </div>
       </Fade>
     </div>
 </div>

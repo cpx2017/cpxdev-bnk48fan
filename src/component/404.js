@@ -7,7 +7,7 @@ const ErrCom = () => {
         <>
           <div class="video-background">
           <Fade in={true} timeout={800}>
-                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/frabbit.jpg"  width={window.innerWidth} />
+                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/frabbit.webp"  width={window.innerWidth} />
               </Fade>
               </div>
 

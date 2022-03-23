@@ -238,7 +238,7 @@ const Ge = ({fet, timesch}) => {
               </div>
               ) : (
                 <Fade in={true} timeout={800}>
-                <img src="https://i3.ytimg.com/vi/OqGvv7F8LiQ/maxresdefault.jpg"  width={window.innerWidth} />
+                <img src="https://i3.ytimg.com/vi/OqGvv7F8LiQ/maxresdefault.webp"  width={window.innerWidth} />
                   </Fade>
               )}
           </div>

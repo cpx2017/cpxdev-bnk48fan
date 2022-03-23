@@ -160,9 +160,6 @@ iframe[id*="twitter-widget"] {
 .avatarlimit{
   object-fit:contain;
 }
-.avatarlimit2{
-  object-fit:scale-down;
-}
 
 
 @keyframes up-right {

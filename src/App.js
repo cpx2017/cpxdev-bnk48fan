@@ -61,6 +61,14 @@ import Swal from 'sweetalert2'
 const drawerWidth = 240;
 const Client = '961896647339-roenm2ee6i60ed2rhbe2sqee0unlqj0f.apps.googleusercontent.com'
 const useStyles = makeStyles((theme) => ({
+  sm: {
+    width: theme.spacing(3.8),
+    height: theme.spacing(3.8),
+  },
+  lg: {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+  },
   search: {
     right: theme.spacing(1),
     position: 'absolute',
@@ -344,7 +352,7 @@ function App() {
                      vertical: 'bottom',
                      horizontal: 'right',
                    }}
-                   badgeContent={kamiimg != '' && kamiimg != '-' ? <SmallAvatar src={kamiimg} data-toggle="tooltip" data-placement="top" title={"\"" + kamin + "\" is your Kami-Oshi"} /> : ''}
+                   badgeContent={kamiimg != '' && kamiimg != '-' ? <img src={kamiimg} data-toggle="tooltip" data-placement="top" title={"\"" + kamin + "\" is your Kami-Oshi"} className={cls.sm + ' border border-white rounded-circle cir avatarlimit'} /> : ''}
                  >
                    <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={JSON.parse(localStorage.getItem("glog")).imageUrl} />
                  </Badge>
@@ -529,7 +537,7 @@ function App() {
                       vertical: 'bottom',
                       horizontal: 'right',
                     }}
-                    badgeContent={kamiimg != '' && kamiimg != '-' ? <SmallAvatar src={kamiimg} data-toggle="tooltip" data-placement="top" title={"\"" + kamin + "\" is your Kami-Oshi"} /> : ''}
+                    badgeContent={kamiimg != '' && kamiimg != '-' ? <img src={kamiimg} data-toggle="tooltip" data-placement="top" title={"\"" + kamin + "\" is your Kami-Oshi"} className={cls.sm + ' border border-white rounded-circle cir avatarlimit'} /> : ''}
                   >
                     <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={JSON.parse(localStorage.getItem("glog")).imageUrl} />
                   </Badge>
@@ -586,7 +594,7 @@ function App() {
              {kamin != '-' ? (
            <ListItem onClick={() => window.location.href = "/member?name=" + kamin.toLowerCase()} button>
                <ListItemIcon>
-               <Avatar alt={JSON.parse(localStorage.getItem("glog")).name} src={kamiimg} />
+               <img alt={JSON.parse(localStorage.getItem("glog")).name} src={kamiimg} className={cls.lg + ' border border-white rounded-circle cir avatarlimit'} />
              </ListItemIcon>
              <ListItemText primary={'Your Kami-Oshi is ' + kamin + ' BNK48'} secondary='Click here to see more description of your Kami-Oshi' />
              </ListItem>

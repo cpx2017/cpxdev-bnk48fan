@@ -7,15 +7,15 @@ import * as am5map from "@amcharts/amcharts5/map";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 
-import Topbar from '../img/topbar.webp'
-import Sidebar from '../img/sidemenu.webp'
-import Mems from '../img/members.webp'
-import Mem from '../img/member.webp'
-import Log from '../img/sidemenulogin.webp'
-import FSMemBad from '../img/fsmemberbadge.webp'
-import Kamiset from '../img/memberkami.webp'
-import FanDetail from '../img/FandomDetail.webp'
-import AddEv from '../img/addevent.webp'
+import Topbar from '../img/topbar.png'
+import Sidebar from '../img/sidemenu.png'
+import Mems from '../img/members.png'
+import Mem from '../img/member.png'
+import Log from '../img/sidemenulogin.png'
+import FSMemBad from '../img/fsmemberbadge.png'
+import Kamiset from '../img/memberkami.png'
+import FanDetail from '../img/FandomDetail.png'
+import AddEv from '../img/addevent.png'
 
 
 const HomeCom = ({fet}) => {

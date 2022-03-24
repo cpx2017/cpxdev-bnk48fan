@@ -89,10 +89,10 @@ const GeMana = ({fet}) => {
     const ListSt = () => {
         let temp = []
         const Number = 48
-        for (let i = Number - 1; i >= 0; i -1) {
+        for (let i = 0; i < Number; i++) {
             const ob = {
-                label: i + 1,
-                value: i + 1
+                label: (Number - i),
+                value: (Number - i)
             }
             temp.push(ob)
         }

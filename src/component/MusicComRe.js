@@ -14,6 +14,7 @@ import { red } from '@material-ui/core/colors';
 import MuiAlert from '@material-ui/lab/Alert';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import moment from 'moment'
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -72,7 +73,7 @@ const CardLoop = ({item, i, gp}) => {
      <Card className={i == 0 ? "border border-warning border-5" : ""}>
       <CardHeader
         title={(i == 0 ? 'Highlight Music Video | ' : '') +item.snippet.title}
-        subheader={'Uploaded by ' + item.snippet.videoOwnerChannelTitle + ' on ' + new Date(item.snippet.publishedAt).toLocaleString()}
+        subheader={'Uploaded by ' + item.snippet.videoOwnerChannelTitle + ' since ' + moment.utc(item.snippet.publishedAt).local().format('DD MMMM YYYY HH:mm:ss')}
     />
         <CardMedia
         component='iframe'

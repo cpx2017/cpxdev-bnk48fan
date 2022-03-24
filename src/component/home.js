@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, ListItem, Zoom, ListItemText,
     Card, CardActionArea, CardContent, CardMedia, Grow, Fade, CardHeader } from '@material-ui/core';
     import { useHistory } from 'react-router-dom';
+    import moment from 'moment'
 
 const HomeCom = ({fet, gp, ImgThumb, stream}) => {
     const History = useHistory()
@@ -173,13 +174,13 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
                           <CardHeader
                      className='text-left'
                      title={stream.livestatus == 'live' ? (<p className='form-inline'><div class="circleload redload"></div>&nbsp;{stream.title}</p>) : stream.title}
-                     subheader={'Streamed by ' + stream.uploader + ' since '+ new Date(stream.start).toLocaleString() + '. Click image thumbnail to watching Live'}
+                     subheader={'Streamed by ' + stream.uploader + ' since '+ moment.utc(stream.start).local().format('DD MMMM YYYY HH:mm:ss') + '. Click image thumbnail to watching Live'}
                      />
                          ) : (
                           <CardHeader
                      className='text-left'
                      title={highMV[0].snippet.title}
-                     subheader={'Uploaded by ' + highMV[0].snippet.videoOwnerChannelTitle + ' on ' + new Date(highMV[0].snippet.publishedAt).toLocaleString()}
+                     subheader={'Uploaded by ' + highMV[0].snippet.videoOwnerChannelTitle + ' since ' + moment.utc(highMV[0].snippet.publishedAt).local().format('DD MMMM YYYY HH:mm:ss')}
                      />
                          )
                        }
@@ -233,7 +234,7 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
                  />
                <CardContent>
                    <h5>{item.name}</h5>
-                   <p>Birthday: {new Date(new Date().getFullYear() + "-" + (new Date(item.birthday).getMonth() + 1)+ "-" + (new Date(item.birthday).getDate())).toDateString()}</p>
+                   <p>Birthday: {moment(new Date().getFullYear() + "-" + (new Date(item.birthday).getMonth() + 1)+ "-" + (new Date(item.birthday).getDate())).format('ddd DD MMMM YYYY')} ({new Date().getFullYear() - new Date(item.birthday).getFullYear() + ' years old'})</p>
                </CardContent>
              </CardActionArea>
               </Card> 

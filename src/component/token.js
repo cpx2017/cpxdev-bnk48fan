@@ -73,7 +73,7 @@ const HomeCom = ({fet, gp}) => {
           </div>
           ) : (
             <Fade in={true} timeout={800}>
-                <img src="https://img.youtube.com/vi/w3t-o12L9Cc/maxresdefault.webp" width={window.innerWidth} />
+                <img src="https://img.youtube.com/vi/w3t-o12L9Cc/maxresdefault.jpg" width={window.innerWidth} />
               </Fade>
           )}
       </div>

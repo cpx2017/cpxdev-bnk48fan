@@ -60,7 +60,7 @@ const GeMana = ({fet}) => {
                         temp.push(
                             {
                                 label: res[i].name + ' BNK48',
-                                value: res[i].name.toLowerCase()
+                                value: res[i].name.toLowerCase() + ' BNK'
                             }
                         );
                     }
@@ -77,7 +77,7 @@ const GeMana = ({fet}) => {
                         temp.push(
                             {
                                 label: res[i].name + ' CGM48',
-                                value: res[i].name.toLowerCase()
+                                value: res[i].name.toLowerCase() + ' CGM'
                             }
                         );
                     }

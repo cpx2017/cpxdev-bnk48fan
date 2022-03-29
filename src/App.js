@@ -489,7 +489,7 @@ function App() {
                 <ListItem onClick={() => {
                   setOpen(false)
                   Swal.fire({
-                    text: 'Region mode will enhance system performance. Current region connection has been referenced by IP address',
+                    html: 'Region mode will enhance system performance. Current region connection has been referenced by IP address. All region servers are operated by <a href="//www.azure.com" target="_blank">Microsoft Azure</a>.',
                     icon: 'info',
                     iconColor: 'rgb(203, 150, 194)'
                   }).then(() => {

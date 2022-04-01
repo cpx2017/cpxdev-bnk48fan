@@ -362,39 +362,36 @@ function App() {
           </Toolbar>
         </AppBar>
        </Slide>
-     {geready && moment().unix() >= timesch.vote.open && moment().unix() <= timesch.vote.close ? (
+     {geready && moment().unix() <= timesch.vote.close ? (
        <div className="alert alert-success alert-dismissible fade show" role="alert">
-       <strong>Election War is ready!</strong> You can vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')} on iAM48 Application
+       <strong>Election War is almost end!</strong> You have {moment.unix(timesch.vote.close).local().format('DD') - new Date().getDate()} day(s) which can vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')} on iAM48 Application
        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
          <span aria-hidden="true">&times;</span>
        </button>
      </div>
-     ) : geready && moment().unix() >= (timesch.vote.open - 2* 86400) && moment().unix() < timesch.vote.open ? (
-    <div className="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Election War will coming soon!</strong> Please redeem token and starting to vote favorite member to the highest rank of BNK48 12th Single General Election since {moment.unix(timesch.vote.open).local().format('DD MMMM YYYY HH:mm')}
+      ) : geready && moment.unix(timesch.vote.close).local().format('DD') == new Date().getDate() && moment().unix() <= timesch.vote.close ? (
+        <div className="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Election War is almost end!</strong> You have a few time to vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')} on iAM48 Application
         <button type="button" className="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-     ) : null
+     ) : geready && moment().unix() >= timesch.vote.close && moment().unix() < timesch.announ ? (
+    <div className="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Election War is end</strong> Thank you for all support! Please follow Result of BNK48 12th Single General Election since {moment.unix(timesch.announ).local().format('DD MMMM YYYY HH:mm')}
+        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      ) : geready && moment().unix() >= timesch.announ ? (
+        <div className="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Election WResult is announcing</strong> If Live streaming is not avaliable on Youtube or Facebook. Some Streaming Platform maybe restricted for avaliable in Thailand only and cannot be shared to this site. However, you can see realtime result here.
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+         ) : null
      }
-      {geready && moment().unix() >= timesch.preannoun && moment().unix() <= (timesch.preannoun + 7* 86400) ? (
-       <div className="alert alert-info alert-dismissible fade show" role="alert">
-         <dd onClick={() => window.location.href = '/ge3'}>
-       <strong>Premiere General Election Result has been announced!</strong> Click here to see more
-         </dd>
-       <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-     </div>
-     ) : geready && moment().unix() < timesch.preannoun ? (
-      <div className="alert alert-info alert-dismissible fade show" role="alert">
-       Premiere General Election Result will be announce in {moment.unix(timesch.preannoun).local().format('DD MMMM YYYY HH:mm')} in https://bnk48fan.cpxdev.tk/ge3
-       <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-     </div>
-     ) : null}
         <Drawer
                   className={cls.drawer}
                   variant="temporary"

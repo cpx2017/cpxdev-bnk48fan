@@ -220,7 +220,7 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
   {onMonth ? (
   <h3 className='mb-5' data-aos="zoom-out-up">BNK48 Members Birthday in this month</h3>
   ) : (
-    <h3 className='mb-5' data-aos="zoom-in-up">BNK48 Members Birthday in today</h3>
+    <h3 className='mb-5' data-aos="zoom-out-up">BNK48 Members Birthday in today</h3>
   )}
   {Loaded1 ? (
       <div className='row ml-3 mr-3 justify-content-center'>
@@ -250,7 +250,7 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
     <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center' />
   )}
   < hr />
-  <CardHeader title={(<h3 data-aos="flip-up">Sample Members</h3>)} subheader={GenRan != 0 ? ('Generation ' + GenRan) : ''} className='mb-5' />
+  <CardHeader title={(<h3 data-aos="zoom-out-down">Sample Members</h3>)} subheader={GenRan != 0 ? ('Generation ' + GenRan) : ''} className='mb-5' />
   {Loaded2 ? (
       <div className='row ml-3 mr-3 justify-content-center'>
       {samplemem.length > 0 ? samplemem.map((item, i) => (

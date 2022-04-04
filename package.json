@@ -16,6 +16,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "aos": "^2.3.4",
     "chart.js": "^3.7.0",
     "facebook-video-link": "^1.0.2",
     "firebase-tools": "^10.0.1",

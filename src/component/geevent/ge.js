@@ -15,6 +15,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import AOS from "aos";
 let delayed;
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -131,6 +132,7 @@ const Ge = ({fet, timesch}) => {
 }
 
   React.useEffect(() => {
+    AOS.init({ duration: 1000 });
     ResultFetch()
     setInterval(function () {
       if (moment().unix() >= timesch.announ - 3600 && moment().unix() <= timesch.announ + 86400) {
@@ -306,7 +308,7 @@ const Ge = ({fet, timesch}) => {
 
         <div className={'stage ' + (window.innerWidth > 700 ? 'p-5' : 'p-2')}>
           <div className='row mt-5 ml-1 mr-1'>
-          <Card className={(window.innerWidth > 700 ? '' : 'mb-5') + ' col-md-5'}>
+          <Card className={(window.innerWidth > 700 ? '' : 'mb-5') + ' col-md-5'} data-aos='zoom-in-right'>
             <CardContent>
               <CardHeader title="TimeLine of Election" subheader="Notes: Timeline are subject to change as appropriate due to the situation of the epidemic of Covid-19." />
               <hr />
@@ -408,7 +410,7 @@ const Ge = ({fet, timesch}) => {
               </div>
             </CardContent>
           </Card>
-          <Card className={(window.innerWidth > 700 ? 'ml-3' : '') + ' col-md'}>
+          <Card className={(window.innerWidth > 700 ? 'ml-3' : '') + ' col-md'} data-aos='zoom-in-left'>
             <CardContent>
             <CardHeader title="General Election Candidate Summary" subheader='We have 62 BNK48 and CGM48 members who candidated' />
               <hr />
@@ -448,9 +450,9 @@ const Ge = ({fet, timesch}) => {
           </Card>
           </div>
           
-          <Card className='mt-5'>
+          <Card className='mt-5' data-aos='fade-down'>
             <CardContent>
-              <CardHeader title="Result of Election" subheader={'Latest update: ' + ts} />
+              <CardHeader title="Result of Election" subheader={'Latest update: ' + ts} data-aos='flip-down' />
               <hr />
               <TableContainer>
                 <Table stickyHeader aria-label="simple table">
@@ -469,7 +471,8 @@ const Ge = ({fet, timesch}) => {
                     <TableBody key={item.id} className={(item.rank == 1 ? 'centerGE' : item.rank > 1 && item.rank <= 16 ? 'senGE' : item.rank > 16 && item.rank <= 32 ? 'nextGE' : '') + ' cur'}
                       data-toggle="tooltip" data-placement="bottom" title={(item.rank == 1 ? item.obj.response.name + ' is both Center position and Senbatsu of BNK48 12th Single' : item.rank > 1 && item.rank <= 16 ? item.obj.response.name + ' is Senbatsu of BNK48 12th Single' : item.rank > 16 && item.rank <= 32 ? item.obj.response.name + ' is participate in second song of BNK48 12th Single' : item.obj.response.name +' is participate in last song of BNK48 12th Single') + (moment().unix() < timesch.vote.close ? ' (2nd Preliminary Result)' : '')}
                       onClick={() => item.obj.response.ref.includes('bnk48') ? History.push('member?name=' + item.name.toLowerCase()) : item.obj.response.ref.includes('cgm48') ? window.open('//cgm48fan.cpxdev.tk/member?name=' + item.name.toLowerCase(), '_target') : ''}
-                    >
+                      data-aos='fade-right'
+                   >
                     <TableCell component="th" className={classes.rank}>
                           {item.rank}
                         </TableCell>
@@ -499,7 +502,7 @@ const Ge = ({fet, timesch}) => {
             </CardContent>
           </Card>
           
-          <Card className='mt-5'>
+          <Card className='mt-5' data-aos='flip-left'>
             <CardContent>
             <CardHeader title="How to voting your member to one of Senbatsu!" />
               <hr />
@@ -523,7 +526,7 @@ const Ge = ({fet, timesch}) => {
               </div>
             </CardContent>
           </Card>
-          <Card className='mt-5'>
+          <Card className='mt-5' data-aos='zoom-in-up'>
             <CardContent>
             <CardHeader title="Watching Live Stream" subheader="Operated by Youtube Live" />
               <hr />

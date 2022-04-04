@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, TextField, Zoom, MenuItem, Button, ButtonGroup } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import vPack from './pack.json'
+import AOS from "aos";
 
 const Memberlist = ({fet}) => {
 
@@ -17,6 +18,7 @@ const Memberlist = ({fet}) => {
     const [Arr, setArr] = React.useState([]);
     const [mem, setmem] = React.useState([]);
     React.useEffect(() => {
+        AOS.init({ duration: 1000 });
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(fet + '/bnk48/memberlist?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
             method :'get'
@@ -161,8 +163,7 @@ const Memberlist = ({fet}) => {
             {Loaded ? (
                 <div className='row ml-3 mr-3 mt-5 justify-content-center'>
                 {mem.length > 0 ? mem.map((item, i) => (
-                    <Zoom in={true} timeout={150} style={{ transitionDelay: (i * 150)-150 }}>
-                         <div className='col-md-3 mb-5' onClick={() => ChangeRoute(item.name)}>
+                      <div data-aos="zoom-in" className='col-md-3 mb-5' onClick={() => ChangeRoute(item.name)}>
                         <Card>
                             <CardActionArea>
                             <CardMedia
@@ -176,7 +177,6 @@ const Memberlist = ({fet}) => {
                                 </CardActionArea>
                                 </Card> 
                             </div>
-                    </Zoom>
                    
                 )) : (
                     <div className='text-center col-md-12'>

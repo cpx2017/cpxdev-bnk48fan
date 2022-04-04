@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, ListItem, Zoom, ListItemText,
     Card, CardActionArea, CardContent, CardMedia, Grow, Fade, CardHeader } from '@material-ui/core';
     import { useHistory } from 'react-router-dom';
+    import AOS from "aos";
 
 const HomeCom = ({fet, gp}) => {
     const History = useHistory()
@@ -13,6 +14,7 @@ const HomeCom = ({fet, gp}) => {
     const [samplemem, setMem] = React.useState([]);
     const [highMV, setMV] = React.useState([]);
     React.useEffect(() => {
+      AOS.init({ duration: 1000 });
       document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(fet + '/bnk48/getmemberbybirth?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
             method :'post'
@@ -145,7 +147,7 @@ const HomeCom = ({fet, gp}) => {
           )}
   
   <div className="stage pt-5 pb-2">
-            <Card>
+            <Card className='mt-3' data-aos="fade-down">
                 <CardContent>
                     <CardHeader className='text-center' title='Why iAM use Blockchain Technology' />
                     <Typography>
@@ -154,7 +156,7 @@ const HomeCom = ({fet, gp}) => {
                     </Typography>
                 </CardContent>
             </Card>
-            <Card>
+            <Card className='mt-3' data-aos="fade-up">
                 <CardContent>
                     <CardHeader className='text-center' title='Partner of Blockchain Technology' />
                     <Typography>
@@ -170,7 +172,7 @@ const HomeCom = ({fet, gp}) => {
                     </Typography>
                 </CardContent>
             </Card>
-            <Card>
+            <Card className='mt-3' data-aos="fade-down">
                 <CardContent>
                     <CardHeader className='text-center' title='What is BNK Token' />
                     <Typography>
@@ -187,7 +189,7 @@ const HomeCom = ({fet, gp}) => {
                     </Typography>
                 </CardContent>
             </Card>
-            <Card>
+            <Card className='mt-3' data-aos="fade-up">
                 <CardContent>
                     <CardHeader className='text-center' title='How to use Token and trading' />
                     <Typography>

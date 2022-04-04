@@ -8,6 +8,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import { Alert, AlertTitle } from '@material-ui/lab';
+import "aos/dist/aos.css";
 
 import 'sweetalert2/dist/sweetalert2.min.css'
 import moment from 'moment'

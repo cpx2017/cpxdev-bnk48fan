@@ -15,6 +15,8 @@ import MuiAlert from '@material-ui/lab/Alert';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment'
+import AOS from "aos";
+
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -54,6 +56,10 @@ const CardLoop = ({item, i, gp}) => {
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, [])
+
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
@@ -69,7 +75,7 @@ const CardLoop = ({item, i, gp}) => {
   };
 
   return (
-    <div className={i == 0 ? "col-md-9 mb-5" : "col-md-4 mb-5"}>
+    <div className={i == 0 ? "col-md-9 mb-5" : "col-md-4 mb-5"} data-aos='zoom-in'>
      <Card className={i == 0 ? "border border-warning border-5" : ""}>
       <CardHeader
         title={(i == 0 ? 'Highlight Music Video | ' : '') +item.snippet.title}

@@ -2,12 +2,14 @@ import React from 'react';
 import { Typography, ListItem, Zoom, IconButton,
     Card, CardHeader, CardContent, CardMedia, Grow, Fade } from '@material-ui/core';
     import MoreVertIcon from '@material-ui/icons/MoreVert';
+import AOS from "aos";
 
 const News = ({fet}) => {
 
     const [Loaded, setLoaded] = React.useState(false);
     const [news, setNews] = React.useState([]);
     React.useEffect(() => {
+      AOS.init({ duration: 1000 });
       document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(fet + '/bnk48/getnews', {
             method :'get'
@@ -77,7 +79,7 @@ const News = ({fet}) => {
       {Loaded ? (
            <div className={window.innerWidth > 600 ? 'row pt-5 m-5' : 'row pt-4 m-2'}>
                {news.length > 0 ? news.map((item, i) => i < 30 && (
-                   <div className='col-md-12 mb-5'>
+                   <div className='col-md-12 mb-5' data-aos="zoom-in-down">
                    <Card>
                    <CardHeader
                      action={

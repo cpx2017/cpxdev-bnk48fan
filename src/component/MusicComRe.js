@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CardLoop = ({item, i, gp}) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(window.innerWidth > 900 ? true : false);
+  const [expanded, setExpanded] = React.useState(false);
   const [alt, setAlert] = React.useState('');
   const [open, setOpen] = React.useState(false);
 

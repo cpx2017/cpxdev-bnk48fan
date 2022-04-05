@@ -3,6 +3,7 @@ import { Card, CardActionArea, CardContent, CardMedia, TextField, Zoom, MenuItem
 import { useHistory } from 'react-router-dom';
 import vPack from './pack.json'
 import Swal from 'sweetalert2'
+import AOS from "aos";
 
 const FanList = ({fet}) => {
 
@@ -19,6 +20,7 @@ const FanList = ({fet}) => {
     const [mem, setmem] = React.useState([]);
 
     React.useEffect(() => {
+        AOS.init({ duration: 1000 });
         if (localStorage.getItem("glog") == null) {
             Swal.fire({
                 title: 'You need to login before use this feature.',
@@ -174,8 +176,7 @@ const FanList = ({fet}) => {
             {Loaded ? (
                 <div className='row ml-3 mr-3 mt-5 justify-content-center'>
                 {mem.length > 0 ? mem.map((item, i) => (
-                    <Zoom in={true} timeout={150} style={{ transitionDelay: (i * 150)-150 }}>
-                         <div className='col-md-3 mb-5' onClick={() => ChangeRoute(item.name)}>
+                         <div className='col-md-3 mb-5' data-aos="zoom-in-down" onClick={() => ChangeRoute(item.name)}>
                         <Card>
                             <CardActionArea>
                             <CardMedia
@@ -189,7 +190,6 @@ const FanList = ({fet}) => {
                                 </CardActionArea>
                                 </Card> 
                             </div>
-                    </Zoom>
                    
                 )) : (
                     <div className='text-center col-md-12'>

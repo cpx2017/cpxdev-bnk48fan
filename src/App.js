@@ -202,7 +202,6 @@ function App() {
     })
         .then(response => response.json())
         .then(data => {
-          console.log('fetch pop',data)
           setNewspop(data.response.data)
         }).catch(() => {
         })

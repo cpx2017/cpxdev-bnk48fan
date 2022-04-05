@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import Swal from 'sweetalert2'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import AOS from "aos";
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -59,6 +60,7 @@ function capitalizeFirstLetter(string) {
         }
 
         React.useEffect(() => {
+            AOS.init({ duration: 1000 });
             if (localStorage.getItem("glog") == null) {
                 alert("You need to login before use this feature.")
                 History.goBack()
@@ -160,8 +162,7 @@ function capitalizeFirstLetter(string) {
                             ) : (
                                 <div className='mt-5 pl-5 mr-5'>
                                 {Ev.map((item) => (
-                                   
-                                   <Card>
+                                   <Card data-aos="zoom-in-down">
                                    <CardHeader
                                      title={item.title}
                                      subheader={'Event start in ' + onLocal(item.start).toString() + ' until ' + onLocal(item.end).toString()}

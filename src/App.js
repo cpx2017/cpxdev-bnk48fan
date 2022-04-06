@@ -392,6 +392,12 @@ function App() {
           </div>
          ) : null
      }
+      <div className="alert alert-warning alert-dismissible fade show" role="alert">
+       <strong>Announcement</strong> Asia Region Server and Database Server will be temporary down for maintenance and enhance system performance for BNK48 12th Single General Election result announcement between {moment.unix(1649426400).local().format('DD MMMM YYYY HH:mm:ss')} to {moment.unix(1649431800).local().format('DD MMMM YYYY HH:mm:ss')}.
+       <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
         <Drawer
                   className={cls.drawer}
                   variant="temporary"

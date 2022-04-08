@@ -383,21 +383,23 @@ function App() {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      ) : geready && moment().unix() >= timesch.announ ? (
+      ) : geready && moment().unix() >= timesch.announ &&moment().unix() <= timesch.announ + 86400 ? (
         <div className="alert alert-primary alert-dismissible fade show" role="alert">
-            <strong>Election WResult is announcing</strong> If Live streaming is not avaliable on Youtube or Facebook. Some Streaming Platform maybe restricted for avaliable in Thailand only and cannot be shared to this site. However, you can see realtime result here.
+            <strong>Election Result is announcing</strong> If Live streaming is not avaliable on Youtube or Facebook. Some Streaming Platform maybe restricted for avaliable in Thailand only and cannot be shared to this site. However, you can see realtime result here.
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
          ) : null
      }
+     {moment().unix() <= 1649431800 && (
       <div className="alert alert-warning alert-dismissible fade show" role="alert">
-       <strong>Announcement</strong> Asia Region Server and Database Server will be temporary down for maintenance and enhance system performance for BNK48 12th Single General Election result announcement between {moment.unix(1649426400).local().format('DD MMMM YYYY HH:mm:ss')} to {moment.unix(1649431800).local().format('DD MMMM YYYY HH:mm:ss')}.
+       <strong>Announcement</strong> Asia Region Server and Database Server will be temporary down for maintenance and enhance system performance for BNK48 12th Single General Election result announcement between {moment.unix(1649426400).local().format('DD MMMM YYYY HH:mm:ss')} to {moment.unix(1649431800).local().format('DD MMMM YYYY HH:mm:ss')}. Some feature maybe slow or stuck. Sorry for the inconvenience.
        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
          <span aria-hidden="true">&times;</span>
        </button>
      </div>
+     )}
         <Drawer
                   className={cls.drawer}
                   variant="temporary"

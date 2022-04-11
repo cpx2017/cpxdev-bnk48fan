@@ -65,6 +65,7 @@ function capitalizeFirstLetter(string) {
         const History = useHistory()
         const [mem, setmem] = React.useState('');
         const [arr, setArr] = React.useState([]); 
+        const [geResult, setGE] = React.useState([]); 
         const [Loaded, setLoaded] = React.useState(false);
         const [birthday, setBirthday] = React.useState(false);
         const [kami, setKami] = React.useState(0);
@@ -83,22 +84,22 @@ function capitalizeFirstLetter(string) {
             alert('Downloading ' + name + '.webp')
         }
 
-       const GEdown = (mem) => {
-            fetch('https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@latest/bnk48thirdge/' + mem + '1.webp', {
-                method :'get'
-            })
-                .then(response => {
-                    if (response.status === 200 || response.status === 304) {
-                        return response.text()
-                    }
-                    throw new Error('Something went wrong');
-                })
-                .then(data => {
-                    setGEPoster('https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@latest/bnk48thirdge/' + mem + '1.webp')
-                }).catch(() => {
-                    setGEPoster('')
-                });
-        }
+    //    const GEdown = (mem) => {
+    //         fetch('https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@latest/bnk48thirdge/' + mem + '1.webp', {
+    //             method :'get'
+    //         })
+    //             .then(response => {
+    //                 if (response.status === 200 || response.status === 304) {
+    //                     return response.text()
+    //                 }
+    //                 throw new Error('Something went wrong');
+    //             })
+    //             .then(data => {
+    //                 setGEPoster('https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@latest/bnk48thirdge/' + mem + '1.webp')
+    //             }).catch(() => {
+    //                 setGEPoster('')
+    //             });
+    //     }
 
         const BirthdayCheck = (val) => {
             fetch(fet + '/bnk48/getmemberbybirth?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
@@ -265,7 +266,6 @@ function capitalizeFirstLetter(string) {
             var url = new URL(url_string);
             var c = url.searchParams.get("name");
             if (c != null && c != "") {
-                GEdown(c.toLowerCase())
                 if (localStorage.getItem("glog") != null) {
                     fetch(fet + '/bnk48/getFanMem?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString()  , {
                       method :'get'
@@ -293,8 +293,21 @@ function capitalizeFirstLetter(string) {
                         const temp =[]
                         temp.push(data.response)
                         setArr(temp)
-                        setLoaded(true)
-
+                        if (data.response.ge != "") {
+                            fetch(fet + '/bnk48/getge?rankid=' + data.response.ge, {
+                                method :'post'
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    setGE(data)
+                                    setLoaded(true)
+                                }).catch(() => {
+                                  setGE([])
+                                  setLoaded(true)
+                                })
+                        } else {
+                            setLoaded(true)
+                        }
                         BirthdayCheck(data.response.name)
                     }
                 }).catch(() => {
@@ -309,6 +322,28 @@ function capitalizeFirstLetter(string) {
                 pm.pause()
             })
         }, [])
+        function numberWithCommas(x) {
+            const options = { 
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2 
+            };
+            return Number(x).toLocaleString('en', options);
+        }
+        function ordinal_suffix_of(i) {
+            var j = i % 10,
+                k = i % 100;
+            if (j == 1 && k != 11) {
+                return i + "st";
+            }
+            if (j == 2 && k != 12) {
+                return i + "nd";
+            }
+            if (j == 3 && k != 13) {
+                return i + "rd";
+            }
+            return i + "th";
+        }
+        const tokenrateexchange = 90;
         return (  
         <>
             <div className="pt-5 pb-2">
@@ -341,8 +376,9 @@ function capitalizeFirstLetter(string) {
                             <Fade in={true} timeout={1200} style={{ transitionDelay: 600}}>
                                 <div className='col-md mt-5 mb-5'>
                                     <h4>{item.fullnameEn[0]} {item.fullnameEn[1]} [{item.name}]</h4>
-                                        {GEPoster != '' && (
-                                            <a onClick={() => setOpen(true)} className='cur'>BNK48 12th Single General Election candiated member. Click here to see more!<br/></a>
+                                        {item.ge != '' && geResult.length > 0 && (
+                                            <a className='cur'>{geResult[0].rank == 1 ? 'The winner of BNK48 12th Single Senbutsu General Election by ' + numberWithCommas(geResult[0].sc) + ' tokens!' : ordinal_suffix_of(geResult[0].rank) + ' of BNK48 12th Single Senbutsu General Election by ' + numberWithCommas(geResult[0].sc) + ' tokens!'} Expected Income of {item.name} is about {numberWithCommas(geResult[0].sc * tokenrateexchange)} THB<br/>
+                                            [Approximate Exchange Rate ≈ {tokenrateexchange} THB per one token]<br/></a>
                                         )}
                                     <Button onClick={() => Subsc(mem)} className={(kami == 1 ? 'bg-primary' : 'text-dark') + ' mt-3'} variant="contained" disabled={kami == 1 ? false : true}>{kami == 0 && <img className='pb-1' src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="20px" />} {kami == 2 ? "She's your Kami-Oshi" : kami == 1 ? 'Set as Kami-Oshi' : 'Loading Status'}</Button> 
                                     <hr />

@@ -377,8 +377,7 @@ function capitalizeFirstLetter(string) {
                                 <div className='col-md mt-5 mb-5'>
                                     <h4>{item.fullnameEn[0]} {item.fullnameEn[1]} [{item.name}]</h4>
                                         {item.ge != '' && geResult.length > 0 && (
-                                            <a className='cur'>{geResult[0].rank == 1 ? 'The winner of BNK48 12th Single Senbutsu General Election by ' + numberWithCommas(geResult[0].sc) + ' tokens!' : ordinal_suffix_of(geResult[0].rank) + ' of BNK48 12th Single Senbutsu General Election by ' + numberWithCommas(geResult[0].sc) + ' tokens!'} Expected Income of {item.name} is about {numberWithCommas(geResult[0].sc * tokenrateexchange)} THB<br/>
-                                            [Approximate Exchange Rate ≈ {tokenrateexchange} THB per one token]<br/></a>
+                                            <a className='cur'>{geResult[0].rank == 1 ? 'The winner of BNK48 12th Single Senbutsu General Election by ' + numberWithCommas(geResult[0].sc) + ' tokens!' : ordinal_suffix_of(geResult[0].rank) + ' of BNK48 12th Single Senbutsu General Election by ' + numberWithCommas(geResult[0].sc) + ' tokens!'}<br/>
                                         )}
                                     <Button onClick={() => Subsc(mem)} className={(kami == 1 ? 'bg-primary' : 'text-dark') + ' mt-3'} variant="contained" disabled={kami == 1 ? false : true}>{kami == 0 && <img className='pb-1' src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="20px" />} {kami == 2 ? "She's your Kami-Oshi" : kami == 1 ? 'Set as Kami-Oshi' : 'Loading Status'}</Button> 
                                     <hr />

@@ -452,16 +452,17 @@ const Ge = ({fet, timesch}) => {
           
           <Card className='mt-5' data-aos='zoom-in-up'>
             <CardContent>
-            <CardHeader title="Watching Live Stream" subheader="Operated by Youtube Live" />
+            <CardHeader title="Election Report" subheader="Reported by Token X. Visualization Statistic by Google Data Studio" data-aos='flip-down' />
               <hr />
-              <div className='text-center'>
-              {urlstream != '' ? (
-                <iframe src={urlstream} width="100%" height={700} allowFullScreen />
-              ) : (
-                <div>
-                Please wait for the announcement from BNK48 official.
-                </div>
-              )}
+              <div className='text-center' data-aos='zoom-out'>
+                {
+                  window.innerWidth > 800 ? (
+                    <iframe src="https://datastudio.google.com/embed/reporting/79887e4e-cf19-4dd8-97f8-d08362c73bb2/page/F6aqC" frameborder="0" width="90%" height={window.innerWidth< 600 ? "1200px" : '700px'} />
+                  ) : (
+                    <div>Sorry, but this report cannot be supported with phone. Click <a href='https://datastudio.google.com/s/nA6bRd1t2Ww' target='_blank'>here</a> to open next tab.</div>
+                  )
+                }
+             
               </div>
             </CardContent>
           </Card>

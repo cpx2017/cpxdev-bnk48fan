@@ -391,7 +391,7 @@ function capitalizeFirstLetter(string) {
                                         {!item.graduated && (
                                             <>
                                             <p><GroupIcon fontSize="small"/> {item.team}</p>
-                                            <p><AccountCircleIcon fontSize="small"/> Generation {item.gen}</p>
+                                            <p><AccountCircleIcon fontSize="small"/> {ordinal_suffix_of(item.gen)} Generation</p>
                                             </>
                                         )}
                                         <p><FavoriteIcon fontSize="small"/>&nbsp;

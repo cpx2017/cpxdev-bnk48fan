@@ -218,69 +218,6 @@ const GeMana = ({fet}) => {
       return ( 
           <>
         <Card>
-            <form autoComplete='off' onSubmit={sub}>
-            <CardContent className='row pl-5 pt-5 pr-5'>
-                <div className='col-md-3'>
-                    <TextField
-                        required={true}
-                        fullWidth={true}
-                        select
-                        label="Choose Rank Number"
-                        value={Tar || '-'}
-                        className="mb-3"
-                        onChange={(e) => setTar(e.target.value)}
-                        >
-                            {list.length > 0 && list.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                                </MenuItem>
-                            ))}
-                    </TextField>
-                </div>
-                <div className='col-md-3'>
-                    <TextField
-                        required={true}
-                        fullWidth={true}
-                        select
-                        label="Choose Member"
-                        value={MemTar || '-'}
-                        className="mb-3"
-                        onChange={(e) => setMemTar(e.target.value)}
-                        >
-                            {mem.length > 0 && mem.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                                </MenuItem>
-                            ))}
-                    </TextField>
-                </div>
-                <div className='col-md-auto mt-2'>
-                <FormControlLabel
-                    control={
-                    <Checkbox
-                        checked={cgmon}
-                        onChange={(e) => LoadMem(e.target.checked)}
-                        color="primary"
-                    />
-                    }
-                    label="Choose CGM"
-                />
-                </div>
-                <div className='col-md'>
-                    <TextField
-                        required={true}
-                        label="Add score"
-                        value={Score}
-                        fullWidth={true}
-                        className="mb-3"
-                        type="number"
-                        onChange={(e) => setScore(e.target.value)}
-                    />
-                </div>
-                <Button color='primary' type='submit'>Update</Button>
-            </CardContent>
-            </form>
-            <hr />
             <form autoComplete='off' onSubmit={sub2}>
             <CardContent className='row pl-5 pr-5'>
                 <div className='col-md-5'>

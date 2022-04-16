@@ -694,65 +694,65 @@ function App() {
   }
   if (imgget != null) {
     return (
-      <div class="container">
-      <div class="row">
-          <div class="col pr-0">
+      <div className="container">
+      <div className="row">
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/1.webp" width="100%" />
           </div>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/2.webp" width="100%" />
           </div>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/3.webp" width="100%" />
           </div>
-          <div class="w-100"></div>
-          <div class="col pr-0">
+          <div className="w-100"></div>
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/4.webp" width="100%" />
           </div>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/5.webp" width="100%" />
           </div>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/6.webp" width="100%" />
           </div>
-          <div class="w-100"></div>
-          <div class="col pr-0">
+          <div className="w-100"></div>
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/7.webp" width="100%" />
           </div>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/8.webp" width="100%" />
           </div>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/9.webp" width="100%" />
           </div>
-          <div class="w-100"></div>
-          <div class="col pr-0">
+          <div className="w-100"></div>
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/10.webp" width="100%" />
           </div>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/11.webp" width="100%" />
           </div>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/12.webp" width="100%" />
           </div>
-          <div class="w-100"></div>
-          <div class="col pr-0">
+          <div className="w-100"></div>
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/13.webp" width="100%" />
           </div>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/14.webp" width="100%" />
           </div>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/15.webp" width="100%" />
           </div>
-          <div class="w-100"></div>
-          <div class="col pr-0">
+          <div className="w-100"></div>
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/16.webp" width="100%" />
           </div>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/17.webp" width="100%" />
           </div>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/18.webp" width="100%" />
           </div>
       </div>
@@ -760,26 +760,26 @@ function App() {
     )
   }
   return (
-    <div class="container mt-5 mb-5">
+    <div className="container mt-5 mb-5">
       {window.innerWidth > 900 ? (
-         <div class="row" onDoubleClick={() => setAllDone(true)}>
+         <div className="row" onDoubleClick={() => setAllDone(true)}>
          <Fade in={styleFade != 0 ? true : false} timeout={400} style={{ transitionDelay: styleFade == 2 ? 0 : 500 }}>
-           <div class="col pr-0">
+           <div className="col pr-0">
                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/pcmode/1.webp" width="100%" />
            </div>
          </Fade>
          <Fade in={styleFade != 0 ? true : false}  timeout={400} style={{ transitionDelay: styleFade == 2 ? 300 : 400 }}>
-           <div class="col p-0">
+           <div className="col p-0">
                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/pcmode/2.webp" width="100%" />
            </div>
          </Fade>
          <Fade in={styleFade != 0 ? true : false}  timeout={400} style={{ transitionDelay: styleFade == 2 ? 400 : 300 }}>
-           <div class="col p-0">
+           <div className="col p-0">
                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/pcmode/3.webp" width="100%" />
            </div>
          </Fade>
            <Fade in={styleFade != 0 ? true : false}  timeout={400} style={{ transitionDelay: styleFade == 2 ? 500 :  0 }}>
-           <div class="col pl-0">
+           <div className="col pl-0">
                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/pcmode/4.webp" width="100%" />
            </div>
          </Fade>
@@ -801,99 +801,99 @@ function App() {
          </Grow>
        </div>
       ) : (
-        <div class="row" onDoubleClick={() => setAllDone(true)}>
+        <div className="row" onDoubleClick={() => setAllDone(true)}>
         <Fade in={styleFade != 0 ? true : false} timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 0 : 350 }}>
-          <div class="col pr-0">
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/1.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1250 : 450 }}>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/2.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1350 : 550 }}>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/3.webp" width="100%" />
           </div>
         </Fade>
-          <div class="w-100"></div>
+          <div className="w-100"></div>
           <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 250 :  650 }}>
-          <div class="col pr-0">
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/4.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1150 :  750 }}>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/5.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1450 :  850 }}>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/6.webp" width="100%" />
           </div>
         </Fade>
-          <div class="w-100"></div>
+          <div className="w-100"></div>
           <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 350 :  950 }}>
-          <div class="col pr-0">
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/7.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1050 :  1050 }}>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/8.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1550 :  1150 }}>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/9.webp" width="100%" />
           </div>
         </Fade>
-          <div class="w-100"></div>
+          <div className="w-100"></div>
           <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 450 :  1250 }}>
-          <div class="col pr-0">
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/10.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 950 :  1350 }}>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/11.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1650 :  1450 }}>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/12.webp" width="100%" />
           </div>
         </Fade>
-          <div class="w-100"></div>
+          <div className="w-100"></div>
           <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 550 :  1550 }}>
-          <div class="col pr-0">
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/13.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 850 :  1650 }}>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/14.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1750 :  1750 }}>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/15.webp" width="100%" />
           </div>
         </Fade>
-          <div class="w-100"></div>
+          <div className="w-100"></div>
           <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 650 :  1850 }}>
-          <div class="col pr-0">
+          <div className="col pr-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/16.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 750 :  1950 }}>
-          <div class="col p-0">
+          <div className="col p-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/17.webp" width="100%" />
           </div>
         </Fade>
         <Fade in={styleFade != 0 ? true : false}  timeout={styleFade == 2 ? 300 : 500} style={{ transitionDelay: styleFade == 2 ? 1850 :  2050 }}>
-          <div class="col pl-0">
+          <div className="col pl-0">
               <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayofade/18.webp" width="100%" />
           </div>
         </Fade>

@@ -240,7 +240,7 @@ const Ge = ({fet, timesch}) => {
               </div>
               ) : (
                 <Fade in={true} timeout={800}>
-                <img src="https://pbs.twimg.com/media/FP4dR33aQAckGgY?format=webp&name=medium"  width={window.innerWidth} />
+                <img src="https://pbs.twimg.com/media/FP90nHfacAIvUXu?format=webp&name=large"  width={window.innerWidth} />
                   </Fade>
               )}
           </div>

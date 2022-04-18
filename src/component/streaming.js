@@ -232,14 +232,14 @@ const MusicSt = ({fet}) => {
                     <hr />
                     <CardMedia
                         className='mb-3'
-                        src={data[1].album.images[0].url}
+                        src={data[2].album.images[0].url}
                         component="img"
                     />
                      <Typography component="h5" variant="h5">
-                        {data[1].name}
+                        {data[2].name}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[1].album.release_date).toDateString()}
+                        Release date: {new Date(data[2].album.release_date).toDateString()}
                     </Typography>
                     </CardActionArea>
                   </CardContent>

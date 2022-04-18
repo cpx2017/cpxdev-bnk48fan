@@ -54,7 +54,7 @@ const MusicSt = ({fet}) => {
       </div>
         )}
         <div className='modcontain mb-5'>
-        {window.innerWidth > 800 ? (
+        {window.innerWidth > 1200 ? (
             <div className={(data != null ? '' : 'cover ')+ "row justify-content-center mt-4 mb-3"}>
             {data != null && (
                 <>

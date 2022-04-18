@@ -245,7 +245,7 @@ const Ge = ({fet, timesch}) => {
               )}
           </div>
             )}
-                {window.innerWidth > 800 ? (
+                {window.innerWidth >1200 ? (
                 <div className="cover mt-4">
                 <Grow in={true} timeout={1000}>
               <Card className="col-md-4 m-5">
@@ -456,7 +456,7 @@ const Ge = ({fet, timesch}) => {
               <hr />
               <div className='text-center' data-aos='zoom-out'>
                 {
-                  window.innerWidth > 800 ? (
+                  window.innerWidth >1200 ? (
                     <iframe src="https://datastudio.google.com/embed/reporting/79887e4e-cf19-4dd8-97f8-d08362c73bb2/page/F6aqC" frameborder="0" width="90%" height={window.innerWidth< 600 ? "500px" : '700px'} />
                   ) : (
                     <iframe src="https://datastudio.google.com/embed/reporting/b7c85307-2842-4e6e-936d-343290b1b0a7/page/F6aqC" frameborder="0" width="100%" height={window.innerWidth< 600 ? "500px" : '700px'} />

@@ -42,7 +42,7 @@ const Stream = ({fet}) => {
                
                 <div className='container' data-aos="zoom-out-up">
                     {urlstream != '' ? (
-                        <iframe src={urlstream} width="100%" height={window.innerWidth > 800 ? 700 : '100%'} allowFullScreen />
+                        <iframe src={urlstream} width="100%" height={window.innerWidth >1200 ? 700 : '100%'} allowFullScreen />
                     ) : (
                         <h6>Stream not found</h6>
                     )}

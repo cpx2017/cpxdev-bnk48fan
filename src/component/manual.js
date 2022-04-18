@@ -61,14 +61,14 @@ const HomeCom = ({fet}) => {
 
     return ( 
         <>
-        {window.innerWidth > 800 && (
+        {window.innerWidth >1200 && (
           <div class="video-background">
            <Fade in={true} timeout={800}>
                 <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa"  width={window.innerWidth} />
               </Fade>
       </div>
         )}
-             {window.innerWidth > 800 ? (
+             {window.innerWidth >1200 ? (
             <div className="cover mt-4">
             <Grow in={true} timeout={1000}>
           <Card className="col-md-4 m-5">

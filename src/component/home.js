@@ -84,7 +84,7 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
           )}
       </div>
         )}
-             {window.innerWidth > 800 ? (
+             {window.innerWidth >1200 ? (
             <div className="cover mt-4">
             <Grow in={true} timeout={1000}>
           <Card className="col-md-4 m-5">

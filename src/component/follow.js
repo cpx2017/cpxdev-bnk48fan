@@ -27,14 +27,14 @@ const Contact = ({fet}) => {
 
     return ( 
         <>
-        {window.innerWidth > 800 && (
+        {window.innerWidth >1200 && (
           <div class="video-background">
            <Fade in={true} timeout={800}>
            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/bnk48/sayomain.webp" width={window.innerWidth} />
               </Fade>
       </div>
         )}
-             {window.innerWidth > 800 ? (
+             {window.innerWidth >1200 ? (
             <div className="cover mt-4">
             <Grow in={true} timeout={1000}>
           <Card className="col-md-4 m-5">

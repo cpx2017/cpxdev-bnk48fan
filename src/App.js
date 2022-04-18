@@ -332,7 +332,7 @@ function App() {
               </Typography>
             </div>
                 <div className={cls.search + ' mt-2'}>
-              {window.innerWidth > 800 && (
+              {window.innerWidth >1200 && (
                 <FormControlLabel
                 className={login ? 'pb-3' : ''}
                 control={
@@ -347,7 +347,7 @@ function App() {
               />
               )}
               {login&& (
-                 <ListItemIcon onClick={() => setMemDl(true)} className={(window.innerWidth > 800 ? 'mt-2' : '') + ' cur'}>
+                 <ListItemIcon onClick={() => setMemDl(true)} className={(window.innerWidth >1200 ? 'mt-2' : '') + ' cur'}>
                  <Badge
                    overlap="circular"
                    anchorOrigin={{

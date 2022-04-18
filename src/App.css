@@ -189,3 +189,48 @@ iframe[id*="twitter-widget"] {
   -o-animation: up-right 1.5s infinite;
   animation: up-right 1.5s infinite;
 }
+
+
+.rank2 {
+  background-color: silver !important;
+  margin-top: 3% !important;
+  margin-bottom: 3% !important;
+}
+.rank3 {
+  margin-top: 6% !important;
+  margin-bottom: 6% !important;
+  background-color: coral !important;
+}
+/* .rank3 {
+  margin-top: 15% !important;
+  margin-bottom: 5% !important;
+} */
+.rank4 {
+  margin-top: 9% !important;
+  margin-bottom: 9% !important;
+  background-color: transparent !important;
+  backdrop-filter: blur(20px);
+}
+.rank5 {
+  margin-top: 11% !important;
+  margin-bottom: 11% !important;
+  background-color: transparent !important;
+  backdrop-filter: blur(20px);
+}
+.modcontain{
+  width: 100%;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 90%;
+}
+.rank1{
+  background-color: goldenrod !important;
+}
+.rank2mo{
+  background-color: silver !important;
+}
+.rank3mo{
+  background-color: coral !important;
+}

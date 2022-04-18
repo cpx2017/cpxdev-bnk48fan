@@ -33,6 +33,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
 
 import Home from './component/home';
 import MemberList from './component/members';
@@ -40,7 +41,8 @@ import LiveCom from './component/livestream'
 import MamSam from './component/memberdetail';
 import TokenCom from './component/token';
 import News from './component/news';
-import MusicCom from './component/music';
+import MvCom from './component/music';
+import MusicCom from './component/streaming';
 import Offici from './component/official';
 import FamdomList from './component/fandomlist';
 import FanRoom from './component/fanroom';
@@ -441,11 +443,17 @@ function App() {
                   </ListItemIcon>
                   <ListItemText primary="Special Live" secondary={spcLive ? 'Livestream is launching' : ''} />
                 </ListItem>
-                <ListItem component={Link} to='/music' className={window.location.pathname == '/music' ? 'activeNav' : ''} button>
+                <ListItem component={Link} to='/mv' className={window.location.pathname == '/mv' ? 'activeNav' : ''} button>
                   <ListItemIcon>
                     <YouTubeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Music" />
+                  <ListItemText primary="Music Video" />
+                </ListItem>
+                <ListItem component={Link} to='/music' className={window.location.pathname == '/music' ? 'activeNav' : ''} button>
+                  <ListItemIcon>
+                    <MusicNoteIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Music Ranking" />
                 </ListItem>
                 <ListItem component={Link} to='/officialupdate' className={window.location.pathname == '/officialupdate' ? 'activeNav' : ''} button>
                   <ListItemIcon>
@@ -564,6 +572,7 @@ function App() {
                       <Route path="/member" render={() => <MamSam fet={Fet().ul} kamio={kamin} />} />
                       <Route path="/news" render={() => <News fet={Fet().ul} />} />
                       <Route path="/token" render={() => <TokenCom fet={Fet().ul} />} />
+                      <Route path="/mv" render={() => <MvCom gp={Reduce} fet={Fet().ul} />} />
                       <Route path="/music" render={() => <MusicCom gp={Reduce} fet={Fet().ul} />} />
                       <Route path="/officialupdate" render={() => <Offici fet={Fet().ul} />} />
                       <Route path="/fandom" render={() => <FamdomList fet={Fet().ul} />} />
@@ -575,7 +584,7 @@ function App() {
                       <Route path="/follow" render={() => <FollowCom fet={Fet().ul} />} />
 
                       <Route path="/ge3" render={() => <GeCom fet={Fet().ul} timesch={timesch} />} />
-                      <Route path="/ge3mana" render={() => <GeMana fet={Fet().ul} />} />
+                      <Route path="/mana" render={() => <GeMana fet={Fet().ul} />} />
                       <Route exact render={() => <PageErr />} />
                     </BasicSwitch>
                       

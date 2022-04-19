@@ -178,10 +178,10 @@ const MusicSt = ({fet}) => {
           </div>
           ) : (
         <div className="pb-5 pt-2">
-               {data != null && (
+  {data != null && (
     <Grow in={true} timeout={1000}>
         <>
-        <Card className="rank1 mt-2">
+        <Card className="rank1 mt-2" onClick={() => window.open(data[0].external_urls.spotify, '_blank').focus()}>
         <CardContent>
                     <CardActionArea>
                   <Typography variant="h5" component="h2">
@@ -202,7 +202,7 @@ const MusicSt = ({fet}) => {
                     </CardActionArea>
                   </CardContent>
                 </Card>
-        <Card className="rank2mo mt-4">
+        <Card className="rank2mo mt-4" onClick={() => window.open(data[1].external_urls.spotify, '_blank').focus()}>
         <CardContent>
                     <CardActionArea>
                   <Typography variant="h5" component="h2">
@@ -223,7 +223,7 @@ const MusicSt = ({fet}) => {
                     </CardActionArea>
                   </CardContent>
                 </Card>
-                <Card className="rank3mo mt-4">
+                <Card className="rank3mo mt-4" onClick={() => window.open(data[2].external_urls.spotify, '_blank').focus()}>
         <CardContent>
                     <CardActionArea>
                   <Typography variant="h5" component="h2">
@@ -244,7 +244,7 @@ const MusicSt = ({fet}) => {
                     </CardActionArea>
                   </CardContent>
                 </Card>
-                <Card className="bnktheme mt-4">
+                <Card className="bnktheme mt-4" onClick={() => window.open(data[3].external_urls.spotify, '_blank').focus()}>
         <CardContent>
                     <CardActionArea>
                   <Typography variant="h5" component="h2">
@@ -265,7 +265,7 @@ const MusicSt = ({fet}) => {
                     </CardActionArea>
                   </CardContent>
                 </Card>
-                <Card className="bnktheme mt-4">
+                <Card className="bnktheme mt-4" onClick={() => window.open(data[4].external_urls.spotify, '_blank').focus()}>
         <CardContent>
                     <CardActionArea>
                   <Typography variant="h5" component="h2">

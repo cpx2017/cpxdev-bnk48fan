@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Fade, Grow, CardMedia, Typography, Zoom, Link, Breadcrumbs, Button, AppBar, Toolbar, IconButton, Slide, ListItemText, List , ListItem,Divider } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
 
@@ -358,7 +359,6 @@ function capitalizeFirstLetter(string) {
                 {Loaded ? (
                     <>
                     {arr.length > 0 && arr.map((item, i) => (
-                        <Grow in={Loaded} timeout={600}>
                             <div>
                             <Fade in={play} timeout={{enter:300,exit:500}}>
                             <Fireworks options={fwoptions} style={fwstyle} />
@@ -461,15 +461,39 @@ function capitalizeFirstLetter(string) {
                         </div>
                     </Dialog>
                             </div>
-                    </Grow>
                     ))}
                     </>
                 ) : (
-                    <div className='text-center'>
-                         <Zoom in={Loaded ? false : true} timeout={{ enter: 200, exit: 200}}>
-                        <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center mt-3 mb-5' />
-                        </Zoom>
-                    </div>
+                    <Grow in={!Loaded} timeout={600}>
+                            <div>
+                            <Card className={(window.innerWidth > 600 ? ' m-5' : ' m-3') + " bnktheme row"}>
+                            <div className={window.innerWidth > 1600 ? 'col-lg-3 mb-1' : 'col-lg-4 mb-1'}>
+                                <Skeleton height={530} />
+                            </div>
+                                <div className='col-md mt-5 mb-5'>
+                                    <Skeleton />
+                                    <hr />
+                                    <>
+                                        <h6><LocationOnIcon fontSize="small"/> <Skeleton /></h6>
+                                        <h6><CakeIcon fontSize="small"/> <Skeleton /></h6>
+                                        <p><GroupIcon fontSize="small"/> <Skeleton /></p>
+                                        <p><AccountCircleIcon fontSize="small"/> <Skeleton /></p>
+                                        <p><FavoriteIcon fontSize="small"/>&nbsp;
+                                            <Skeleton />
+                                        </p>
+                                        <p><NaturePeopleIcon fontSize="small"/>&nbsp;
+                                            <Skeleton />
+                                        </p>
+                                        <>
+                                            <Skeleton />
+                                        </>
+                                    </>
+                                    <hr />
+                                    <Skeleton />
+                                </div>
+                    </Card>
+                            </div>
+                    </Grow>
                 )}
                 
             </div>

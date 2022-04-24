@@ -152,6 +152,14 @@ function capitalizeFirstLetter(string) {
                     iconColor: 'rgb(203, 150, 194)',
                   })
             } else {
+                if (arr[0].graduated == true) {
+                    Swal.fire({
+                        title: arr[0].name +" BNK48 is graduated",
+                        icon: 'error',
+                        text: 'This member is graduated. You cannot select this member to your Kami-Oshi anymore.',
+                      })
+                    return false
+                }
                 if (localStorage.getItem("glog") != null && kamio != ''  && kamio != '-') {
                     Swal.fire({
                         title: 'Confirm to Change your Kami-Oshi',

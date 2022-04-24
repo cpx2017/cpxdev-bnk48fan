@@ -363,7 +363,6 @@ function capitalizeFirstLetter(string) {
                             <Fade in={play} timeout={{enter:300,exit:500}}>
                             <Fireworks options={fwoptions} style={fwstyle} />
                             </Fade>
-
                             <Card className={(window.innerWidth > 600 ? ' m-5' : ' m-3') + " bnktheme row"} key={i}>
                             <div className={window.innerWidth > 1600 ? 'col-lg-3 mb-1' : 'col-lg-4 mb-1'}>
                                 <Fade in={true} timeout={600} style={{ transitionDelay: 300}}>
@@ -405,7 +404,7 @@ function capitalizeFirstLetter(string) {
                                             }
                                         </p>
                                         {item.graduated && (
-                                            <p className='bnktext'><PanToolIcon fontSize="small"/> Graduated</p>
+                                            <p><PanToolIcon fontSize="small"/> Graduated</p>
                                         )}
                                         {!item.graduated && (
                                             <>

@@ -1,0 +1,219 @@
+
+@font-face {
+    font-family: "cpxCookFont";
+    src: url(https://cdn.jsdelivr.net/gh/cpx2017/dbozonefont@main/fontpack/DBOzoneXv3.2.woff2) format('woff2');
+  }
+  
+
+.cpx-modal {
+    font-family: "cpxCookFont" !important;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10000000000000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+  }
+  
+  /* Modal Content/Box */
+  .cpx-modal-content {
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+    padding-top: 30px;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-bottom: 30px;
+  } 
+  @media only screen and (max-width:768px) {
+    .cpx-modal-content {
+        position: fixed;
+        bottom: 0;
+        background-color: #fefefe;
+        -webkit-animation-name: slideIn;
+        -webkit-animation-duration: 0.4s;
+        animation-name: slideIn;
+        animation-duration: 0.4s;
+        padding: 30px;
+      } 
+  }
+
+  .cpx-wrap {
+    overflow-wrap: break-word;
+    color: gray;
+  }
+
+  .cpx-h2{
+      margin-top: 0;
+      color: #4769ad !important;
+  }
+  
+  /* The Close Button */
+  .cpx-mo-close {
+    font-family: "cpxCookFont" !important;
+    background-color: #4769ad;
+    border: none;
+    color: white;
+    padding: 8px 24px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 1px 0px #888888;
+    transition: all 0.5s;
+  }
+
+  .cpx-mo-close span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .cpx-mo-close span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -5px;
+    transition: 0.5s;
+  }
+  
+  .cpx-mo-close:hover span {
+    padding-right: 15px;
+  }
+  
+  .cpx-mo-close:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  @-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+  }
+  
+  @keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  /* 2 columns (600px) */
+  
+  .cpx-container .cpxcol1 {
+    float: left;
+    width: 55%;
+  }
+  .cpx-container .cpxcol2 {
+    float: right;
+    width: 40%;
+  }
+  
+  /* 3 columns (768px) */
+  
+  @media only screen and (max-width:768px) {
+    .cpx-container .cpxcol1, .cpx-container .cpxcol2 {
+      width: 100%;
+    }
+    .cpx-mo-close {
+        font-family: "cpxCookFont" !important;
+        background-color: #4769ad;
+        border: none;
+        color: white;
+        padding: 8px 24px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        box-shadow: 1px 0px #888888;
+        transition: all 0.5s;
+        float: right;
+      }
+  }
+
+  .cpx-list-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-radius: .25rem;
+}
+@media only screen and (max-width:768px) {
+    .cpx-list-group {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        border-radius: .25rem;
+        margin-top: 20px;
+    }
+  }
+
+
+.cpx-list-group-flush {
+    border-radius: 0;
+}
+.cpx-list-group-item {
+  position: relative;
+  display: block;
+  padding: .75rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125); 
+  cursor: pointer;
+}
+.cpx-link {
+    text-decoration: none;
+    color: black;
+}
+.cpx-list-group-item:first-child {
+    
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+.cpx-list-group-flush>.cpx-list-group-item {
+    border-width: 0 0 1px;
+}
+.cpx-list-group-item+.cpx-list-group-item {
+    border-top-width: 0;
+}
+.cpx-list-group-flush>.cpx-list-group-item:last-child {
+    border-bottom-width: 0;
+}
+
+
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}

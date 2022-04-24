@@ -594,6 +594,8 @@ function App() {
           Copyright {new Date().getFullYear()}, CPXDevStudio Allright Reserved
           <br /> All BNK48 and CGM48 contents are licensed by Independent Artist Management (iAM). We don't affiliated with them. Please don't be to copy and modified contents for any commercial use.
         </footer>
+
+
         {localStorage.getItem("glog") != null && (
            <Dialog
            open={localStorage.getItem("glog") != null ? MemberDl : false}

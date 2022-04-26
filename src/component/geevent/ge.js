@@ -518,6 +518,16 @@ const Ge = ({fet, timesch}) => {
               </TableContainer>
             </CardContent>
           </Card>
+
+          <Card className='mt-5' data-aos='zoom-in-up'>
+            <CardContent>
+            <CardHeader title="Special Highlight" data-aos='flip-down' />
+              <hr />
+              <div className='text-center' data-aos='zoom-out'>
+                <iframe src="https://drive.google.com/file/d/1QtgW37NgMcC4Kd9Uxa8syZuNvZbdr_Gk/preview" frameborder="0" width="90%" height={window.innerWidth< 600 ? "500px" : '700px'} />
+              </div>
+            </CardContent>
+          </Card>
           
           <Dialog
               fullScreen

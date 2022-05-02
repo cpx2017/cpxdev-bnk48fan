@@ -15,7 +15,7 @@ import moment from 'moment'
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
 Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide, Grow, Fade } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 import HomeIcon from '@material-ui/icons/Home';
 import CloseIcon from '@material-ui/icons/Close';
@@ -669,10 +669,11 @@ function App() {
               <a href={item.link} target='_blank' className='mt-1'>
                   Reference Link
               </a>
+            <br />
               {
                 item.place != '' && (
                   <a href={item.place} target='_blank' className='mt-1'>
-                      Where is this event?
+                     <LocationOnIcon/> Where is this event?
                   </a>
                 )
               }
@@ -692,10 +693,11 @@ function App() {
             <a href={newspop[0].link} target='_blank' className='mt-1'>
                 Reference Link
             </a>
+            <br />
             {
                 newspop[0].place != '' && (
                   <a href={newspop[0].place} target='_blank' className='mt-1'>
-                        Where is this event?
+                       <LocationOnIcon/> Where is this event?
                   </a>
                 )
               }

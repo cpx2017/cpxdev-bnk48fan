@@ -644,7 +644,7 @@ function App() {
        </Dialog>
         )}
        
-       {newspop.length >0 && (
+       {newspop.length >0 && window.location.pathname != '/mana' && (
         <Dialog
       open={EvtPop}
       onClose={() => {
@@ -666,9 +666,16 @@ function App() {
               <Typography className='mt-3' variant="body2" component="p">
                   {item.desc}
               </Typography>
-              <a href={item.link} className='mt-1'>
+              <a href={item.link} target='_blank' className='mt-1'>
                   Reference Link
               </a>
+              {
+                item.place != '' && (
+                  <a href={item.place} target='_blank' className='mt-1'>
+                      Where is this event?
+                  </a>
+                )
+              }
             </CardContent>
           </DialogContent>
         </>
@@ -682,9 +689,16 @@ function App() {
             <Typography className='mt-3 tw' variant="body2" component="p">
                 {newspop[0].desc}
             </Typography>
-            <a href={newspop[0].link} className='mt-1'>
+            <a href={newspop[0].link} target='_blank' className='mt-1'>
                 Reference Link
             </a>
+            {
+                newspop[0].place != '' && (
+                  <a href={newspop[0].place} target='_blank' className='mt-1'>
+                        Where is this event?
+                  </a>
+                )
+              }
           </CardContent>
         </DialogContent>
       </>

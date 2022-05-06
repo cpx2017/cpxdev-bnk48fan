@@ -163,7 +163,7 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
         {ImgThumb != '' && stream != null ? (
           <h3 className='mb-5' data-aos="fade-down">Special Live Streaming</h3>
         ) : (
-          <h3 className='mb-5' data-aos="fade-down">Highlight Music Video</h3>
+          <h3 className='mb-5' data-aos="fade-down">Highlight Video Content or Music Video</h3>
         )}
       </d>
       <div className='row ml-3 mr-3 justify-content-center' data-aos="zoom-in">

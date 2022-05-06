@@ -204,7 +204,34 @@ function App() {
     })
         .then(response => response.json())
         .then(data => {
-          setNewspop(data.response.data)
+          
+
+          fetch(fet + '/bnk48/getmemberbybirth?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
+            method :'post'
+        })
+          .then(response => response.json())
+          .then(dres => {
+            sessionStorage.setItem("ads", 'i')
+            if (dres.count == 0) {
+              setNewspop(data.response.data)
+            } else {
+              let tempd = []
+              for (let i = 0; i< dres.response.length; i++) {
+                tempd.push({
+                  title: 'Happy birthday! ' +  dres.response[i].name + ' BNK48',
+                  desc: 'Today is her birthday! Let\'s celebrate each other together.',
+                  link: '/member?name=' + dres.response[i].name.toLowerCase(),
+                  src: dres.response[i].img,
+                  place: ''
+                })
+              }
+              for (let i = 0; i< data.response.data.length; i++) {
+                tempd.push(data.response.data[i])
+              }
+              setNewspop(tempd)
+            }
+          }).catch(() => {
+          })
         }).catch(() => {
         })
     } else {
@@ -364,44 +391,7 @@ function App() {
           </Toolbar>
         </AppBar>
        </Slide>
-     {geready && moment().unix() <= timesch.vote.close ? (
-       <div className="alert alert-success alert-dismissible fade show" role="alert">
-       <strong>Election War is almost end!</strong> You have {moment.unix(timesch.vote.close).local().format('DD') - new Date().getDate()} day(s) which can vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')} on iAM48 Application
-       <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-     </div>
-      ) : geready && moment.unix(timesch.vote.close).local().format('DD') == new Date().getDate() && moment().unix() <= timesch.vote.close ? (
-        <div className="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Election War is almost end!</strong> You have a few time to vote favorite member to the highest rank of BNK48 12th Single General Election until {moment.unix(timesch.vote.close).local().format('DD MMMM YYYY HH:mm')} on iAM48 Application
-        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-     ) : geready && moment().unix() >= timesch.vote.close && moment().unix() < timesch.announ ? (
-    <div className="alert alert-info alert-dismissible fade show" role="alert">
-        <strong>Election War is end</strong> Thank you for all support! Please follow Result of BNK48 12th Single General Election since {moment.unix(timesch.announ).local().format('DD MMMM YYYY HH:mm')}
-        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      ) : geready && moment().unix() >= timesch.announ &&moment().unix() <= timesch.announ + 86400 ? (
-        <div className="alert alert-primary alert-dismissible fade show" role="alert">
-            <strong>Election Result is announcing</strong> If Live streaming is not avaliable on Youtube or Facebook. Some Streaming Platform maybe restricted for avaliable in Thailand only and cannot be shared to this site. However, you can see realtime result here.
-            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-         ) : null
-     }
-     {moment().unix() <= 1649431800 && (
-      <div className="alert alert-warning alert-dismissible fade show" role="alert">
-       <strong>Announcement</strong> Asia Region Server and Database Server will be temporary down for maintenance and enhance system performance for BNK48 12th Single General Election result announcement between {moment.unix(1649426400).local().format('DD MMMM YYYY HH:mm:ss')} to {moment.unix(1649431800).local().format('DD MMMM YYYY HH:mm:ss')}. Some feature maybe slow or stuck. Sorry for the inconvenience.
-       <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-     </div>
-     )}
+
         <Drawer
                   className={cls.drawer}
                   variant="temporary"
@@ -709,7 +699,6 @@ function App() {
       <DialogActions>
       <Button onClick={() => {
         setpopup(false)
-        sessionStorage.setItem("ads", 'i')
       }} className="text-dark">
           Close
       </Button>

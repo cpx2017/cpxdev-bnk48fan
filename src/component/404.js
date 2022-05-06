@@ -2,7 +2,10 @@ import React from 'react';
 import { Typography, ListItem, Zoom, ListItemText,
     Card, CardActionArea, CardContent, CardMedia, Grow, Fade } from '@material-ui/core';
 
-const ErrCom = () => {
+const ErrCom = ({setSec}) => {
+  React.useEffect(() => {
+    setSec('Page not found')
+  }, [])
     return ( 
       <>
       {window.innerWidth >1200 && (

@@ -20,7 +20,7 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   
-    const FanRoom = ({fet}) => {
+    const FanRoom = ({fet, setSec}) => {
         const classes = useStyles();
         const History = useHistory()
         const [mem, setmem] = React.useState('');
@@ -62,6 +62,7 @@ function capitalizeFirstLetter(string) {
         React.useEffect(() => {
             AOS.init({ duration: 1000 });
             if (localStorage.getItem("glog") == null) {
+                setSec('Access denied')
                 alert("You need to login before use this feature.")
                 History.goBack()
             } else {
@@ -79,6 +80,7 @@ function capitalizeFirstLetter(string) {
                     if (data.response == 'Not found this member in record.') {
                         History.push("/")
                     } else {
+                        setSec(data.response.name + '\'s Fandom')
                         const temp =[]
                         temp.push(data.response)
                         setArr(temp)
@@ -116,8 +118,8 @@ function capitalizeFirstLetter(string) {
                             </Breadcrumbs>
                         </div>
                         <div className='col-md-6 text-right pr-5 pt-2'>
-                            <Button className='border-success' variant="outlined" onClick={() => History.push('/addevent?name=' + mem.toLowerCase())}>
-                                Request Event
+                            <Button className='border-success' variant="outlined" onClick={() => History.push('/addevent?name=' + mem.toLowerCase())} disabled={arr.length == 0 || arr[0].graduated ? true : false}>
+                                {arr.length > 0 ? (arr[0].graduated ? 'This member is graduated': 'Request Event') : 'Loading'}
                             </Button>
                         </div>
                     </div>

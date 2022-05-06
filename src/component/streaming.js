@@ -5,10 +5,11 @@ import { Typography, ListItem, Zoom, ListItemText,
     Card, CardHeader, CardContent, CardMedia, Grow, Fade, CardActionArea } from '@material-ui/core';
     import CircularProgress from '@material-ui/core/CircularProgress';
 
-const MusicSt = ({fet}) => {
+const MusicSt = ({fet, setSec}) => {
     const [data, setData] = React.useState(null)
     const [hover, setHover] = React.useState(0)
     React.useEffect(()=> {
+      setSec('Top listening songs')
         fetch(fet + '/bnk48/gettopsong', {
             method: 'post', // or 'PUT'
             headers: {

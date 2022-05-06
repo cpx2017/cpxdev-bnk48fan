@@ -4,11 +4,12 @@ import MusicCom from './MusicComRe'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify, faItunes, faDeezer, faYoutube, faTiktok, faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
 
-const Music = ({gp, fet}) => {
+const Music = ({gp, fet, setSec}) => {
     const [Loaded, setLoaded] = React.useState(false);
     const [Arr, setArr] = React.useState([]);
 
     React.useEffect(() => {
+        setSec('Contents and Music Video')
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(encodeURI(fet + '/bnk48/getVideo?tstamp=' + Math.floor( new Date().getTime()  / 1000)), {
             method: 'post', // or 'PUT'
@@ -26,7 +27,7 @@ const Music = ({gp, fet}) => {
 
         return (
             <>
-            <h3 className='text-center mt-5'>Music Video Promote</h3>
+            <h3 className='text-center mt-5'>Video Content and Music Video Promote</h3>
             <p className='text-center'>You can see new release songs of BNK48 on below. Powered by Youtube.</p>
             {Loaded ? (
                  <div className="stage pt-5 pl-3 pr-3">

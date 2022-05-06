@@ -5,7 +5,7 @@ import { Typography, ListItem, Zoom, ListItemText,
     import moment from 'moment'
     import AOS from "aos";
 
-const HomeCom = ({fet, gp, ImgThumb, stream}) => {
+const HomeCom = ({fet, gp, ImgThumb, stream, setSec}) => {
     const History = useHistory()
     const [Loaded1, setLoaded1] = React.useState(false);
     const [Loaded2, setLoaded2] = React.useState(false);
@@ -15,6 +15,10 @@ const HomeCom = ({fet, gp, ImgThumb, stream}) => {
     const [samplemem, setMem] = React.useState([]);
     const [highMV, setMV] = React.useState([]);
     const [GenRan, setGenRan] = React.useState(0);
+
+  React.useEffect(() => {
+    setSec('Homepage')
+  },[])
 
     React.useEffect(() => {
       AOS.init({ duration: 1000 });

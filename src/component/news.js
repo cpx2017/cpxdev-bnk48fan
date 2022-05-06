@@ -4,7 +4,7 @@ import { Typography, ListItem, Zoom, IconButton,
     import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AOS from "aos";
 
-const News = ({fet}) => {
+const News = ({fet, setSec}) => {
 
     const [Loaded, setLoaded] = React.useState(false);
     const [news, setNews] = React.useState([]);
@@ -24,7 +24,7 @@ const News = ({fet}) => {
             setNews([])
             setLoaded(true)
         })
-        
+        setSec('News update')
     }, [])
 
     return ( 

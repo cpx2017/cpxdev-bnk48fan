@@ -1,13 +1,16 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardActionArea} from '@material-ui/core'
 
-const API = () => {
+const API = ({setSec}) => {
     const [ stat, setstat] = React.useState(null);
     const APITest = () => {
+      setSec('API Service')
         fetch('https://api.cpxdev.tk/Home/status')
         .then(function () {
+            setSec('API Service [System health is good]')
             setstat(true)
         }).catch(function () {
+          setSec('API Service [System maybe lost]')
           // handle error
           setstat(false)
         });

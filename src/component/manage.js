@@ -57,6 +57,7 @@ const Mana = ({fet}) => {
     if (done) {
       return ( 
         <div className='text-center mt-5'>
+          <h3>Confirm Fandom Post Check</h3>
             <Button color="primary" href={decodeURI(url1)}>Confirm</Button>
             <Button color="primary" href={decodeURI(url2)}>Decide</Button>
         </div>

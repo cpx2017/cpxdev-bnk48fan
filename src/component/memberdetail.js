@@ -60,7 +60,8 @@ const fwoptions = {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-    const MemDetail = ({fet, kamio}) => {
+    const MemDetail = ({fet, kamio, setSec}) => {
+
         const classes = useStyles();
         const [open, setOpen] = React.useState(false);
         const History = useHistory()
@@ -275,6 +276,7 @@ function capitalizeFirstLetter(string) {
             var url = new URL(url_string);
             var c = url.searchParams.get("name");
             if (c != null && c != "") {
+                setSec('Loading Member description')
                 if (localStorage.getItem("glog") != null) {
                     fetch(fet + '/bnk48/getFanMem?i=' + (JSON.parse(localStorage.getItem("glog")).googleId).toString()  , {
                       method :'get'
@@ -299,6 +301,7 @@ function capitalizeFirstLetter(string) {
                     if (data.response == 'Not found this member in record.') {
                         History.push("/")
                     } else {
+                        setSec(data.response.name)
                         const temp =[]
                         temp.push(data.response)
                         setArr(temp)

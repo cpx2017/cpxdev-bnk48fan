@@ -18,7 +18,7 @@ import FanDetail from '../img/FandomDetail.png'
 import AddEv from '../img/addevent.png'
 
 
-const HomeCom = ({fet}) => {
+const HomeCom = ({fet, setSec}) => {
     const History = useHistory()
     const [Loaded1, setLoaded1] = React.useState(false);
     const [Loaded2, setLoaded2] = React.useState(false);
@@ -27,6 +27,7 @@ const HomeCom = ({fet}) => {
     const [samplemem, setMem] = React.useState([]);
 
     React.useEffect(() => {
+      setSec('Fans Space Manual')
       document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(fet + '/bnk48/getmemberbybirth?tstamp=' + Math.floor( new Date().getTime()  / 1000), {
             method :'post'

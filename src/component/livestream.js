@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Stream = ({fet}) => {
+const Stream = ({fet, setSec}) => {
     const classes = useStyles();
     const [urlstream, setStream] = React.useState('');
     const [streaminfo, setInfo] = React.useState(null);
@@ -22,6 +22,11 @@ const Stream = ({fet}) => {
         })
             .then(response => response.json())
             .then(data => {
+                if (data.link != '-') {
+                    setSec('No Live today')
+                } else {
+                    setSec('[Live] ' + data.title)
+                }
               setStream(data.link)
               setInfo(data)
               setLoad(false)

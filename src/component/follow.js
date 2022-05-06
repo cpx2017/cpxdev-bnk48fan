@@ -3,7 +3,7 @@ import { Typography, ListItem, Zoom, ListItemText,
     Card, CardHeader, CardContent, CardMedia, Grow, Fade } from '@material-ui/core';
     import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const Contact = ({fet}) => {
+const Contact = ({fet, setSec}) => {
 
     const [Loaded, setLoaded] = React.useState(false);
     const [news, setNews] = React.useState([]);
@@ -22,7 +22,7 @@ const Contact = ({fet}) => {
             setNews([])
             setLoaded(true)
         })
-        
+        setSec('Follow and Support BNK48')
     }, [])
 
     return ( 

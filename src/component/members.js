@@ -4,7 +4,12 @@ import { useHistory } from 'react-router-dom';
 import vPack from './pack.json'
 import AOS from "aos";
 
-const Memberlist = ({fet}) => {
+const Memberlist = ({fet, setSec}) => {
+
+    React.useEffect(() => {
+        setSec('Members')
+      },[])
+    
 
     const History = useHistory()
 

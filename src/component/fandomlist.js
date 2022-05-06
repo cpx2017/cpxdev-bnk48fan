@@ -5,7 +5,7 @@ import vPack from './pack.json'
 import Swal from 'sweetalert2'
 import AOS from "aos";
 
-const FanList = ({fet}) => {
+const FanList = ({fet, setSec}) => {
 
     const History = useHistory()
 
@@ -21,6 +21,7 @@ const FanList = ({fet}) => {
 
     React.useEffect(() => {
         AOS.init({ duration: 1000 });
+        setSec('Fandom Members')
         if (localStorage.getItem("glog") == null) {
             Swal.fire({
                 title: 'You need to login before use this feature.',

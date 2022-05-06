@@ -4,7 +4,7 @@ import { Typography, ListItem, Zoom, ListItemText,
     import { useHistory } from 'react-router-dom';
     import AOS from "aos";
 
-const HomeCom = ({fet, gp}) => {
+const HomeCom = ({fet, gp, setSec}) => {
     const History = useHistory()
     const [Loaded1, setLoaded1] = React.useState(false);
     const [Loaded2, setLoaded2] = React.useState(false);
@@ -14,6 +14,7 @@ const HomeCom = ({fet, gp}) => {
     const [samplemem, setMem] = React.useState([]);
     const [highMV, setMV] = React.useState([]);
     React.useEffect(() => {
+      setSec('BNK Governance Token and Blockchain Technology')
       AOS.init({ duration: 1000 });
       document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(fet + '/bnk48/getmemberbybirth?tstamp=' + Math.floor( new Date().getTime()  / 1000), {

@@ -5,7 +5,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AOS from "aos";
 
-const Offi = ({fet}) => {
+const Offi = ({fet, setSec}) => {
     const [Loaded, setLoaded] = React.useState(false);
     const [Arr, setArr] = React.useState([]);
     const [open, setOpen] = React.useState(false);
@@ -14,6 +14,7 @@ const Offi = ({fet}) => {
 
     React.useEffect(() => {
         AOS.init({ duration: 1000 });
+        setSec('Official Update')
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         fetch(encodeURI(fet + '/bnk48/getoffnews?tstamp=' + Math.floor( new Date().getTime()  / 1000)), {
             method: 'post', // or 'PUT'

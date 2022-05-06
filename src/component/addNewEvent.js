@@ -11,8 +11,10 @@ const useStyles = makeStyles((theme) => ({
       color: '#fff',
     },
   }));
-
-const Add = ({fet}) => {
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+const Add = ({fet, setSec}) => {
     const classes = useStyles();
     const [arr, setArr] = React.useState([]); 
     const [name, setName] = React.useState(''); 
@@ -69,9 +71,11 @@ const Add = ({fet}) => {
                 var c = url.searchParams.get("name");
                 if (c != null && c != "") {
                     setCur(c)
+                    setSec('Add event for ' + capitalizeFirstLetter(c))
                 }
             }).catch(() => {
                 setArr([])
+                setSec('Add fandom')
             })
     }, [])
 
@@ -95,45 +99,65 @@ const Add = ({fet}) => {
               })
             return false
         }
+
         setLoad(true)
-        const Obj = {
-            title: name,
-            desc: desc,
-            member: current,
-            link: link,
-            start: moment(tstart).utc().format("yyyy-MM-DD HH:mm:ss"), // System convert to UTC for easy convert to different time zone
-            end: moment(tend).utc().format("yyyy-MM-DD HH:mm:ss"),
-            img: img,
-            name: JSON.parse(localStorage.getItem('glog')).name,
-            mail: JSON.parse(localStorage.getItem('glog')).email
-          }
-          fetch(fet + '/bnk48/request', {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(Obj),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.errorcode == 0) {
-                    Swal.fire({
-                        title: 'Event form has been sent!',
-                        text: "Event form is sent successfully, Please check email after today about 3 days or less to approving event.",
-                        icon: 'success',
-                      }).then(() => {
-                        window.location.href = "/fandomroom?name=" + current
-                      })
-                } else {
-                    alert("System will be temporary error for a while. Please try again")
-                }
-                setLoad(false)
-            })
-            .catch((error) => {
-                alert("System will be temporary error for a while. Please try again")
-                setLoad(false)
-            });
+        fetch(fet + '/bnk48/getmember?name=' + current +'&tstamp=' + Math.floor( new Date().getTime()  / 1000), {
+            method :'post'
+        })
+        .then(response => response.json())
+        .then(dm => {
+            if (dm.response.graduated == true) {
+                Swal.fire({
+                    title: dm.response.name +" BNK48 is graduated",
+                    icon: 'error',
+                    text: 'This member is graduated. You cannot add fandom event for this member anymore.',
+                  })
+                  setLoad(false)
+                return false
+            } else {
+                const Obj = {
+                    title: name,
+                    desc: desc,
+                    member: current,
+                    link: link,
+                    start: moment(tstart).utc().format("yyyy-MM-DD HH:mm:ss"), // System convert to UTC for easy convert to different time zone
+                    end: moment(tend).utc().format("yyyy-MM-DD HH:mm:ss"),
+                    img: img,
+                    name: JSON.parse(localStorage.getItem('glog')).name,
+                    mail: JSON.parse(localStorage.getItem('glog')).email
+                  }
+                  fetch(fet + '/bnk48/request', {
+                    method: 'POST', // or 'PUT'
+                    body: JSON.stringify(Obj),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                      },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.errorcode == 0) {
+                            Swal.fire({
+                                title: 'Event form has been sent!',
+                                text: "Event form is sent successfully, Please check email after today about 3 days or less to approving event.",
+                                icon: 'success',
+                              }).then(() => {
+                                window.location.href = "/fandomroom?name=" + current
+                              })
+                        } else {
+                            alert("System will be temporary error for a while. Please try again")
+                        }
+                        setLoad(false)
+                    })
+                    .catch((error) => {
+                        alert("System will be temporary error for a while. Please try again")
+                        setLoad(false)
+                    });
+            }
+        }).catch(() => {
+            setArr([])
+            setLoad(false)
+        })
     }
 
 

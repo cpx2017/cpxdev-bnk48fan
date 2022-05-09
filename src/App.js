@@ -139,7 +139,7 @@ function App() {
   const [MemberDl, setMemDl] = React.useState(false);
   const [loginLoad, setLogLoad] = React.useState(false);
   const [kamiimg, setKami] = React.useState('');
-  const [kamin, setKname] = React.useState('');
+  const [kamin, setKname] = React.useState('-');
   const [survey, setSur] = React.useState('');
   const [ImgThumb, setImageThumb] = React.useState('');
   const [spcLive, setLive] = React.useState(false);

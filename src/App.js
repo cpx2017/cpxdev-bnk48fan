@@ -139,7 +139,7 @@ function App() {
   const [MemberDl, setMemDl] = React.useState(false);
   const [loginLoad, setLogLoad] = React.useState(false);
   const [kamiimg, setKami] = React.useState('');
-  const [kamin, setKname] = React.useState('-');
+  const [kamin, setKname] = React.useState('');
   const [survey, setSur] = React.useState('');
   const [ImgThumb, setImageThumb] = React.useState('');
   const [spcLive, setLive] = React.useState(false);
@@ -498,11 +498,9 @@ function App() {
                 <ListItem onClick={() => {
                   setOpen(false)
                   Swal.fire({
-                    html: 'Region mode will enhance system performance. Current region connection has been referenced by IP address. All region servers are operated by <a href="//www.azure.com" target="_blank">Microsoft Azure</a>.',
+                    html: 'Region mode will enhance system performance. Current region connection has been referenced by IP address.',
                     icon: 'info',
                     iconColor: 'rgb(203, 150, 194)'
-                  }).then(() => {
-                    window.open('https://status.cpxdev.tk', '_blank').focus()
                   })
                 }} button>
                   <ListItemIcon>

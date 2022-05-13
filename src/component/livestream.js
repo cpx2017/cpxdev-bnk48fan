@@ -23,9 +23,9 @@ const Stream = ({fet, setSec}) => {
             .then(response => response.json())
             .then(data => {
                 if (data.link != '-') {
-                    setSec('No Live today')
-                } else {
                     setSec('[Live] ' + data.title)
+                } else {
+                    setSec('No Live today')
                 }
               setStream(data.link)
               setInfo(data)

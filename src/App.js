@@ -232,7 +232,9 @@ function App() {
                 })
               }
               for (let i = 0; i< data.response.data.length; i++) {
-                tempd.push(data.response.data[i])
+                if (data.response.data[i].graduated == false) {
+                  tempd.push(data.response.data[i])
+                }
               }
               setNewspop(tempd)
             }

@@ -352,7 +352,6 @@ function App() {
 
   if (uri != '' && allDone) {
     return (<>
-    <BrowserRouter>
        <Slide in={localStorage.getItem('lowgraphic') == null && window.innerWidth > 1100 ? !open : true} timeout={600} direction='down'>
        <AppBar position="sticky" className='bnktheme app-barcurve'>
           <Toolbar>
@@ -361,7 +360,7 @@ function App() {
               <MenuIcon />
             </IconButton>
             )}
-            <div onClick={()=> window.location.href = "/"}>
+            <div className='cur' onClick={()=> History.push('/')}>
               <Typography variant='h5' className='title'>
                BNK48 Fans Space
               </Typography>
@@ -584,8 +583,7 @@ function App() {
                       <Route exact render={() => <PageErr setSec={(v) => setSec(v)} />} />
                     </BasicSwitch>
                       
-                
-                    </BrowserRouter>   
+                  
         <footer className="bg-white text-center pt-2 pb-2 bnktheme">
           Copyright {new Date().getFullYear()}, CPXDevStudio Allright Reserved
           <br /> All BNK48 and CGM48 contents are licensed by Independent Artist Management (iAM). We don't affiliated with them. Please don't be to copy and modified contents for any commercial use.

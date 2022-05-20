@@ -153,8 +153,8 @@ function App() {
   const [allDone, setAllDone] = React.useState(false);
   const [styleFade, setSty] = React.useState(0);
   
-  const FetchWallet = (fetdata) => {
-    fetch(fetdata + '/bnk48/getTokenProfile?walletid=' + tokenID  , {
+  const FetchWallet = (fetdata, id) => {
+    fetch(fetdata + '/bnk48/getTokenProfile?walletid=' + (tokenID == '' ? id : tokenID)  , {
       method :'post'
   })
     .then(response => response.json())
@@ -177,7 +177,7 @@ function App() {
           setKami(data.obj.response.img)
           setKname(data.obj.response.name)
           setToken(data.wallet)
-          FetchWallet(fetdata)
+          FetchWallet(fetdata, data.wallet)
         } else {
           setKami('-')
           setKname('-')

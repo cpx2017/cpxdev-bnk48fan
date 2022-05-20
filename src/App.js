@@ -665,7 +665,10 @@ function App() {
                        </ListItem>
              )}
               {tokenID != '' ? (
-           <ListItem button>
+           <ListItem onClick={() => {
+            navigator.clipboard.writeText(tokenID);
+            alert('Your Wallet code has copied to clipboard');
+           }} button>
              <ListItemText primary={'Your Token balance' + (point < 0.01 && tokenID != '' ? ' (Your BNK token is insufficient)' : '')} secondary={point + ' Token (s)'} />
              </ListItem>
              ) : (

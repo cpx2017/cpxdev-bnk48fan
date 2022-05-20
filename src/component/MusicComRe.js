@@ -66,8 +66,7 @@ const CardLoop = ({item, i, gp}) => {
 
   const handleClick = (id, til) => {
     navigator.clipboard.writeText('https://www.youtube.com/watch?v=' + id);
-    setOpen(true);
-    setAlert(til)
+    alert('Link of song '+alt +' has copied to clipboard');
   };
 
   const handleExpandClick = () => {
@@ -110,11 +109,6 @@ const CardLoop = ({item, i, gp}) => {
         </CardContent>
       </Collapse>
     </Card>
-    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-        Link of song "{alt}" has copied to clipboard
-        </Alert>
-    </Snackbar>
     </div>
   );
 }

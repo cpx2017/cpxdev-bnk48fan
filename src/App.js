@@ -13,7 +13,7 @@ import "aos/dist/aos.css";
 import 'sweetalert2/dist/sweetalert2.min.css'
 import moment from 'moment'
 import { AppBar, Toolbar,Typography, IconButton, Drawer, FormControlLabel, Switch, ListItem, ListItemIcon, Divider, ListItemText,
-Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide, Grow, Fade } from '@material-ui/core';
+Dialog, DialogActions, Button, DialogTitle, DialogContent, Avatar, Badge, CardContent, CardMedia, Slide, Grow, Fade, TextField } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
@@ -146,10 +146,25 @@ function App() {
   const [geready, setReadyGE] = React.useState(false);
   const [newspop, setNewspop] = React.useState([]);
   const [stream, setStream] = React.useState(null);
+  const [tokenID, setToken] = React.useState('');
+  const [point, setPoint] = React.useState(0);
   
+  const [TokenLoad, setLoadToken] = React.useState(false);
   const [allDone, setAllDone] = React.useState(false);
   const [styleFade, setSty] = React.useState(0);
   
+  const FetchWallet = (fetdata) => {
+    fetch(fetdata + '/bnk48/getTokenProfile?walletid=' + tokenID  , {
+      method :'post'
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.token != null) {
+        setPoint(data.token.userToken)
+      }
+    });
+  }
+
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
     const rep = JSON.parse(localStorage.getItem("glog"))
@@ -161,7 +176,8 @@ function App() {
         if (data.obj != 'none') {
           setKami(data.obj.response.img)
           setKname(data.obj.response.name)
-          setSur('https://docs.google.com/forms/d/e/1FAIpQLSeP2A9V6QPqdU7S0F60X5o4y03Mx20jN1nVK9OZx4klyxiKvg/viewform?usp=pp_url&entry.1855303001=' + rep.name + '&entry.1740619332=' + rep.email + '&entry.1830561642=' + data.obj.response.name + ' BNK48&entry.1201087543=' + data.obj.response.name +' BNK48')
+          setToken(data.wallet)
+          FetchWallet(fetdata)
         } else {
           setKami('-')
           setKname('-')
@@ -346,8 +362,39 @@ function App() {
     }
   }
 
-  const UrlClk = () => {
-    window.open(survey, '_target')
+  const setTokenDialog = () => {
+    setLoadToken(true)
+    fetch(uri + '/bnk48/upttokenid?i='  + (JSON.parse(localStorage.getItem("glog")).googleId).toString() + '&wallet=' + survey, {
+      method :'post'
+  })
+      .then(response => response.text())
+      .then(data => {
+        if (data == "true") {
+          setMemDl(false)
+          Swal.fire({
+            title: 'Your iAM Wallet code has been link to Fan Space successfully.',
+            icon: 'success',
+            iconColor: 'rgb(203, 150, 194)'
+          }).then(() => {
+            window.location.reload()
+          })
+        } else {
+          setLoadToken(false)
+          Swal.fire({
+            title: 'Your iAM Wallet code is incorrect.',
+            icon: 'error',
+            iconColor: 'rgb(203, 150, 194)'
+          })
+        }
+      }).catch(() => {
+        setLoadToken(false)
+        Swal.fire({
+          title: 'Cannot connect to server. please try again',
+          icon: 'error',
+          iconColor: 'rgb(203, 150, 194)'
+        })
+      })
+   
   }
 
   if (uri != '' && allDone) {
@@ -598,6 +645,7 @@ function App() {
            maxWidth='sm'
            aria-labelledby="alert-dialog-title"
            aria-describedby="alert-dialog-description"
+          
        >
            <DialogTitle id="alert-dialog-title">Are you sure to sign-out</DialogTitle>
            <DialogContent>
@@ -616,8 +664,22 @@ function App() {
                        <ListItemText primary="You don't have any Kami-Oshi" secondary='Please choose your member which you love only once person.' />
                        </ListItem>
              )}
+              {tokenID != '' ? (
+           <ListItem button>
+             <ListItemText primary={'Your Token balance' + (point < 0.01 && tokenID != '' ? ' (Your BNK token is insufficient)' : '')} secondary={point + ' Token (s)'} />
+             </ListItem>
+             ) : (
+               <>
+                 <ListItem>
+                       <ListItemText primary="Now you can also check BNK Token balance from this site" secondary='Please enter your iAM wallet code below in first time (Check it in iAM48 application)' />
+                       </ListItem>
+                <ListItem>
+                      <ListItemText primary={(<TextField value={survey} onChange={(e) => setSur(e.target.value)} fullWidth label="Enter your wallet code here" disabled={TokenLoad} />)} secondary={TokenLoad == false ? (<Button onClick={() => setTokenDialog()} variant="contained" className='mt-1' color='primary'>Add</Button>):(<img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" className='mt-2' width="40px" />)} />
+                </ListItem>
+               </>
+             )}
                      <ListItem className='text-info' button>
-                       <ListItemText primary='Feature will be unavaliable when you not sign in' secondary='Choose and share your Kami-Oshi member, Fandom group view and add new event' />
+                       <ListItemText primary='Feature will be unavaliable when you not sign in' secondary='Choose and share your Kami-Oshi member, check BNK Token balance, Fandom group view and add new event' />
                      </ListItem>
            </DialogContent>
            <DialogActions>

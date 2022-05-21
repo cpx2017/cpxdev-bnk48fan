@@ -177,7 +177,7 @@ function App() {
           setKami(data.obj.response.img)
           setKname(data.obj.response.name)
           setToken(data.wallet)
-          FetchWallet(fetdata, data.wallet)
+          // FetchWallet(fetdata, data.wallet)
         } else {
           setKami('-')
           setKname('-')
@@ -664,7 +664,7 @@ function App() {
                        <ListItemText primary="You don't have any Kami-Oshi" secondary='Please choose your member which you love only once person.' />
                        </ListItem>
              )}
-              {tokenID != '' ? (
+              {/* {tokenID != '' ? (
            <ListItem onClick={() => {
             navigator.clipboard.writeText(tokenID);
             alert('Your Wallet code has copied to clipboard');
@@ -680,7 +680,7 @@ function App() {
                       <ListItemText primary={(<TextField value={survey} onChange={(e) => setSur(e.target.value)} fullWidth label="Enter your wallet code here" disabled={TokenLoad} />)} secondary={TokenLoad == false ? (<Button onClick={() => setTokenDialog()} variant="contained" className='mt-1' color='primary'>Add</Button>):(<img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" className='mt-2' width="40px" />)} />
                 </ListItem>
                </>
-             )}
+             )} */}
                      <ListItem className='text-info' button>
                        <ListItemText primary='Feature will be unavaliable when you not sign in' secondary='Choose and share your Kami-Oshi member, check BNK Token balance, Fandom group view and add new event' />
                      </ListItem>

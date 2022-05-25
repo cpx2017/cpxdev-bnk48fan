@@ -525,7 +525,7 @@ const Ge = ({fet, timesch, setSec}) => {
             <CardHeader title="Special Highlight" data-aos='flip-down' />
               <hr />
               <div className='text-center' data-aos='zoom-out'>
-                <iframe src="https://drive.google.com/file/d/1QtgW37NgMcC4Kd9Uxa8syZuNvZbdr_Gk/preview" frameborder="0" width="90%" height={window.innerWidth< 600 ? "500px" : '700px'} />
+                <iframe src="https://pb82-my.sharepoint.com/:v:/g/personal/cpxdev_t_5tb_in/ERt7o33Oo2FLrvO3r7fm-QABPHP7u4Z-01G2PAPpo_VaXw?e=Uik7uX&action=embedview" frameborder="0" width="90%" height={window.innerWidth< 600 ? "500px" : '700px'} />
               </div>
             </CardContent>
           </Card>

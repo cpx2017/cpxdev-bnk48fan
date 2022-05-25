@@ -101,6 +101,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const SmallAvatar = withStyles((theme) => ({
   root: {
     width: 30,
@@ -736,6 +740,16 @@ function App() {
                   </a>
                 )
               }
+              <br/>
+              {item.memtag.length > 0 && (<div>
+                Member included {
+                  (item.memtag.map((nametag, ii) => (
+                    <a href={nametag == 'All' ? ("/memberlist"): ("/member?name=" + nametag)} target='_blank'>
+                    {ii == 0 ? capitalizeFirstLetter(nametag) : ', ' + capitalizeFirstLetter(nametag)}
+                    </a>
+                  )))
+                }
+              </div>)}
             </CardContent>
           </DialogContent>
         </>

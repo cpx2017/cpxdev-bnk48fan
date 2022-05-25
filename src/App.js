@@ -686,7 +686,7 @@ function App() {
                </>
              )} */}
                      <ListItem className='text-info' button>
-                       <ListItemText primary='Feature will be unavaliable when you not sign in' secondary='Choose and share your Kami-Oshi member, check BNK Token balance, Fandom group view and add new event' />
+                       <ListItemText primary='Feature will be unavaliable when you not sign in' secondary='Choose and share your Kami-Oshi member, Fandom group view and add new event' />
                      </ListItem>
            </DialogContent>
            <DialogActions>

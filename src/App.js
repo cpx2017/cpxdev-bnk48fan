@@ -243,6 +243,7 @@ function App() {
             } else {
               let tempd = []
               for (let i = 0; i< dres.response.length; i++) {
+                if (dres.response[i].graduated == false) {
                 tempd.push({
                   title: 'Happy birthday! ' +  dres.response[i].name + ' BNK48',
                   desc: 'Today is her birthday! Let\'s celebrate each other together.',
@@ -251,10 +252,9 @@ function App() {
                   place: ''
                 })
               }
+              }
               for (let i = 0; i< data.response.data.length; i++) {
-                if (data.response.data[i].graduated == false) {
                   tempd.push(data.response.data[i])
-                }
               }
               setNewspop(tempd)
             }

@@ -70,7 +70,7 @@ const MusicSt = ({fet, setSec}) => {
         )}
         <div className='modcontain justify-content-center row mt-5 mb-5'>
               {data.length > 0 ? data.map((item,i) => (item.release_date.includes(new Date().getFullYear()) || item.release_date.includes(new Date().getFullYear() - 1)) ? (
-                 <Card key={item.id} className={'col-md-3 mb-3'} data-aos="zoom-in" >
+                 <Card key={item.id} className={'col-md-3 mb-3' + (window.innerWidth < 700 ? ' bnktheme' : '')} data-aos="zoom-in" >
                   <CardContent>
                     <CardActionArea onClick={() => window.open(item.external_urls.spotify, '_blank').focus()}>
                   <Typography variant="h5" component="h2">

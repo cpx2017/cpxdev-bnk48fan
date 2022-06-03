@@ -400,7 +400,9 @@ function capitalizeFirstLetter(string) {
                                         )}
                                         {!item.graduated && (
                                             <>
-                                            <p><GroupIcon fontSize="small"/> {item.team}</p>
+                                            <p><GroupIcon fontSize="small"/> {item.team.length > 1 ? 'Shuffle Team (' + (item.team.map((it, ii) => 
+                                                (ii == item.team - 1 ? ', ' + it : it)
+                                            )) + ')' : item.team[0]}</p>
                                             <p><AccountCircleIcon fontSize="small"/> {ordinal_suffix_of(item.gen)} Generation</p>
                                             </>
                                         )}

@@ -4,13 +4,17 @@ import { faSpotify, faItunes, faDeezer, faYoutube, faTiktok, faYoutubeSquare } f
 import { Typography, ListItem, Zoom, ListItemText,
     Card, CardHeader, CardContent, CardMedia, Grow, Fade, CardActionArea } from '@material-ui/core';
     import CircularProgress from '@material-ui/core/CircularProgress';
+    import AOS from "aos";
 
 const MusicSt = ({fet, setSec}) => {
-    const [data, setData] = React.useState(null)
-    const [hover, setHover] = React.useState(0)
+    const [data, setData] = React.useState([])
+    const [hover, setHover] = React.useState('')
+    const [Loaded, setLoaded] = React.useState(false);
     React.useEffect(()=> {
-      setSec('Top listening songs')
-        fetch(fet + '/bnk48/gettopsong', {
+      setSec('Song Album List')
+      AOS.init({ duration: 1000 });
+      setLoaded(true)
+        fetch(fet + '/bnk48/getsongal', {
             method: 'post', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json'
@@ -19,17 +23,19 @@ const MusicSt = ({fet, setSec}) => {
             })
             .then(response => response.json())
             .then(r => {
-                setData(r.tracks)
+              setLoaded(false)
+                setData(r.items)
             })
             .catch((error) => {
+              setLoaded(false)
                 console.error('Error:', error);
             });
     }, [])
     return ( 
         <>
         <Card>
-        <h3 className='text-center mt-5'>BNK48 Top Songs Ranking</h3>
-            <p className='text-center'>Which BNK48 songs are popular and the highest listening on the best Music Streaming. Powered by Spotify.</p>
+        <h3 className='text-center mt-5'>BNK48 Song Album List</h3>
+            <p className='text-center'>Released BNK48 albums and singles. Powered by Spotify.</p>
             <div className='container border border-success rounded mb-3'>
                 <div className='row'>
                     <div className='col-md-12 text-center'>
@@ -47,6 +53,14 @@ const MusicSt = ({fet, setSec}) => {
             </div>
 
         </Card>
+        {Loaded && (
+        <Zoom in={Loaded} timeout={{ enter: 200, exit: 200}}>
+          <Card className='p-5 text-center mt-5'>
+                <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center mt-5 mb-5' />
+                Connect to service
+          </Card>
+         </Zoom>
+        )}
             {window.innerWidth >1200 && (
           <div class="video-background">
            <Fade in={true} timeout={800}>
@@ -54,244 +68,36 @@ const MusicSt = ({fet, setSec}) => {
               </Fade>
       </div>
         )}
-        <div className='modcontain mb-5'>
-        {window.innerWidth > 1200 ? (
-            <div className={(data != null ? '' : 'cover ')+ "row justify-content-center mt-4 mb-3"}>
-            {data != null && (
-                <>
-                <Grow in={data != null && (hover == 4 || hover == 0) ? true : false} timeout={1000}>
-              <Card className="col-md m-2 rank4 cur" onClick={() => window.open(data[3].external_urls.spotify, '_blank').focus()}>
+        <div className='modcontain justify-content-center row mt-5 mb-5'>
+              {data.length > 0 ? data.map((item,i) => (item.release_date.includes(new Date().getFullYear()) || item.release_date.includes(new Date().getFullYear() - 1)) ? (
+                 <Card key={item.id} className={'col-md-3 mb-3'} data-aos="zoom-in" >
                   <CardContent>
-                    <CardActionArea onMouseOver={() => setHover(4)} onMouseLeave={() => setHover(0)}>
+                    <CardActionArea onClick={() => window.open(item.external_urls.spotify, '_blank').focus()}>
                   <Typography variant="h5" component="h2">
-                    Number 4th
+                    {item.name}
                     </Typography>
                     <hr />
                     <CardMedia
                         className='mb-3'
-                        src={data[3].album.images[0].url}
+                        src={item.images[0].url}
                         component="img"
                     />
-                     <Typography component="h5" variant="h5">
-                        {data[3].name}
+                     <Typography variant="body1">
+                        {item.album_type =='single' && item.total_tracks == 1 ? 'The single song by ' + item.artists[0].name : item.album_type =='single' && item.total_tracks > 1 ? 'This Extended Play (EP) included ' + item.total_tracks +' tracks.'  : 'This Studio Album included ' + item.total_tracks +' tracks.' }
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[3].album.release_date).toDateString()}
+                        Release date: {new Date(item.release_date).toDateString()}
                     </Typography>
                     </CardActionArea>
                   </CardContent>
                 </Card>
-                </Grow>
-                <Grow in={data != null && (hover == 2 || hover == 0) ? true : false} timeout={1000}>
-              <Card className="col-md m-2 rank2 cur" onClick={() => window.open(data[1].external_urls.spotify, '_blank').focus()}>
-              <CardContent>
-                    <CardActionArea onMouseOver={() => setHover(2)} onMouseLeave={() => setHover(0)}>
-                  <Typography variant="h5" component="h2">
-                    Number 2nd
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[1].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[1].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[1].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                  </CardContent>
+              ) : null) : (
+                <Zoom in={!Loaded} timeout={{ enter: 200, exit: 200}}>
+                <Card className='col-md-12 p-5 text-center mb-5 mt-5'>
+                      There was a problem connecting to the service. Please try again later
                 </Card>
-                </Grow>
-                <Grow in={data != null && (hover == 1 || hover == 0) ? true : false} timeout={1000}>
-              <Card className="col-md m-2 rank1 cur" onClick={() => window.open(data[0].external_urls.spotify, '_blank').focus()}>
-              <CardContent>
-              <CardActionArea onMouseOver={() => setHover(1)} onMouseLeave={() => setHover(0)}>
-                  <Typography variant="h5" component="h2">
-                    The best popular BNK48 song
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[0].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[0].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[0].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                    </CardContent>
-                </Card>
-                </Grow>
-                <Grow in={data != null && (hover == 3 || hover == 0) ? true : false} timeout={1000}>
-              <Card className="col-md m-2 rank3 cur" onClick={() => window.open(data[2].external_urls.spotify, '_blank').focus()}>
-              <CardContent>
-                    <CardActionArea onMouseOver={() => setHover(3)} onMouseLeave={() => setHover(0)}>
-                  <Typography variant="h5" component="h2">
-                    Number 3rd
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[2].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[2].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[2].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                  </CardContent>
-                </Card>
-                </Grow>
-                <Grow in={data != null && (hover == 5 || hover == 0) ? true : false} timeout={1000}>
-              <Card className="col-md m-2 rank5 cur" onClick={() => window.open(data[4].external_urls.spotify, '_blank').focus()}>
-                  <CardContent>
-                    <CardActionArea onMouseOver={() => setHover(5)} onMouseLeave={() => setHover(0)}>
-                  <Typography variant="h5" component="h2">
-                    Number 5th
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[4].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[4].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[4].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                  </CardContent>
-                </Card>
-                </Grow>
-                </>
-        )}
-          </div>
-          ) : (
-        <div className="pb-5 pt-2">
-  {data != null && (
-    <Grow in={true} timeout={1000}>
-        <>
-        <Card className="rank1 mt-2" onClick={() => window.open(data[0].external_urls.spotify, '_blank').focus()}>
-        <CardContent>
-                    <CardActionArea>
-                  <Typography variant="h5" component="h2">
-                  The best popular BNK48 song
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[0].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[0].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[0].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                  </CardContent>
-                </Card>
-        <Card className="rank2mo mt-4" onClick={() => window.open(data[1].external_urls.spotify, '_blank').focus()}>
-        <CardContent>
-                    <CardActionArea>
-                  <Typography variant="h5" component="h2">
-                    Number 2nd
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[1].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[1].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[1].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                  </CardContent>
-                </Card>
-                <Card className="rank3mo mt-4" onClick={() => window.open(data[2].external_urls.spotify, '_blank').focus()}>
-        <CardContent>
-                    <CardActionArea>
-                  <Typography variant="h5" component="h2">
-                    Number 3rd
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[2].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[2].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[2].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                  </CardContent>
-                </Card>
-                <Card className="bnktheme mt-4" onClick={() => window.open(data[3].external_urls.spotify, '_blank').focus()}>
-        <CardContent>
-                    <CardActionArea>
-                  <Typography variant="h5" component="h2">
-                    Number 4th
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[3].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[3].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[3].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                  </CardContent>
-                </Card>
-                <Card className="bnktheme mt-4" onClick={() => window.open(data[4].external_urls.spotify, '_blank').focus()}>
-        <CardContent>
-                    <CardActionArea>
-                  <Typography variant="h5" component="h2">
-                    Number 5th
-                    </Typography>
-                    <hr />
-                    <CardMedia
-                        className='mb-3'
-                        src={data[4].album.images[0].url}
-                        component="img"
-                    />
-                     <Typography component="h5" variant="h5">
-                        {data[4].name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        Release date: {new Date(data[4].album.release_date).toDateString()}
-                    </Typography>
-                    </CardActionArea>
-                  </CardContent>
-                </Card>
-        </>
-            </Grow>
-               )}
-            </div>
-          )}
+              </Zoom>
+              )}
         </div>
         </>
      );

@@ -501,7 +501,7 @@ function App() {
                   <ListItemIcon>
                     <MusicNoteIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Music Ranking" />
+                  <ListItemText primary="Released album and single" />
                 </ListItem>
                 <ListItem component={Link} to='/officialupdate' className={window.location.pathname == '/officialupdate' ? 'activeNav' : ''} button>
                   <ListItemIcon>

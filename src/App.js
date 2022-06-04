@@ -249,7 +249,10 @@ function App() {
                   desc: 'Today is her birthday! Let\'s celebrate each other together.',
                   link: '/member?name=' + dres.response[i].name.toLowerCase(),
                   src: dres.response[i].img,
-                  place: ''
+                  place: '',
+                  memtag: [
+                    dres.response[i].name.toLowerCase()
+                  ]
                 })
               }
               }

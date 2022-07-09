@@ -710,7 +710,7 @@ function App() {
        </Dialog>
         )}
        
-       {newspop.length >0 && window.location.pathname != '/mana' && (
+       {newspop.length >0 && window.location.pathname != '/mana'  && window.location.pathname != '/member' && (
         <Dialog
       open={EvtPop}
       onClose={() => {

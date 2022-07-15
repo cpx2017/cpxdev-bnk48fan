@@ -720,6 +720,7 @@ function App() {
       }}
       maxWidth='md'
       scroll='body'
+TransitionComponent={Grow}
   >
     
     {newspop.length > 1 ?

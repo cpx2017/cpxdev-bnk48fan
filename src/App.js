@@ -721,6 +721,7 @@ function App() {
       maxWidth='md'
       scroll='body'
 TransitionComponent={Grow}
+transitionDuration={700}
   >
     
     {newspop.length > 1 ?

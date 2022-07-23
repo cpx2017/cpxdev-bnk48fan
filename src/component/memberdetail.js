@@ -532,7 +532,7 @@ function capitalizeFirstLetter(string) {
                                         <div className='col-md-5'>
                                             <img src={ita.src} width="100%" />
                                         </div>
-                                        <div className='col-md'>
+                                        <div className='col-md mt-3'>
                                             <h4 data-aos="zoom-out-right">{ita.title}</h4>
                                             <p className='text-muted mt-3' data-aos="zoom-in">{ita.desc}</p>
                                             {

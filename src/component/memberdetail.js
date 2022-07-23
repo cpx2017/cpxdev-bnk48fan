@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, Fade, Grow, CardMedia, Typography, Zoom, Link, Breadcrumbs, Button, AppBar, Toolbar, IconButton, Slide, ListItemText, List , ListItem,Divider } from '@material-ui/core';
+import { Card, Fade, Grow, CardMedia, Typography, Zoom, Link, Breadcrumbs, Button, AppBar, Toolbar, IconButton, Slide, CardContent, List , ListItem,Divider } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
@@ -20,6 +20,7 @@ import moment from 'moment'
 
 import { Fireworks } from 'fireworks-js/dist/react'
 import Swal from 'sweetalert2'
+import AOS from "aos";
 
 var pm = new Audio('https://p.scdn.co/mp3-preview/26031551568cba193fbb55d6e4dcf3eb8fb99b04?cid=774b29d4f13844c495f206cafdad9c86')
 
@@ -71,6 +72,7 @@ function capitalizeFirstLetter(string) {
         const [Loaded, setLoaded] = React.useState(false);
         const [birthday, setBirthday] = React.useState(false);
         const [kami, setKami] = React.useState(0);
+        const [newspop, setNewspop] = React.useState(null);
         
         const [play, onPlay] = React.useState(false);
         const [GEPoster, setGEPoster] = React.useState('');
@@ -271,6 +273,7 @@ function capitalizeFirstLetter(string) {
         }
 
         React.useEffect(() => {
+            AOS.init({ duration: 1000 });
             document.body.scrollTop = document.documentElement.scrollTop = 0;
             var url_string = window.location.href; 
             var url = new URL(url_string);
@@ -326,10 +329,21 @@ function capitalizeFirstLetter(string) {
                     setArr([])
                     setLoaded(true)
                 })
-         
+                fetch(fet + '/bnk48/getSpotUpdate', {
+                    method :'post'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data.response.data.filter(x => x.memtag.indexOf(c.toLowerCase()) > -1 || x.memtag.indexOf('All') > -1))
+                        const obj = data.response.data.filter(x => x.memtag.indexOf(c.toLowerCase()) > -1 || x.memtag.indexOf('All') > -1)
+                        setNewspop(obj)
+                    }).catch(() => {
+                        setNewspop([])
+                    })
             } else {
                 History.push("/")
             }
+
             return (() => {
                 pm.pause()
             })
@@ -507,7 +521,55 @@ function capitalizeFirstLetter(string) {
                             </div>
                     </Grow>
                 )}
-                
+                <div className='container mt-5'>
+                    {newspop != null && newspop.length > 0 && (<h3 className='mb-4' data-aos="flip-up">Incoming events for {capitalizeFirstLetter(mem)} BNK48</h3>)}
+                    {newspop != null && (
+                    <>
+                        {
+                            newspop.length > 0 ?  newspop.map((ita, i) => (
+                                <Card className='mb-3' data-aos="fade-right">
+                                    <CardContent className='row'>
+                                        <div className='col-md-5'>
+                                            <img src={ita.src} width="100%" />
+                                        </div>
+                                        <div className='col-md'>
+                                            <h4 data-aos="zoom-out-right">{ita.title}</h4>
+                                            <p className='text-muted mt-3' data-aos="zoom-in">{ita.desc}</p>
+                                            {
+                                                ita.link != '' && (
+                                                    <div data-aos="fade-down">
+                                                    <a href={ita.link} target='_blank'>More detail of this event</a>
+                                                    </div>
+                                                )
+                                            }
+                                            {
+                                                ita.place != '' && (
+                                                    <div className='mt-1' data-aos="fade-down">
+                                                    <a href={ita.place} target='_blank'>See event location on Google Maps</a>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            )) : (
+                                <Card className="text-center" data-aos="zoom-out-up">
+                                    <CardContent>
+                                    {capitalizeFirstLetter(mem)} BNK48 doesn't have incoming events right now.
+                                    </CardContent>
+                                </Card>
+                            )
+        
+                        }
+                        </>
+                    )}
+                </div>
+               
+                <Zoom in={newspop == null ? true : false} timeout={{ enter: 200, exit: 200}}>
+                        <div className='text-center pb-3'>
+                            <img src="https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/bnk-circular.svg" width="50px" className='text-center mt-3 mb-5' />
+                        </div>
+                    </Zoom>
             </div>
         </>
          );

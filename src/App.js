@@ -158,17 +158,6 @@ function App() {
   const [allDone, setAllDone] = React.useState(false);
   const [styleFade, setSty] = React.useState(0);
   
-  const FetchWallet = (fetdata, id) => {
-    fetch(fetdata + '/bnk48/getTokenProfile?walletid=' + (tokenID == '' ? id : tokenID)  , {
-      method :'post'
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.token != null) {
-        setPoint(data.token.userToken)
-      }
-    });
-  }
 
   const FetchKami = (fetdata) => {
     if (localStorage.getItem("glog") != null) {
@@ -641,7 +630,7 @@ function App() {
                   
         <footer className="bg-white text-center pt-2 pb-2 bnktheme">
           Copyright {new Date().getFullYear()}, CPXDevStudio Allright Reserved
-          <br /> All BNK48 and CGM48 contents are licensed by Independent Artist Management (iAM). We don't affiliated with them. Please don't be to copy and modified contents for any commercial use.
+          <br /> All BNK48 and CGM48 contents are licensed by Independent Artist Management (iAM). These member images and all events poster is objective for BNK48 supporting only.
         </footer>
 
 

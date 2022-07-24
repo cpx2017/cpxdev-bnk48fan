@@ -106,7 +106,7 @@ const Ge = ({fet, timesch, setSec}) => {
   })
       .then(response => response.json())
       .then(data => {
-          setRank(data)
+          setRank(data.response)
           setts(moment().format("DD MMMM YYYY HH:mm:ss"))
       }).catch(() => {
         setRank([])
@@ -487,27 +487,27 @@ const Ge = ({fet, timesch, setSec}) => {
                   </TableHead>
                   {rank.length > 0 ? rank.map((item, i) => (
                     <TableBody key={item.id} className={(item.rank == 1 ? 'centerGE' : item.rank > 1 && item.rank <= 16 ? 'senGE' : item.rank > 16 && item.rank <= 32 ? 'nextGE' : '') + ' cur'}
-                      data-toggle="tooltip" data-placement="bottom" title={(item.rank == 1 ? item.obj.response.name + ' is both Center position and Senbatsu of BNK48 12th Single' : item.rank > 1 && item.rank <= 16 ? item.obj.response.name + ' is Senbatsu of BNK48 12th Single' : item.rank > 16 && item.rank <= 32 ? item.obj.response.name + ' is participate in second song of BNK48 12th Single' : item.obj.response.name +' is participate in last song of BNK48 12th Single') + (moment().unix() < timesch.vote.close ? ' (2nd Preliminary Result)' : '')}
-                      onClick={() => item.obj.response.ref.includes('bnk48') ? History.push('member?name=' + item.name.toLowerCase()) : item.obj.response.ref.includes('cgm48') ? window.open('//cgm48fan.cpxdev.tk/member?name=' + item.name.toLowerCase(), '_target') : ''}
+                      data-toggle="tooltip" data-placement="bottom" title={(item.rank == 1 ? item.response.name + ' is both Center position and Senbatsu of BNK48 12th Single' : item.rank > 1 && item.rank <= 16 ? item.response.name + ' is Senbatsu of BNK48 12th Single' : item.rank > 16 && item.rank <= 32 ? item.response.name + ' is participate in second song of BNK48 12th Single' : item.response.name +' is participate in last song of BNK48 12th Single') + (moment().unix() < timesch.vote.close ? ' (2nd Preliminary Result)' : '')}
+                      onClick={() => item.response.ref.includes('bnk48') ? History.push('member?name=' + item.memid.toLowerCase()) : item.response.ref.includes('cgm48') ? window.open('//cgm48fan.cpxdev.tk/member?name=' + item.memid.toLowerCase(), '_target') : ''}
                       data-aos='fade-right'
                    >
                     <TableCell component="th" className={classes.rank}>
                           {item.rank}
                         </TableCell>
                         <TableCell align="center" className={classes.img}>
-                        <img src={item.obj.response.img} className={classes.large + ' cir avatarlimit'} />
+                        <img src={item.response.img} className={classes.large + ' cir avatarlimit'} />
                           </TableCell>
                           <TableCell align="center">
-                          {item.obj.response.fullnameEn[0]}  {item.obj.response.fullnameEn[1]} ({item.obj.response.name})
+                          {item.response.fullnameEn[0]}  {item.response.fullnameEn[1]} ({item.response.name})
                           </TableCell>
                           <TableCell align="center">
-                          {item.obj.response.ref.includes('bnk48') ? 'BNK48' : item.obj.response.ref.includes('cgm48') ? 'CGM48' : ''}
+                          {item.response.ref.includes('bnk48') ? 'BNK48' : item.response.ref.includes('cgm48') ? 'CGM48' : ''}
                           </TableCell>
                           <TableCell align="right">
-                          {item.obj.response.team == "" ? 'None' : item.obj.response.team}
+                          {item.response.team == "" ? 'None' : item.response.team}
                           </TableCell>
                           <TableCell align="right">
-                          {numberWithCommas(item.sc)}
+                          {numberWithCommas(item.score)}
                           </TableCell>
                   </TableBody>
                   )): (
